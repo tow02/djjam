@@ -1,0 +1,14 @@
+nav{
+    background-color: var(--main-bg-color);
+    padding:var(--main-padding);
+    height:var(--menu-height);
+    position: fixed;
+    top:0;
+    right:0;
+    left:0;
+    z-index:1030;
+}
+
+nav img{
+    max-height: 100%;
+}

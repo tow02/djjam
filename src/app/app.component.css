@@ -1,0 +1,5 @@
+section.main-content{
+    min-height: 80vh;
+    padding-top:calc(var(--menu-height) + var(--main-padding)  + var(--main-padding));
+}
+

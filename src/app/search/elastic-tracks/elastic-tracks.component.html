@@ -1,0 +1,23 @@
+<mat-list *ngIf="elasticTracks">
+    <mat-list-item  *ngFor="let item of elasticTracks">
+      
+      <h3 matLine>{{item.name}}</h3>
+      <p matLine>
+        <span>{{item.artists.join(", ")}}</span>
+        <span class="demo-2"> -- {{item.duration/1000 | secsToTime}} </span>
+      </p>
+      <p matLine>
+        <span *ngFor="let link of item.tags">
+          <a href="/search/{{link}}">{{link}}</a>&nbsp;
+        </span>
+        
+      </p>
+      <button mat-icon-button >
+        <mat-icon>play_arrow</mat-icon>
+     </button>
+    </mat-list-item>
+    
+  </mat-list>
+<div *ngIf="!elasticTracks">
+  Loading..
+</div>

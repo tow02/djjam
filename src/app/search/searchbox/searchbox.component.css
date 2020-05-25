@@ -1,0 +1,11 @@
+section.searchbox{
+    background-color: var(--secondary-bg-color);
+    padding:var(--main-padding);
+}
+
+input{
+    background: url('https://djjam.app/assets/imgs/search-icon.png') no-repeat scroll 7px 7px;
+    width: calc(100% - 30px - var(--main-padding));
+    padding-left: 30px;
+    background-color: white;
+}

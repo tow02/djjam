@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "djjam-v2",
+      "public": "dist/djjam-v2",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

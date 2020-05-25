@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'aplayer/dist/APlayer.min.css';
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+:root{
+    --main-bg-color:#343a40;
+    --secondary-bg-color:#212529;
+    --main-padding:1em;
+    --menu-height:2.5em;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+a{
+    color:white;
+}
+
+input.form-control{
+    padding:.375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius:10em;
+    display: block;
+    width: calc(98% - var(--main-padding));
+}
+

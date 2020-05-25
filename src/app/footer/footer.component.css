@@ -1,0 +1,17 @@
+footer, div.sub-footer{
+    background-color: var(--secondary-bg-color);
+    color:white;
+    display: flex;;
+}
+footer > div{
+    flex:1;
+    padding:var(--main-padding);
+}
+
+div.sub-footer{
+    text-align:  center;
+}
+
+div.sub-footer small{
+    width:100%;
+}
