@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http'
 import { environment } from '../../environments/environment'
 import { ElasticSearch } from "../models/Elastic"
 import { transformHumanQueryToElasticQuery } from "../utilities/track.utilities"
+import { AuthenticationService } from "../services/authentication.service"
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private authen:AuthenticationService) { }
 
   queryTrack( q:string = "*" , from:number = 0, size:number = 20){
     let url = environment.search_url + `?q=${q}&from=${from}&size=${size}`;
@@ -22,7 +23,8 @@ export class SearchService {
   }
 
   query(humanQuery:string, from:number =0, size:number = 20){
-    return this.queryTrack(transformHumanQueryToElasticQuery(humanQuery, "29Nw9XgdbbWedz2ZTt13a2Zsgy42"), from, size);
+    console.log('query', this.authen.currentUser.user.uid)
+    return this.queryTrack(transformHumanQueryToElasticQuery(humanQuery, this.authen.currentUser.user.uid), from, size);
   }
   
 

@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, EventEmitter, Output } from '@angular/core';
 
 import { ElasticTrack } from "../../models/Elastic"
 
@@ -14,12 +14,26 @@ export class ElasticTracksComponent implements OnChanges {
   elasticTracks:Array<ElasticTrack>
   //elasticSearch:ElasticSearch;
 
+  @Output()
+  onPlay:EventEmitter<ElasticTrack> = new EventEmitter();
+
+  @Output()
+  onSelected:EventEmitter<ElasticTrack> = new EventEmitter();
+
 
   constructor() { }
 
   ngOnChanges(): void {
     console.log('init', this.elasticTracks)
     //this.elasticSearch.hits.hits
+  }
+
+  play(track:ElasticTrack){
+    this.onPlay.emit(track);
+  }
+
+  select(track:ElasticTrack){
+    this.onSelected.emit(track);
   }
 
 }

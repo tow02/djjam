@@ -12,6 +12,9 @@ import {MatListModule} from '@angular/material/list'
 import {MatIconModule} from '@angular/material/icon'
 import { SecsToTimePipe } from "../pipes/secstotime.pipe"
 
+import { TrackService } from '../services/track.service'
+import { AuthenticationService } from "../services/authentication.service"
+
 @NgModule({
   declarations: [SearchboxComponent, IndexComponent, ElasticTracksComponent, SecsToTimePipe],
   imports: [
@@ -24,6 +27,6 @@ import { SecsToTimePipe } from "../pipes/secstotime.pipe"
     SearchRoutingModule
   ],
   exports:[SearchboxComponent],
-  providers:[SearchService]
+  providers:[SearchService, AuthenticationService, TrackService]
 })
 export class SearchModule { }
