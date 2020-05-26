@@ -34,8 +34,8 @@ export class PlayerComponent implements OnInit {
             artist: track.artists.map(a => a.name).join(', '),
             url: track.preview_url,
             cover: track.album.images[0].url,
-            loop:'one'
-        }]
+        }],
+        loop:'none'
       })
       if(e.action == "play")
         this.ap.play()
