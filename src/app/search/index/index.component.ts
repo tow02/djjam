@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { SearchService } from '../search.service'
+import { TrackService } from '../../services/track.service'
 import { ActivatedRoute } from '@angular/router'
 import { ElasticSearch, ElasticTrack } from "../../models/Elastic"
 import { environment } from "../../../environments/environment";
@@ -19,7 +20,7 @@ export class IndexComponent implements OnInit {
   from = 0;
   query:string;
 
-  constructor(private search:SearchService, private route:ActivatedRoute, private authen:AuthenticationService) { 
+  constructor(private search:SearchService, private route:ActivatedRoute, private authen:AuthenticationService, private trackService:TrackService) { 
     this.route.params.subscribe(p => {
       this.query = p['query'];
     })
@@ -51,6 +52,7 @@ export class IndexComponent implements OnInit {
 
   play(e:ElasticTrack){
     console.log('play', e);
+    this.trackService.play(e.id);
   }
 
   select(e:ElasticTrack){

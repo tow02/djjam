@@ -1,4 +1,5 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TrackService } from "../services/track.service"
 import APlayer from 'aplayer';
 
 
@@ -7,20 +8,37 @@ import APlayer from 'aplayer';
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.css']
 })
-export class PlayerComponent implements OnChanges {
+export class PlayerComponent implements OnInit {
  
-  @Input()
-  trackKey:string;
-
+  
 
   ap;
-  constructor() { 
+  constructor(private trackService:TrackService) { 
     
   }
 
 
-  ngOnChanges():void{
-    if(this.trackKey){
+  
+
+  ngOnInit():void{
+    console.log('initTrackPlayer')
+    this.trackService.onChangeTrack.subscribe(track => {
+      //found a new track
+      console.log('play new track?', track);
+      
+      this.ap =  new APlayer({
+        container: document.getElementById('aplayer'),
+        audio: [{
+            name: track.name,
+            artist: track.artists.map(a => a.name).join(', '),
+            url: track.preview_url,
+            cover: track.album.images[0].url,
+            loop:'none'
+        }]
+      })
+      this.ap.play()
+    })
+    /*if(this.trackKey){
       //ifHaveTrackKey init APlayer
       this.ap =  new APlayer({
         container: document.getElementById('aplayer'),
@@ -31,7 +49,7 @@ export class PlayerComponent implements OnChanges {
             cover: 'https://i.scdn.co/image/ab67616d0000b273a316589b638578d23bada5b1'
         }]
     })
-    }
+    }*/
   }
 
   /*ngOnInit(): void {
