@@ -2,6 +2,7 @@
 @import 'aplayer/dist/APlayer.min.css';
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 :root{
+    --main-color:#ffc218;
     --main-bg-color:#343a40;
     --secondary-bg-color:#212529;
     --main-padding:1em;

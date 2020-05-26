@@ -1,3 +1,7 @@
 a{
     color:#333;
 }
+
+.mat-list-item.active{
+    background-color: var(--main-color);
+}

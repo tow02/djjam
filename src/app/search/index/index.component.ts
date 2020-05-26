@@ -56,8 +56,17 @@ export class IndexComponent implements OnInit {
   }
 
   select(e:ElasticTrack){
-    console.log('select', e);
+    console.log('index-select', e);
     this.trackService.select(e.id);
+  }
+
+  deSelect(){
+    console.log('---deSelect')
+    this.trackService.deSelect();
+  }
+
+  pause(){
+    this.trackService.pause();
   }
 
   @HostListener("window:scroll", ["$event"])

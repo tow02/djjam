@@ -23,10 +23,11 @@ export class PlayerComponent implements OnInit {
   ngOnInit():void{
     console.log('initTrackPlayer')
     this.trackService.onChangeTrack.subscribe((e:TrackEvent ) => {
-      let track = e.track
-      //found a new track
-      console.log('play new track?', track);
       
+      //found a new track
+      console.log('play new track?', e);
+      let track = e.track
+      if(e.action == 'play' || e.action == 'select')
       this.ap =  new APlayer({
         container: document.getElementById('aplayer'),
         audio: [{
@@ -39,6 +40,8 @@ export class PlayerComponent implements OnInit {
       })
       if(e.action == "play")
         this.ap.play()
+      if(e.action == "pause" )
+        this.ap.pause();
     })
     
   }

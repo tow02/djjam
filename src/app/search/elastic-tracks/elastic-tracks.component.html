@@ -1,8 +1,8 @@
 <mat-list *ngIf="elasticTracks">
-    <mat-list-item  *ngFor="let item of elasticTracks">
+    <mat-list-item  *ngFor="let item of elasticTracks;index as i" [ngClass]="{'active':i === currentSelectedIndex}">
       
-      <h3 (click)="select(item)" matLine>{{item.name}}</h3>
-      <p (click)="select(item)" matLine>
+      <h3 (click)="select(item, i)" matLine>{{item.name}}</h3>
+      <p (click)="select(item, i)" matLine>
         <span>{{item.artists.join(", ")}}</span>
         <span class="demo-2"> -- {{item.duration/1000 | secsToTime}} </span>
       </p>
@@ -12,8 +12,9 @@
         </span>
         
       </p>
-      <button (click)="play(item)" mat-icon-button >
-        <mat-icon>play_arrow</mat-icon>
+      <button (click)="play(item, i)" mat-icon-button >
+        <mat-icon *ngIf="i !== currentPlayIndex">play_arrow</mat-icon>
+        <mat-icon *ngIf="i === currentPlayIndex">pause_arrow</mat-icon>
      </button>
     </mat-list-item>
     

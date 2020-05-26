@@ -13,6 +13,7 @@ export interface TrackEvent{
 export class TrackService {
 
   private _currentTrackId:string;
+  currentTrack:Track;
   onChangeTrack:EventEmitter<TrackEvent> = new EventEmitter<TrackEvent>();
 
   constructor(private firestore:AngularFirestore) {
@@ -24,31 +25,40 @@ export class TrackService {
   }
 
   private isChangeTrack(trackID:string){
-      return !this._currentTrackId || this._currentTrackId != trackID;
+      return !this.currentTrack || this.currentTrack.id != trackID;
   }
 
-  async play(trackID:string){    
-    const isPlay = this.isChangeTrack(trackID);
-      if(isPlay){
-        const track = await this.get(trackID);
-        this.onChangeTrack.emit({
-          track:track,
-          action:"play"
-        });
-      }
-      return isPlay;
+  async play(trackID:string){        
+    this.currentTrack = await this.get(trackID);
+    this.onChangeTrack.emit({
+      track:this.currentTrack,
+      action:"play"
+    });
+  }
+
+  pause(){
+    this.onChangeTrack.emit({
+      track:this.currentTrack,
+      action:'pause'
+    })
   }
 
   async select(trackID:string){
-    const isChange = this.isChangeTrack(trackID);
-    if(isChange){
-      const track = await this.get(trackID);
-      this.onChangeTrack.emit({
-        track:track,
-        action:"select"
-      });
-    }
-    return isChange;
+      
+    this.currentTrack = await this.get(trackID);
+    this.onChangeTrack.emit({
+      track:this.currentTrack,
+      action:"select"
+    });
+  }
+
+  deSelect(){
+    this.onChangeTrack.emit({
+      track:this.currentTrack,
+      action:"deselect"
+    }) 
+    delete this.currentTrack;
+    
   }
 
 
