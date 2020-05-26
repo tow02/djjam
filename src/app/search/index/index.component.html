@@ -3,3 +3,4 @@
 
 <p *ngIf="searchResult">Search result of "{{query}}" found {{searchResult.hits.total}} tracks <a href="#">Load all at once</a></p>
 <elastic-tracks [elasticTracks]="elasticTracks" (onPlay)="play($event)" (onSelected)="select($event)"></elastic-tracks>
+<app-player></app-player>
