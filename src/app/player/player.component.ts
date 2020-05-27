@@ -11,6 +11,7 @@ import APlayer from 'aplayer';
 export class PlayerComponent implements OnInit {
  
   ap;
+  isActive =false;
   isPlaying = false;
   currentPlayingId:string;
   constructor(private trackService:TrackService) { 
@@ -25,7 +26,7 @@ export class PlayerComponent implements OnInit {
     })
     
     this.trackService.onChangeTrack.subscribe((e:TrackEvent ) => {
-      
+      this.isActive = true;
       //found a new track
       console.log('play new track?', e);
       let track = e.track
@@ -66,9 +67,9 @@ export class PlayerComponent implements OnInit {
         this.ap.pause();
         this.isPlaying = false;
       } 
-        
-        
-
+      if(e.action == 'deselect')
+          this.isActive = false;
+      
       
     })
     
