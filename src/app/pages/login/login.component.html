@@ -1,0 +1,18 @@
+<section class="login-area">
+    <form  (submit)="login()">
+        <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input [(ngModel)]="email" name="emal" matInput placeholder="Ex. me@sompop.dev" value="">
+        </mat-form-field>
+        
+        <mat-form-field class="full-width">
+            <mat-label>Password</mat-label>
+            <input [(ngModel)]="password" name="password" matInput type="password" placeholder="">
+        </mat-form-field>
+        
+        <button mat-button color="primary">Login</button>
+        
+    </form>
+
+
+</section>

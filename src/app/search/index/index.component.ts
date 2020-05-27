@@ -27,8 +27,6 @@ export class IndexComponent implements OnInit {
   }
 
    async ngOnInit() {
-     let result = await this.authen.login("sompop@djjam.org", "sompopcool");
-     console.log('login result', result);
      
     /*this.search.queryTrack("(artists:count%20OR%20name:count%20OR%20tags:count%20OR%20(personal_tags:count^100%20AND%20personal_tags:29Nw9XgdbbWedz2ZTt13a2Zsgy42%20))%20AND%20(artists:basie%20OR%20name:basie%20OR%20tags:basie%20OR%20(personal_tags:basie^100%20AND%20personal_tags:29Nw9XgdbbWedz2ZTt13a2Zsgy42%20))")
     .subscribe(e => {

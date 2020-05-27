@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule  } from '@angular/forms'
 import { NgModule } from '@angular/core';
 import { SearchModule } from './search/search.module'
 import { AngularFireModule } from '@angular/fire';
@@ -11,20 +12,29 @@ import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { PlayerComponent } from './player/player.component';
 import { environment } from '../environments/environment';
+import { LoginComponent } from './pages/login/login.component';
+import { HomeComponent } from './pages/home/home.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     FooterComponent,
-    PlayerComponent
+    PlayerComponent,
+    LoginComponent,
+    HomeComponent
 
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    MatButtonModule,  
+    MatInputModule,
     SearchModule,
     AppRoutingModule,
     BrowserAnimationsModule

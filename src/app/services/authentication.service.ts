@@ -6,7 +6,7 @@ import { AngularFireAuth  } from '@angular/fire/auth'
 })
 export class AuthenticationService {
 
-  constructor(private auth:AngularFireAuth) { }
+  constructor(public auth:AngularFireAuth) { }
 
   currentUser:firebase.auth.UserCredential;
 
@@ -17,7 +17,9 @@ export class AuthenticationService {
     })
   }
 
-  
+  logout(){
+    return this.auth.signOut();
+  }
 
 
 }

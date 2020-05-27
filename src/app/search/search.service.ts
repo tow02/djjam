@@ -10,7 +10,11 @@ import { AuthenticationService } from "../services/authentication.service"
 })
 export class SearchService {
 
-  constructor(private http:HttpClient, private authen:AuthenticationService) { }
+  private currentUser:firebase.User
+  constructor(private http:HttpClient, private authen:AuthenticationService) {
+  
+   }
+  
 
   queryTrack( q:string = "*" , from:number = 0, size:number = 20){
     let url = environment.search_url + `?q=${q}&from=${from}&size=${size}`;
@@ -23,8 +27,8 @@ export class SearchService {
   }
 
   query(humanQuery:string, from:number =0, size:number = 20){
-    console.log('query', this.authen.currentUser.user.uid)
-    return this.queryTrack(transformHumanQueryToElasticQuery(humanQuery, this.authen.currentUser.user.uid), from, size);
+    
+    return this.queryTrack(transformHumanQueryToElasticQuery(humanQuery, this.currentUser.uid), from, size);
   }
   
 
