@@ -10,9 +10,9 @@ import { AuthenticationService } from "../services/authentication.service"
 })
 export class SearchService {
 
-  private currentUser:firebase.User
-  constructor(private http:HttpClient, private authen:AuthenticationService) {
   
+  constructor( private authen:AuthenticationService) {
+      
    }
   
 
@@ -26,9 +26,9 @@ export class SearchService {
     
   }
 
-  query(humanQuery:string, from:number =0, size:number = 20){
-    
-    return this.queryTrack(transformHumanQueryToElasticQuery(humanQuery, this.currentUser.uid), from, size);
+  async query(humanQuery:string, from:number =0, size:number = 20){
+
+    return this.queryTrack(transformHumanQueryToElasticQuery(humanQuery, (await this.authen.auth.currentUser).uid ), from, size);
   }
   
 
