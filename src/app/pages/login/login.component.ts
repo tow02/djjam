@@ -13,14 +13,16 @@ export class LoginComponent implements OnInit {
 
   email:string
   password:string
+  isLogginIn = false;
 
   ngOnInit(): void {
   }
 
   async login(){
     console.log(this.email, this.password);
-    
+    this.isLogginIn = true;
     await this.authen.login(this.email, this.password)
+    this.isLogginIn = false;
     this.router.navigate([''])
   }
 

@@ -1,4 +1,4 @@
-<section class="login-area">
+<section class="login-area" [ngClass]="{'isLogginIn':isLogginIn}">
     <form  (submit)="login()">
         <mat-form-field class="full-width">
             <mat-label>Email</mat-label>

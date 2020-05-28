@@ -8,6 +8,10 @@
     margin-right:auto;
 }
 
+.login-area.isLogginIn{
+    background-color: black;;
+}
+
 .full-width{
     width: 100%;
 }
