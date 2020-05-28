@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from "../services/authentication.service"
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-menu',
@@ -22,6 +23,20 @@ export class MenuComponent implements OnInit {
         this.isLoginIn = false;
       
     })
+    this.router.events.subscribe(e => {
+      
+      if(e instanceof NavigationEnd){
+        console.log("check url", this.router.url)
+        let resultMatch = e.url.match(/search\/(.+)/g);
+        if(resultMatch){
+          console.log(resultMatch)
+        this.q =  decodeURIComponent(resultMatch[0].split('/')[1]);
+        }
+        
+
+      }
+        
+    })
   }
 
   logout(){
@@ -29,7 +44,8 @@ export class MenuComponent implements OnInit {
   }
 
   search(){
-    this.router.navigate(['/search', this.q]);
+    if(this.q)
+      this.router.navigate(['/search', this.q]);
   }
 
 }

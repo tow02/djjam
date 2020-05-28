@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { SearchService } from '../search.service'
 import { TrackService } from '../../services/track.service'
 import { ActivatedRoute } from '@angular/router'
@@ -11,7 +11,7 @@ import { AuthenticationService  } from "../../services/authentication.service"
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.css']
 })
-export class IndexComponent implements OnInit {
+export class IndexComponent implements  OnInit {
 
   searchResult:ElasticSearch;
   elasticTracks:Array<ElasticTrack>;
@@ -22,24 +22,28 @@ export class IndexComponent implements OnInit {
 
   constructor(private search:SearchService, private route:ActivatedRoute, private authen:AuthenticationService, private trackService:TrackService) { 
     this.route.params.subscribe(p => {
-      this.query = p['query'];
+      
+      console.log('change in query?')
+      this.init(p['query']);
     })
+    
   }
 
-  
-
-   async ngOnInit() {
-     
-    /*this.search.queryTrack("(artists:count%20OR%20name:count%20OR%20tags:count%20OR%20(personal_tags:count^100%20AND%20personal_tags:29Nw9XgdbbWedz2ZTt13a2Zsgy42%20))%20AND%20(artists:basie%20OR%20name:basie%20OR%20tags:basie%20OR%20(personal_tags:basie^100%20AND%20personal_tags:29Nw9XgdbbWedz2ZTt13a2Zsgy42%20))")
-    .subscribe(e => {
-      this.searchResult = e;
-      console.log('e', e);
-    })*/
-    //
+  async init(query:string){
+    this.query = query
     this.searchResult = await this.search.query(this.query, this.from);
     this.elasticTracks = this.searchResult.hits.hits.map(hit => hit._source);
-    console.log(this.searchResult);
+    console.log('init!!')
   }
+
+  ngAfterContentInit(){
+    console.log('after content init');
+  }
+
+    async ngOnInit(){
+    
+    }  
+
 
   async loadMore(){
     this.isSubLoading = true;

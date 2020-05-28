@@ -1,5 +1,2 @@
-
-<app-searchbox [query]="query"></app-searchbox>
-
 <p *ngIf="searchResult">Search result of "{{query}}" found {{searchResult.hits.total}} tracks <a href="#">Load all at once</a></p>
 <elastic-tracks [elasticTracks]="elasticTracks"  (onPause)="pause()" (onPlay)="play($event)" (onSelected)="select($event)" (onDeselected)="deSelect()" ></elastic-tracks>
