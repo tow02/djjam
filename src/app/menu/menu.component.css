@@ -7,17 +7,32 @@ nav{
     right:0;
     left:0;
     z-index:1030;
+    display: flex;
 }
 
-ul{
-    list-style-type: none;
-    margin:0;
-    padding:0;
+#start{
+    flex-direction: row;
 }
 
-li{
-    float:left;
-    list-style-type: none;
+#center{
+    align-items: center;
+    flex:1;
+    display: flex;
+    
+}
+
+input{
+    line-height: 30px;;
+}
+
+#center form{
+    flex:1;
+    margin-left:40px;
+}
+
+#end{
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .mat-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button{

@@ -11,7 +11,7 @@ export class MenuComponent implements OnInit {
 
   currentUser:firebase.User;
   constructor(private authen:AuthenticationService, private router:Router) { }
-
+  q:string;
   isLoginIn = false;
 
   ngOnInit(): void {
@@ -26,6 +26,10 @@ export class MenuComponent implements OnInit {
 
   logout(){
     this.authen.logout().then(() => this.router.navigate(['/login']));
+  }
+
+  search(){
+    this.router.navigate(['/search', this.q]);
   }
 
 }

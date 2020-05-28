@@ -1,17 +1,24 @@
 <nav>
-    <ul>
-        <li>
-            <a [routerLink]="['/']"> <img src="https://djjam.app/assets/bannerlogo.png" /></a>
-        </li>
+    
+    <div id="start">
+        <a [routerLink]="['/']"> <img src="https://djjam.app/assets/bannerlogo.png" /></a>
+    </div>
+    <div id="center">
+        <form (submit)="search()">
+            <input [(ngModel)]="q"  name="q" type="text" placeholder="Search for swing music" />
 
-    </ul>
-    
-    
-    <li *ngIf="isLoginIn" class="right">
+        </form>
+    </div>
+    <div id="end" *ngIf="isLoginIn" >
         <button mat-button [matMenuTriggerFor]="menu">MENU</button>
             <mat-menu #menu="matMenu">
-            <button mat-menu-item>Setting</button>
-            <button (click)="logout()" mat-menu-item>Logout</button>
+                <button mat-menu-item>Upload a playlist</button>
+                <button mat-menu-item>Setting</button>
+                <button (click)="logout()" mat-menu-item>Logout</button>
             </mat-menu>
-        </li>
+    </div>
+    
+    
+    
+    
 </nav>
