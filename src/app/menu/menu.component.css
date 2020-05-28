@@ -9,6 +9,33 @@ nav{
     z-index:1030;
 }
 
+ul{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+}
+
+li{
+    float:left;
+    list-style-type: none;
+}
+
+.mat-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button{
+    color:var(--main-color);
+}
+
+.mat-menu-panel{
+    background-color:var(--main-bg-color) !important;
+}
+
+li.right{
+    float:right;
+}
+
+li a{
+    display: inline-block;
+}
+
 nav img{
-    max-height: 100%;
+    max-height: 2.5em;
 }

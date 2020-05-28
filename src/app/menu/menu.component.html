@@ -1,5 +1,17 @@
 <nav>
-    <a [routerLink]="['/']"> <img src="https://djjam.app/assets/bannerlogo.png" /></a>
-    
+    <ul>
+        <li>
+            <a [routerLink]="['/']"> <img src="https://djjam.app/assets/bannerlogo.png" /></a>
+        </li>
 
+    </ul>
+    
+    
+    <li *ngIf="isLoginIn" class="right">
+        <button mat-button [matMenuTriggerFor]="menu">MENU</button>
+            <mat-menu #menu="matMenu">
+            <button mat-menu-item>Setting</button>
+            <button (click)="logout()" mat-menu-item>Logout</button>
+            </mat-menu>
+        </li>
 </nav>
