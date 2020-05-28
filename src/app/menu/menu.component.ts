@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthenticationService } from "../services/authentication.service"
 import { Router, NavigationEnd } from '@angular/router';
-import { ActivatedRoute } from '@angular/router'
+
 
 @Component({
   selector: 'app-menu',
@@ -14,6 +14,9 @@ export class MenuComponent implements OnInit {
   constructor(private authen:AuthenticationService, private router:Router) { }
   q:string;
   isLoginIn = false;
+  
+  @Output()
+  onToggleMenu:EventEmitter<void> = new EventEmitter<void>();
 
   ngOnInit(): void {
     this.authen.auth.authState.subscribe(user => {
@@ -37,6 +40,10 @@ export class MenuComponent implements OnInit {
       }
         
     })
+  }
+
+  toggle(){
+    this.onToggleMenu.emit();
   }
 
   logout(){

@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'djjam-v2';
+
+  isOpen = false;
+  toggleMenu(){
+    this.isOpen = !this.isOpen;
+  }
 }
