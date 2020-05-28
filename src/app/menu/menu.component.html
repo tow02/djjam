@@ -1,6 +1,9 @@
 <nav>
     
     <div id="start">
+        <button mat-icon-button >
+            <mat-icon>menu</mat-icon>
+          </button>
         <a [routerLink]="['/']"> <img src="https://djjam.app/assets/bannerlogo.png" /></a>
     </div>
     <div id="center">
@@ -10,9 +13,10 @@
         </form>
     </div>
     <div id="end" *ngIf="isLoginIn" >
-        <button mat-button [matMenuTriggerFor]="menu">MENU</button>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>person</mat-icon>
+        </button>
             <mat-menu #menu="matMenu">
-                <button mat-menu-item>Upload a playlist</button>
                 <button mat-menu-item>Setting</button>
                 <button (click)="logout()" mat-menu-item>Logout</button>
             </mat-menu>

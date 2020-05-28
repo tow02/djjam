@@ -12,6 +12,13 @@ nav{
 
 #start{
     flex-direction: row;
+    display: flex;
+}
+
+@media only screen and (min-width: 800px){
+    #start button{
+        display: none;;
+    }
 }
 
 #center{
@@ -46,13 +53,8 @@ input{
     background-color:var(--main-bg-color) !important;
 }
 
-li.right{
-    float:right;
-}
 
-li a{
-    display: inline-block;
-}
+
 
 nav img{
     max-height: 2.5em;

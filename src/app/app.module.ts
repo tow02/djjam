@@ -17,6 +17,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatIconModule} from '@angular/material/icon'
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { MatMenuModule } from '@angular/material/menu';
     AngularFireAuthModule,
     MatButtonModule,  
     MatInputModule,
+    MatIconModule,
     MatMenuModule,
+    MatSidenavModule,
     SearchModule,
     AppRoutingModule,
     BrowserAnimationsModule

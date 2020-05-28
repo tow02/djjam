@@ -1,6 +1,12 @@
 <app-menu></app-menu>
-<section class="main-content">
-    <router-outlet></router-outlet>
-</section>
+<mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened>Drawer content</mat-drawer>
+    <mat-drawer-content>
+        <section class="main-content">
+            <router-outlet></router-outlet>
+        </section>
+    </mat-drawer-content>
+  </mat-drawer-container>
+
 <app-player ></app-player>
 <app-footer></app-footer>
