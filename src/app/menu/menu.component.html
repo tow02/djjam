@@ -1,13 +1,13 @@
 <nav>
     
     <div id="start">
-        <button  (click)="toggle()" mat-icon-button >
+        <button *ngIf="isLoginIn"  (click)="toggle()" mat-icon-button >
             <mat-icon>menu</mat-icon>
           </button>
         <a [routerLink]="['/']"> <img src="https://djjam.app/assets/bannerlogo.png" /></a>
     </div>
     <div id="center">
-        <form (submit)="search()">
+        <form *ngIf="isLoginIn"  (submit)="search()">
             <input [(ngModel)]="q"  name="q" type="text" placeholder="Search for swing music" />
 
         </form>

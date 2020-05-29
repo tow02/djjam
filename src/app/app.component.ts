@@ -1,5 +1,5 @@
 import { Component, HostListener  } from '@angular/core';
-
+import { AuthenticationService} from "./services/authentication.service"
 
 @Component({
   selector: 'app-root',
@@ -10,11 +10,16 @@ export class AppComponent {
   title = 'djjam-v2';
 
   isOpen = true;
+  
   mode:"desktop"|"mobile" = "mobile";
 
-  constructor(){
+  constructor(private authen:AuthenticationService){
     if(window.innerWidth < 800)
       this.isOpen = false;
+    this.authen.auth.authState.subscribe(user => {
+      if(!user)
+        this.isOpen = false;
+    })
   }
   
   @HostListener('window:resize', ['$event'])
