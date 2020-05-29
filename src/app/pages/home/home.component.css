@@ -1,0 +1,33 @@
+.content{
+    padding: var(--main-padding);
+    
+}
+
+.hero{
+    height:250px;
+    text-align: center;
+    background-color: #1f0a01;
+}
+
+.hero img{
+    max-height: 100%;
+}
+
+
+
+.playlists{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.playlists article{
+    padding:0.5em;
+}
+
+.playlists article img{
+    height: 10em;
+}
+
+.playlists article h4{
+    font-weight: bold;
+}

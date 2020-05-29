@@ -4,7 +4,8 @@
 :root{
     --main-color:#ffc218;
     --main-bg-color:#343a40;
-    --secondary-bg-color:#212529;
+    --main-content-bg-color:#212529;
+    --secondary-bg-color:#1b1c1d;
     --main-padding:1em;
     --menu-height:2.5em;
 }
