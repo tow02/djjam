@@ -6,21 +6,19 @@
                 Home
             </a>    
         </li>
-        <li>
+        <li  *ngIf="isConnect">
             <a    mat-button>
             <mat-icon>publish</mat-icon>
             Publish playlist
             </a>    </li>
     </ul>
 
-<h4 class="spotify">Playlists</h4>
+<h4 class="spotify"  *ngIf="isConnect">Playlists</h4>
 <form class="spotify" *ngIf="!isConnect">
     <button class="spotify-button">Connect to Spotify</button>
 </form>
 <ul class="spotify" *ngIf="isConnect">
-    <li><a mat-button><mat-icon>queue_music</mat-icon> Covid and chill baby</a></li>
-    <li><a mat-button><mat-icon>queue_music</mat-icon> Classic March</a></li>
-    <li><a mat-button><mat-icon>queue_music</mat-icon> Stuff like that</a></li>
+    <li *ngFor="let item of playlists"><a mat-button><mat-icon>queue_music</mat-icon> {{item.name}}</a></li>
     
     
 </ul>

@@ -9,6 +9,6 @@ section.main-content{
     color:white;
 }
 
-mat-drawer {
-    width: 180px;
+mat-sidenav {
+    width: 200px;
   }

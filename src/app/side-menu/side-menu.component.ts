@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { SpotifyService } from "../services/spotify.service"
 
 @Component({
   selector: 'app-side-menu',
@@ -8,13 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideMenuComponent implements OnInit {
 
-  constructore() { }
+  constructor(private spotifyService:SpotifyService) { }
 
   isConnect = true;
-
-  ngOnInit(): void {
-    
-    
+  playlists = [];
+  
+  async ngOnInit() {
+    this.isConnect = this.spotifyService.isConnect()
+    this.spotifyService.getMyWholePlaylists(playlists => {
+      this.playlists = playlists;
+      console.log(this.playlists)
+    })
+    //console.log(playlists)
   }
 
 }

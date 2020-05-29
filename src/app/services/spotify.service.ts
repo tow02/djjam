@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router'
 import { environment } from "../../environments/environment"
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,8 @@ export class SpotifyService {
 
   isConnect(){
     if(this.accessToken && this.tokenType)
+      return true;
+    else if(localStorage[environment.localstorage.spotify_access_token])
       return true;
     else
       return false;
@@ -57,15 +60,19 @@ export class SpotifyService {
       
   }
 
-  async getMyWholePlaylists(offset:number = 0){
+  async getMyWholePlaylists(callback?:Function){
     let playlists = [];
     let currentOffset = 0;
     let addNext = false;
     do{
       let stuff = await this.getMyPlaylists(currentOffset)
-      addNext = stuff.total > stuff.offset + stuff.limit
-      console.log(stuff.items)
+      addNext = stuff.total > currentOffset + stuff.limit
+      console.log(stuff.items, playlists)
       playlists = playlists.concat(stuff.items)
+      if(callback)
+        callback(playlists);
+      currentOffset += stuff.items.length;
+      
     }while(addNext);
    
     return playlists;
@@ -75,8 +82,7 @@ export class SpotifyService {
     if(!this.accessToken)
       this.accessToken = this.getTokenLocal();
 
-    console.log(this.accessToken);
-    console.log(this.tokenType);
+    
     if(!this.tokenType)
       this.tokenType = "Bearer";
 
