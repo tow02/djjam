@@ -1,7 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router'
 import { environment } from "../../environments/environment"
-import { Observable } from 'rxjs';
+
+interface SpotifyPlaylist{
+  collaborative: boolean
+  description: string
+  external_urls: any
+  followers: {href: any, total: number}
+  href: string
+  id: string
+  images: Array<{
+      height:number,
+      url:string,
+      width:string
+  }>
+  name: string
+  owner: {display_name: string, external_urls: any, href: string, id: string, type: string, uri:string}
+  primary_color: any
+  public: boolean
+  snapshot_id: string
+  tracks: {href: string, items: Array<any>, limit: number, next: any, offset: number, previous:any, total:number}
+  type: string
+  uri: string
+}
 
 @Injectable({
   providedIn: 'root'
@@ -60,14 +81,20 @@ export class SpotifyService {
       
   }
 
+  getPlaylist( playlist_id:string){
+      return fetch(`https://api.spotify.com/v1/playlists/${playlist_id}`,{
+        headers:this.getHeaderOptions()
+      }).then(res => res.json()).then(res => (res as SpotifyPlaylist));
+  }
+
   async getMyWholePlaylists(callback?:Function){
-    let playlists = [];
+    let playlists:Array<SpotifyPlaylist> = [];
     let currentOffset = 0;
     let addNext = false;
     do{
       let stuff = await this.getMyPlaylists(currentOffset)
       addNext = stuff.total > currentOffset + stuff.limit
-      console.log(stuff.items, playlists)
+      //console.log(stuff.items, playlists)
       playlists = playlists.concat(stuff.items)
       if(callback)
         callback(playlists);

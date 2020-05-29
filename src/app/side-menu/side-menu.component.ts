@@ -17,7 +17,7 @@ export class SideMenuComponent implements OnInit {
     this.isConnect = this.spotifyService.isConnect()
     this.spotifyService.getMyWholePlaylists(playlists => {
       this.playlists = playlists;
-      console.log(this.playlists)
+      //console.log(this.playlists)
     })
     //console.log(playlists)
   }
