@@ -12,12 +12,46 @@ ul{
 }
 
 
-a{
+ul li > a{
     width: 100%;
     text-align: left;
+    text-decoration: none;
 }
 
 h4{
+    padding-left:calc(var(--main-padding) + 5px);
+}
+form.spotify{
+    text-align: center;
+}
+
+.spotify-button{
+    background-color: #1ed760;;
+    cursor: pointer;;
+    font-weight: bold;
+    padding:1em;
+    border-radius: 2em;
+    border:0;
+    text-decoration: none;
+    color:white;
+}
+
+
+.buttom{
+    position: fixed;
+    bottom:0px;
     padding-left:var(--main-padding);
 }
 
+.buttom.connect{
+    position: initial;
+}
+
+.buttom a{
+    margin-right:0.5em;
+    font-size:0.8em;
+}
+
+small a{
+    font-size:1em;
+}

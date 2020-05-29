@@ -1,7 +1,7 @@
 <section class="container">
     <ul>
         <li>
-            <a    mat-button>
+            <a  [routerLink]="['/']"  mat-button>
                 <mat-icon>home</mat-icon>
                 Home
             </a>    
@@ -12,8 +12,20 @@
             Publish playlist
             </a>    </li>
     </ul>
-<h4>My Playlist</h4>
-<ul>
-    <li>Covid and chill baby</li>
-</ul>
+
+<h4>Playlist</h4>
+<form class="spotify">
+    <button class="spotify-button">Connect to Spotify</button>
+</form>
+<div class="buttom">
+    <a>About</a>
+    <a>Copyright</a>
+    <a>Contact us</a>
+    <div>
+        <small>&copy; Copyright 2020 <a href="https://sompop.dev">Sompop.dev</a> </small>
+    </div>
+    
+</div>
+
+
 </section>
