@@ -9,6 +9,8 @@ export class SideMenuComponent implements OnInit {
 
   constructor() { }
 
+  isConnect = true;
+
   ngOnInit(): void {
   }
 

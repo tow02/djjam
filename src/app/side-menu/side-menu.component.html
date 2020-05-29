@@ -13,11 +13,17 @@
             </a>    </li>
     </ul>
 
-<h4>Playlist</h4>
-<form class="spotify">
+<h4 class="spotify">Playlists</h4>
+<form class="spotify" *ngIf="!isConnect">
     <button class="spotify-button">Connect to Spotify</button>
 </form>
-<div class="buttom">
+<ul class="spotify" *ngIf="isConnect">
+    <li><a mat-button><mat-icon>queue_music</mat-icon> Covid and chill baby</a></li>
+    <li><a mat-button><mat-icon>queue_music</mat-icon> Classic March</a></li>
+    <li><a mat-button><mat-icon>queue_music</mat-icon> Stuff like that</a></li>
+    
+</ul>
+<div class="buttom" [ngClass]="{'connect':isConnect}">
     <a>About</a>
     <a>Copyright</a>
     <a>Contact us</a>
