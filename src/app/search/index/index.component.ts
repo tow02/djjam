@@ -33,7 +33,7 @@ export class IndexComponent implements  OnInit {
     this.query = query
     this.searchResult = await this.search.query(this.query, this.from);
     this.elasticTracks = this.searchResult.hits.hits.map(hit => hit._source);
-    console.log('init!!')
+    console.log('init!!', this.elasticTracks)
   }
 
   ngAfterContentInit(){

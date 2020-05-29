@@ -18,7 +18,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatIconModule} from '@angular/material/icon'
+import {MatIconModule} from '@angular/material/icon';
+import { SideMenuComponent } from './side-menu/side-menu.component'
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {MatIconModule} from '@angular/material/icon'
     FooterComponent,
     PlayerComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    SideMenuComponent
 
   ],
   imports: [

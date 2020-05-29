@@ -1,15 +1,8 @@
 <app-menu (onToggleMenu)="toggleMenu()" > </app-menu>
 <mat-drawer-container class="example-container">
     <mat-drawer  #sidenav mode="side" [opened]="isOpen">
-        <ul>
-            <li>HOME </li>
-            <li>Publish your playlist</li>
-        </ul>
-        <h4>My Playlist</h4>
-        <ul>
-            <li>Covid and chill baby</li>
-            <li>{{isOpen}} </li>
-        </ul>
+        <app-side-menu></app-side-menu>
+        
     </mat-drawer>
     <mat-drawer-content>
         <section class="main-content">

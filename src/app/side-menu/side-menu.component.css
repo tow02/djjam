@@ -1,0 +1,23 @@
+.container{
+    
+    padding-top:calc(var(--menu-height) + var(--main-padding)  + var(--main-padding));
+    display: flex;
+    flex-direction: column;
+    
+}
+
+ul{
+    list-style: none;
+    padding:0;
+}
+
+
+a{
+    width: 100%;
+    text-align: left;
+}
+
+h4{
+    padding-left:var(--main-padding);
+}
+

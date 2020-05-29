@@ -3,3 +3,7 @@ section.main-content{
     padding-top:calc(var(--menu-height) + var(--main-padding)  + var(--main-padding));
 }
 
+.mat-drawer.mat-drawer-side{
+    background-color: var(--secondary-bg-color);
+    color:white;
+}
