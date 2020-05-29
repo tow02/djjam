@@ -21,6 +21,7 @@ import { MatSidenavModule} from '@angular/material/sidenav';
 import { MatIconModule} from '@angular/material/icon';
 import { SideMenuComponent } from './side-menu/side-menu.component'
 import { SpotifyService } from "./services/spotify.service"
+import { PlaylistModule } from "./playlist/playlist.module"
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { SpotifyService } from "./services/spotify.service"
     MatMenuModule,
     MatSidenavModule,
     SearchModule,
+    PlaylistModule,
     AppRoutingModule,
     BrowserAnimationsModule
   ],
