@@ -4,7 +4,7 @@
     left: 0;
     right:0;
     bottom: -100vh;
-    height:8vh;
+    height:71px;
     z-index: 1030;
 }
 .web-player.active{

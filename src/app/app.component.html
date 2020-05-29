@@ -1,14 +1,15 @@
 <app-menu (onToggleMenu)="toggleMenu()" > </app-menu>
-<mat-drawer-container class="example-container">
-    <mat-drawer  #sidenav mode="side" [opened]="isOpen">
+<mat-sidenav-container class="example-container">
+    <mat-sidenav  #sidenav [fixedInViewport]="true" [fixedTopGap]="0"
+    [fixedBottomGap]="0"  mode="side" [opened]="isOpen">
         <app-side-menu></app-side-menu>
         
-    </mat-drawer>
-    <mat-drawer-content>
+    </mat-sidenav>
+    <mat-sidenav-content>
         <section class="main-content">
             <router-outlet></router-outlet>
         </section>
-    </mat-drawer-content>
-  </mat-drawer-container>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 
 <app-player ></app-player>
