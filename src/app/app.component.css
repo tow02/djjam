@@ -1,7 +1,8 @@
 section.main-content{
     min-height: calc(100vh - var(--menu-height) - var(--main-padding) - var(--main-padding));
     padding-top:calc(var(--menu-height) + var(--main-padding)  + var(--main-padding));
-  
+    background-color: var(--main-content-bg-color);
+    color:white;
 }
 
 .mat-drawer.mat-drawer-side{

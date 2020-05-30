@@ -12,7 +12,8 @@ export class ViewComponent implements OnInit {
   constructor(private route:ActivatedRoute, private spotifyService:SpotifyService) { 
     this.route.params.subscribe(p => {
       this.playlistId = p['id']      
-      this.spotifyService.getPlaylist(this.playlistId).then(playlists => console.log(playlists));
+      if(this.spotifyService.isConnect())
+        this.spotifyService.getPlaylist(this.playlistId).then(playlists => console.log(playlists));
       
 
     })
@@ -20,8 +21,9 @@ export class ViewComponent implements OnInit {
 
   async ngOnInit() {
     console.log('hi')
-    let playlist = await this.spotifyService.getPlaylist(this.playlistId);
-    console.log("Tracks", playlist.tracks);
+    
+    
+    
   }
 
 }

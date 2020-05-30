@@ -15,6 +15,7 @@ export class SideMenuComponent implements OnInit {
   
   async ngOnInit() {
     this.isConnect = this.spotifyService.isConnect()
+    if(this.isConnect)
     this.spotifyService.getMyWholePlaylists(playlists => {
       this.playlists = playlists;
       //console.log(this.playlists)
