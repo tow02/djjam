@@ -20,7 +20,12 @@ export class SideMenuComponent implements OnInit {
       this.playlists = playlists;
       //console.log(this.playlists)
     })
+    
     //console.log(playlists)
+  }
+
+  spotifyConnnect(){
+    this.spotifyService.authen();
   }
 
 }

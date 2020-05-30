@@ -49,6 +49,10 @@ export class SpotifyService {
       return false;
   }
 
+  authen(){
+    window.location.href = `https://accounts.spotify.com/authorize?client_id=${this.client_id}&redirect_uri=http://localhost:4200/spotify-success&scope=user-read-email%20playlist-read-private%20playlist-modify-public&response_type=token&state=1`;
+  }
+
   getURLParameter(name) {
     return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) ||
         [null, ''])[1].replace(/\+/g, '%20')) || null;
@@ -70,8 +74,16 @@ export class SpotifyService {
   }
 
   refreshToken(current_url:string){
-    localStorage[ environment.localstorage.spotify_redirect_url]  = current_url;
-    window.location.href = environment.host_url + "/redirect"
+    /*localStorage[ environment.localstorage.spotify_redirect_url]  = current_url;
+    window.location.href = environment.host_url + "/redirect"*/
+    return fetch(`https://accounts.spotify.com/api/token`, {
+      method:"POST",
+      headers:{
+        'Authorization':`Basic NWEyYmMwYzNkOGI1NDM3MGFlYjYxYzcxYjAyOTI5NmY6ODM1YjFjZmUxMzM2NDdkZGI5NzgwMTU1ZmI2ZjVjMTU=`
+      },
+      body:`grant_type=refresh_token&refresh_token=${this.refreshToken}`
+    })
+    //AQAD6cNKO1QPyK5Wo3-TCowjHw9qJXCB9FqPp7cALVZUs1qbeoLkFlPmxmnuJhRl1Emrf6VT7nA4BCSuNw7_MpM6c-Jviydn2zFPqelJWYcy8A12owuCHCXLJSix0cQUNHs
   }
 
   getMyPlaylists(offset:number = 0){

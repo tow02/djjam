@@ -21,7 +21,8 @@ import { MatSidenavModule} from '@angular/material/sidenav';
 import { MatIconModule} from '@angular/material/icon';
 import { SideMenuComponent } from './side-menu/side-menu.component'
 import { SpotifyService } from "./services/spotify.service"
-import { PlaylistModule } from "./playlist/playlist.module"
+import { PlaylistModule } from "./playlist/playlist.module";
+import { SpotifySuccessComponent } from './pages/spotify-success/spotify-success.component'
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { PlaylistModule } from "./playlist/playlist.module"
     PlayerComponent,
     LoginComponent,
     HomeComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    SpotifySuccessComponent
 
   ],
   imports: [

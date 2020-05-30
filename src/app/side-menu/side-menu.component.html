@@ -15,7 +15,7 @@
 
 <h4 class="spotify"  *ngIf="isConnect">Playlists</h4>
 <form class="spotify" *ngIf="!isConnect">
-    <button class="spotify-button">Connect to Spotify</button>
+    <button (click)="spotifyConnnect()" class="spotify-button">Connect to Spotify</button>
 </form>
 <ul class="spotify" *ngIf="isConnect">
     <li *ngFor="let item of playlists"><a [routerLink]="['/playlist', item.id]" mat-button><mat-icon>queue_music</mat-icon> {{item.name}}</a></li>
