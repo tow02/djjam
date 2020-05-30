@@ -10,17 +10,30 @@ export class SideMenuComponent implements OnInit {
 
   constructor(private spotifyService:SpotifyService) { }
 
-  isConnect = true;
+  isConnect = false;
   playlists = [];
   
   async ngOnInit() {
-    this.isConnect = this.spotifyService.isConnect()
-    if(this.isConnect)
-    this.spotifyService.getMyWholePlaylists(playlists => {
-      this.playlists = playlists;
-      //console.log(this.playlists)
-    })
     
+    this.spotifyService.onAuthChange.subscribe(obj => {
+      console.log('obj', obj, this.spotifyService.isConnect())
+      if(!this.isConnect && this.spotifyService.isConnect()){
+        console.log('stuff')
+        this.isConnect = this.spotifyService.isConnect();
+        this.playlists = [];
+        this.spotifyService.getMyWholePlaylists(playlists => {
+          this.playlists = playlists;
+          //console.log(this.playlists)
+        })  
+      }
+    })
+    this.isConnect = this.spotifyService.isConnect();
+    console.log('is connect', this.isConnect)
+    if(this.isConnect)
+      this.spotifyService.getMyWholePlaylists(playlists => {
+        this.playlists = playlists;
+        //console.log(this.playlists)
+      })  
     //console.log(playlists)
   }
 

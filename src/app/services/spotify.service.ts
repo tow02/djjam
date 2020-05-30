@@ -1,5 +1,4 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router'
+import { Injectable, EventEmitter } from '@angular/core';
 import { environment } from "../../environments/environment"
 
 interface SpotifyPlaylist{
@@ -30,27 +29,68 @@ interface SpotifyPlaylist{
 export class SpotifyService {
 
   client_id = environment.client_id;
-  client_secret = environment.client_secret;
-
+  onAuthChange:EventEmitter<{state:"signin" | "signout", option?:any}> = new EventEmitter<{state:"signin" | "signout", option?:any}>();
 
 
   //private authorizeCode:string;
   private accessToken: any;
   private tokenType: string;
 
-  constructor( private router:Router) { }
+  constructor( ) { }
 
   isConnect(){
-    if(this.accessToken && this.tokenType)
+    if(localStorage[environment.localstorage.spotify_expire_in] && localStorage[environment.localstorage.spotify_access_token] && localStorage[environment.localstorage.spotify_age]){
+      
+      let now = new Date().getTime()
+      console.log('exist', now, Number(localStorage[environment.localstorage.spotify_age]), now-Number(localStorage[environment.localstorage.spotify_age]))
+      if(now - Number(localStorage[environment.localstorage.spotify_age]) <= Number(localStorage[environment.localstorage.spotify_expire_in])*1000)
+        return true;
+      else
+        return false;
+    }else
+      return false;
+    /*if(this.accessToken && this.tokenType)
       return true;
     else if(localStorage[environment.localstorage.spotify_access_token])
       return true;
     else
-      return false;
+      return false;*/
   }
 
   authen(){
     window.location.href = `https://accounts.spotify.com/authorize?client_id=${this.client_id}&redirect_uri=http://localhost:4200/spotify-success&scope=user-read-email%20playlist-read-private%20playlist-modify-public&response_type=token&state=1`;
+  }
+
+  parseUrl(url:string){
+    let result = url.split('#')
+    if(result.length > 1)
+    {
+      const rawParams = result[1].split('&');
+      let params:{'access_token':string, 'token_type':string, 'expires_in':string, 'state':string} = {
+        access_token:'',
+        token_type:'',
+        expires_in:'',
+        state:''
+      }; 
+      rawParams.forEach(item => {
+        const content = item.split('=');
+        params[content[0]] = content[1];
+      })
+      return params;
+    }else
+      return null;
+  }
+
+  processSignin(url:string){
+    const result = this.parseUrl(url);
+    this.setTokenToLocal(result.access_token, result.expires_in);
+    this.onAuthChange.emit({
+      state:"signin",
+      option:result
+    });
+    setTimeout(() => {
+      this.onAuthChange.emit({state:"signout"});
+    }, (Number(result.expires_in)*1000));
   }
 
   getURLParameter(name) {
@@ -58,9 +98,10 @@ export class SpotifyService {
         [null, ''])[1].replace(/\+/g, '%20')) || null;
   }
 
-  setTokenToLocal(accessToken:string){
+  setTokenToLocal(accessToken:string, activeSecond:string){
     this.accessToken = accessToken;
     localStorage[ environment.localstorage.spotify_age ] = new Date().getTime();
+    localStorage[ environment.localstorage.spotify_expire_in ] = activeSecond;
     localStorage[ environment.localstorage.spotify_access_token ] = accessToken;
   }
 
@@ -73,18 +114,6 @@ export class SpotifyService {
     return localStorage[ environment.localstorage.spotify_access_token ]
   }
 
-  refreshToken(current_url:string){
-    /*localStorage[ environment.localstorage.spotify_redirect_url]  = current_url;
-    window.location.href = environment.host_url + "/redirect"*/
-    return fetch(`https://accounts.spotify.com/api/token`, {
-      method:"POST",
-      headers:{
-        'Authorization':`Basic NWEyYmMwYzNkOGI1NDM3MGFlYjYxYzcxYjAyOTI5NmY6ODM1YjFjZmUxMzM2NDdkZGI5NzgwMTU1ZmI2ZjVjMTU=`
-      },
-      body:`grant_type=refresh_token&refresh_token=${this.refreshToken}`
-    })
-    //AQAD6cNKO1QPyK5Wo3-TCowjHw9qJXCB9FqPp7cALVZUs1qbeoLkFlPmxmnuJhRl1Emrf6VT7nA4BCSuNw7_MpM6c-Jviydn2zFPqelJWYcy8A12owuCHCXLJSix0cQUNHs
-  }
 
   getMyPlaylists(offset:number = 0){
     return fetch(`https://api.spotify.com/v1/me/playlists?offset=${offset}`,{
@@ -117,6 +146,10 @@ export class SpotifyService {
     return playlists;
   }
 
+  swapToken(){
+
+  }
+
   getHeaderOptions(){
     if(!this.accessToken)
       this.accessToken = this.getTokenLocal();
@@ -124,7 +157,7 @@ export class SpotifyService {
     
     if(!this.tokenType)
       this.tokenType = "Bearer";
-
+    //console.log('header token', this.accessToken)
     return {
       'Authorization':this.tokenType + ' ' + this.accessToken
     }
