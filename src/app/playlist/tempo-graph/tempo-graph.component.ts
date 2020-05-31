@@ -17,7 +17,8 @@ export class TempoGraphComponent implements OnInit {
   public barChartPlugins = [];
   
   public barChartData: ChartDataSets[] = [
-    { data: [2,5,15,5,1], label: 'Playlist Tempo',  backgroundColor:'#ffc218' },
+    { data: [2,5,15,5,1], label: 'Your Tempo',  backgroundColor:'#ffc218' },
+    { data: [0,8,17,1,0], label: 'Guideline for Newbie',  backgroundColor:'rgb(32, 215, 94)' },
   ];
   constructor() { }
 

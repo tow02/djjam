@@ -1,11 +1,12 @@
 .tempo{
     display: flex;;
+    flex-wrap: wrap;
 }
 
 tempo-graph{
-    flex:1
+    flex:1;
 }
 
-.tempo > div{
+tempo-line-graph{
     flex:1;
 }

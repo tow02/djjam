@@ -22,7 +22,7 @@ import { MatIconModule} from '@angular/material/icon';
 import { SideMenuComponent } from './side-menu/side-menu.component'
 import { SpotifyService } from "./services/spotify.service"
 import { PlaylistModule } from "./playlist/playlist.module";
-import { SpotifySuccessComponent } from './pages/spotify-success/spotify-success.component'
+import { SpotifySuccessComponent } from './pages/spotify-success/spotify-success.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,6 @@ import { SpotifySuccessComponent } from './pages/spotify-success/spotify-success
     HomeComponent,
     SideMenuComponent,
     SpotifySuccessComponent
-
   ],
   imports: [
     
