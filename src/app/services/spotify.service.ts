@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { environment } from "../../environments/environment"
 
-interface SpotifyPlaylist{
+export interface SpotifyPlaylist{
   collaborative: boolean
   description: string
   external_urls: any
@@ -43,7 +43,7 @@ export class SpotifyService {
       
       let now = new Date().getTime()
       console.log('exist', now, Number(localStorage[environment.localstorage.spotify_age]), now-Number(localStorage[environment.localstorage.spotify_age]))
-      if(now - Number(localStorage[environment.localstorage.spotify_age]) <= Number(localStorage[environment.localstorage.spotify_expire_in])*1000)
+      if(now - Number(localStorage[environment.localstorage.spotify_age]) <= Number(localStorage[environment.localstorage.spotify_expire_in])*1000 /2)
         return true;
       else
         return false;
