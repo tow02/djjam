@@ -1,0 +1,11 @@
+.tempo{
+    display: flex;;
+}
+
+tempo-graph{
+    flex:1
+}
+
+.tempo > div{
+    flex:1;
+}
