@@ -26,3 +26,10 @@ input.form-control{
     width: calc(98% - var(--main-padding));
 }
 
+
+.mat-drawer-inner-container{
+    overflow-y: scroll;
+    padding-right: 17px; /* Increase/decrease this value for cross-browser compatibility */
+    box-sizing: content-box; 
+}
+
