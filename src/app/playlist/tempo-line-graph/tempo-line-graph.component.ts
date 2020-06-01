@@ -19,7 +19,7 @@ export class TempoLineGraphComponent implements OnChanges {
   ];
   currentIndex = -1;
   customToolTips:string;
-  public lineChartLabels: Label[] = ['1', '2', '3', '4', '5', '6', '7'];
+  public lineChartLabels: Label[] 
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
     scales: {
@@ -91,6 +91,7 @@ export class TempoLineGraphComponent implements OnChanges {
         this.lineChartData = [
           { data: this.bpms, label: this.playlistEvent.playlist.name },
         ]
+        this.lineChartLabels =this.bpms.map((item, index) => index + 1 +'');
       }
   }
 

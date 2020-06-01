@@ -5,10 +5,11 @@ import { ViewComponent } from './view/view.component';
 import { ChartsModule } from 'ng2-charts';
 import { TempoGraphComponent } from './tempo-graph/tempo-graph.component';
 import { TempoLineGraphComponent } from './tempo-line-graph/tempo-line-graph.component';
+import { TagsPieComponent } from './tags-pie/tags-pie.component';
 
 
 @NgModule({
-  declarations: [ViewComponent, TempoGraphComponent, TempoLineGraphComponent],
+  declarations: [ViewComponent, TempoGraphComponent, TempoLineGraphComponent, TagsPieComponent],
   imports: [
     CommonModule,
     ChartsModule,

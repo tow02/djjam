@@ -31,7 +31,7 @@ export class TempoGraphComponent implements OnChanges {
 
   getBpmRanges(){
     this.bpmTracks =  this.spotifyService.getTrackBpms(this.playlistEvent.playlist, this.playlistEvent.djjamTracks, this.playlistEvent.audioFeatures)
-    console.log(this.bpmTracks)
+    const trackCount = this.bpmTracks.length;
     //get bpm range
     return this.bpmTracks.reduce((prev, current) => {
       let plus = environment.analytics.rangeNames.map(item => {
@@ -42,6 +42,7 @@ export class TempoGraphComponent implements OnChanges {
       })
       return plus.map((amount, index) => amount + prev[index]);
     }, environment.analytics.rangeNames.map(item => 0))
+    .map(num => Math.round(num/trackCount * 100 ))
 
   }
 
@@ -51,7 +52,7 @@ export class TempoGraphComponent implements OnChanges {
     if(this.playlistEvent.status == "done"){
       console.log(this.getBpmRanges())
       this.barChartData = [
-        { data: this.getBpmRanges(), label: `${this.playlistEvent.playlist.name} (BPM) `,  backgroundColor:'#ffc218' },
+        { data: this.getBpmRanges(), label: `${this.playlistEvent.playlist.name} % `,  backgroundColor:'#ffc218' },
       ]
     }
       

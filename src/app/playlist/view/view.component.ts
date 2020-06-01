@@ -23,6 +23,7 @@ export class ViewComponent implements OnInit {
              this.spotifyService.getPlaylistInformations(playlist).then(item => {
                this.playlistEvent = { status:"done"};
                this.playlistEvent.playlist = playlist
+               console.log('playlist tracks', playlist.tracks)
                this.playlistEvent.djjamTracks = item.djjamTracks;
                 this.playlistEvent.audioFeatures = item.audioFeatures;
                 console.log('load done', this.playlistEvent)

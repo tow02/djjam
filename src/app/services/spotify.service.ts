@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { TrackService } from "./track.service"
 import { environment } from "../../environments/environment"
-import { SpotifyPlaylist, AudioFeature } from "./spotify.interface"
+import { SpotifyPlaylist, AudioFeature, SpotifyTrackItem } from "./spotify.interface"
 import { Track } from '../models/Track';
 
 
@@ -170,6 +170,38 @@ export class SpotifyService {
       else
         return audioFeatures[item.track.id].tempo < 100?audioFeatures[item.track.id].tempo *2:audioFeatures[item.track.id].tempo ;      
     })
+  }
+
+  getTrackTags(playlist:SpotifyPlaylist, audioFeatures:{[key:string]:AudioFeature} ){
+   let tagCount:{[key:string]:Array<SpotifyTrackItem>} = {
+     'Instrusmental only':[],
+     'Mellow':[],
+     'Energetic':[],
+     'Vocal':[],
+     'Feel Good':[],
+     
+     
+     'Live':[]
+   }
+    playlist.tracks.items.filter(item => !item.is_local).forEach(item => {
+      let audioFeature = audioFeatures[item.track.id]
+      let obj:any = {name:item.track.name, audio:audioFeature}//for testing
+      
+      obj = item;
+      if(audioFeature.liveness >= 0.8 || audioFeature.speechiness >= 0.3)
+        tagCount['Live'].push(obj);
+      if( audioFeature.valence >= environment.autotag.valence/environment.autotag.scale)
+        tagCount['Feel Good'].push(obj);
+      else if( audioFeature.valence <= 0.55)
+        tagCount['Mellow'].push(obj)
+      if( audioFeature.energy >= environment.autotag.energetic /environment.autotag.scale)
+        tagCount['Energetic'].push(obj);
+      if(  audioFeature.instrumentalness >= 0.05)
+        tagCount['Instrusmental only'].push(obj);
+      else
+        tagCount['Vocal'].push(obj);
+    })
+    return tagCount;
   }
 
   getHeaderOptions(){
