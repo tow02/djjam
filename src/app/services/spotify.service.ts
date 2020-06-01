@@ -2,6 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { TrackService } from "./track.service"
 import { environment } from "../../environments/environment"
 import { SpotifyPlaylist, AudioFeature } from "./spotify.interface"
+import { Track } from '../models/Track';
 
 
 @Injectable({
@@ -135,20 +136,29 @@ export class SpotifyService {
   }
 
   async getPlaylistInformations(playlist:SpotifyPlaylist){
-      let spotifyTrackIds = playlist.tracks.items.map(item => item.track.id)
+  
+      let spotifyTrackIds = playlist.tracks.items.filter(item => !item.is_local).map(item => item.track.id)
        let djjamTracks = await Promise.all(spotifyTrackIds.map(id => this.trackService.get(id)));
        djjamTracks = djjamTracks.filter( track => track?true:false)
        let djjamIds =  djjamTracks.map(item => item.id)
        let nodataIds = spotifyTrackIds.filter(spotifyTrackId => {
           return djjamIds.findIndex(djjamId => djjamId == spotifyTrackId) === -1
        })
-       let keyValue:{[key:string]:AudioFeature} = djjamTracks.map(item => item.audio_feature).reduce((prev, now) => prev[now.id] = now, {})
+       let keyValue:{[key:string]:AudioFeature} = djjamTracks.map(item => item.audio_feature).reduce((prev, now) => {
+        prev[now.id] = now
+        return prev;
+       }, {})
+       
        let data = await this.getAudioFeatures(nodataIds)
        data.forEach(item => {
          keyValue[item.id] = item;
        })
+       let djjamTrackKey:{[key:string]:Track} = djjamTracks.reduce((p, c) => {
+         p[c.id] = c
+        return p;
+       }, {})
        return {
-         djjamTracks:djjamTracks,
+         djjamTracks:djjamTrackKey,
          audioFeatures:keyValue
        };
   }

@@ -22,7 +22,8 @@ export class ViewComponent implements OnInit {
            console.log('yo')
            if(this.playlist){
              console.log(this.playlist)
-             this.spotifyService.getPlaylistInformations(this.playlist);
+             this.spotifyService.getPlaylistInformations(this.playlist).then(item => console.log(item))
+             
           }
           
           
