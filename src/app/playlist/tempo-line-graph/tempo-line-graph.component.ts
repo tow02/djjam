@@ -1,7 +1,8 @@
 import { Component, OnChanges, Input } from '@angular/core';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { PlaylistEvent } from "../playlist.event.interface"
-import { Color, BaseChartDirective, Label } from 'ng2-charts';
+import { SpotifyService } from "../../services/spotify.service"
+import { Color, Label } from 'ng2-charts';
 
 @Component({
   selector: 'tempo-line-graph',
@@ -14,8 +15,10 @@ export class TempoLineGraphComponent implements OnChanges {
   playlistEvent:PlaylistEvent;
 
   public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Your Playlist' },
+    
   ];
+  currentIndex = -1;
+  customToolTips:string;
   public lineChartLabels: Label[] = ['1', '2', '3', '4', '5', '6', '7'];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
@@ -28,6 +31,16 @@ export class TempoLineGraphComponent implements OnChanges {
           position: 'left',
         }
       ]
+    },
+    tooltips:{
+      custom:(model)=> {
+        
+        
+        if(model.body && model.body.length > 0 && model.body[0].lines && model.body[0].lines.length > 0){
+          model.body[0].lines[0] = this.customToolTips;
+        }
+          
+      }
     },
     annotation: {
       annotations: [ ],
@@ -54,14 +67,19 @@ export class TempoLineGraphComponent implements OnChanges {
   public lineChartLegend = true;
   public lineChartType = 'line';
   public lineChartPlugins = [];
-  constructor() { }
+
+  bpms:Array<number>
+  constructor(private spotifyService:SpotifyService) { }
 
   chartClicked(e){
-  //  console.log(e);
+    console.log(e);
   }
 
   chartHovered(e){
-   // console.log(e)
+    
+    if(e.active && e.active.length >0)
+      this.customToolTips = this.playlistEvent.playlist.tracks.items[e.active[0]._index].track.name 
+      
   }
 
 
@@ -69,7 +87,10 @@ export class TempoLineGraphComponent implements OnChanges {
   ngOnChanges(): void {
     if(this.playlistEvent.status === "done")
       {
-        
+        this.bpms = this.spotifyService.getTrackBpms(this.playlistEvent.playlist, this.playlistEvent.djjamTracks, this.playlistEvent.audioFeatures)
+        this.lineChartData = [
+          { data: this.bpms, label: this.playlistEvent.playlist.name },
+        ]
       }
   }
 
