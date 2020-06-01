@@ -1,4 +1,4 @@
-<div style="display: block;background-color: white;;">
+<div *ngIf="playlistEvent.status=='done'" style="display: block;background-color: white;;">
     <canvas baseChart 
     [datasets]="barChartData"
     
@@ -7,4 +7,7 @@
     [legend]="barChartLegend"
     [chartType]="barChartType">
     </canvas>
+</div>
+<div *ngIf="playlistEvent.status!=='done'">
+    Loading...
 </div>

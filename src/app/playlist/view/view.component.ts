@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
-import { SpotifyPlaylist } from "../../services//spotify.interface"
 import { SpotifyService } from "../../services/spotify.service"
+import { PlaylistEvent } from "../playlist.event.interface"
 
 @Component({
   selector: 'app-view',
@@ -11,35 +11,29 @@ import { SpotifyService } from "../../services/spotify.service"
 export class ViewComponent implements OnInit {
 
   playlistId:string;
-  playlist:SpotifyPlaylist;
+  playlistEvent:PlaylistEvent = { status:"loading"};
 
   constructor(private route:ActivatedRoute, private spotifyService:SpotifyService) { 
     this.route.params.subscribe(p => {
       this.playlistId = p['id']      
       if(this.spotifyService.isConnect()){
-        this.spotifyService.getPlaylist(this.playlistId).then(playlists =>{
-           this.playlist = playlists
-           console.log('yo')
-           if(this.playlist){
-             console.log(this.playlist)
-             this.spotifyService.getPlaylistInformations(this.playlist).then(item => console.log(item))
-             
+        this.spotifyService.getPlaylist(this.playlistId).then(playlist =>{
+          this.playlistEvent.status = "loading";
+           if(playlist){
+             this.spotifyService.getPlaylistInformations(playlist).then(item => {
+               this.playlistEvent = { status:"done"};
+               this.playlistEvent.playlist = playlist
+               this.playlistEvent.djjamTracks = item.djjamTracks;
+                this.playlistEvent.audioFeatures = item.audioFeatures;
+                console.log('load done', this.playlistEvent)
+             })
           }
-          
-          
       });
-
       }
-        
-      
-
     })
   }
 
   async ngOnInit() {
-    console.log('hi', this.playlist)
-    
-    
     
   }
 

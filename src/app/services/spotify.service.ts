@@ -136,7 +136,6 @@ export class SpotifyService {
   }
 
   async getPlaylistInformations(playlist:SpotifyPlaylist){
-  
       let spotifyTrackIds = playlist.tracks.items.filter(item => !item.is_local).map(item => item.track.id)
        let djjamTracks = await Promise.all(spotifyTrackIds.map(id => this.trackService.get(id)));
        djjamTracks = djjamTracks.filter( track => track?true:false)
@@ -151,7 +150,8 @@ export class SpotifyService {
        
        let data = await this.getAudioFeatures(nodataIds)
        data.forEach(item => {
-         keyValue[item.id] = item;
+         if(item && item.id)
+          keyValue[item.id] = item;
        })
        let djjamTrackKey:{[key:string]:Track} = djjamTracks.reduce((p, c) => {
          p[c.id] = c

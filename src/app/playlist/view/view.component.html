@@ -1,4 +1,4 @@
-<h2>My Playlist is awesome!</h2>
+<h2>{{playlistEvent.playlist.name}}</h2>
 <div>
   Compare <select>
     <option>Guideline for Newbie</option>
@@ -7,7 +7,7 @@
   
 </div>
 <section class="tempo">
-    <tempo-graph></tempo-graph>
+    <tempo-graph [(playlistEvent)]="playlistEvent"></tempo-graph>
     <tempo-line-graph></tempo-line-graph>
   </section>
   
