@@ -163,6 +163,15 @@ export class SpotifyService {
        };
   }
 
+  getTrackBpms(playlist:SpotifyPlaylist, djjamTracks:{[key:string]:Track}, audioFeatures:{[key:string]:AudioFeature} ){
+    return playlist.tracks.items.filter(item => !item.is_local).map(item => {  
+      if(djjamTracks[item.track.id])
+        return djjamTracks[item.track.id].bpm
+      else
+        return audioFeatures[item.track.id].tempo < 100?audioFeatures[item.track.id].tempo *2:audioFeatures[item.track.id].tempo ;      
+    })
+  }
+
   getHeaderOptions(){
     if(!this.accessToken)
       this.accessToken = this.getTokenLocal();

@@ -1,4 +1,4 @@
-<h2>{{playlistEvent.playlist.name}}</h2>
+<h2 *ngIf="playlistEvent && playlistEvent.playlist">{{playlistEvent.playlist.name}}</h2>
 <div>
   Compare <select>
     <option>Guideline for Newbie</option>
@@ -8,6 +8,6 @@
 </div>
 <section class="tempo">
     <tempo-graph [(playlistEvent)]="playlistEvent"></tempo-graph>
-    <tempo-line-graph></tempo-line-graph>
+    <tempo-line-graph [playlistEvent]="playlistEvent"></tempo-line-graph>
   </section>
   

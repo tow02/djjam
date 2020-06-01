@@ -1,4 +1,4 @@
-<div style="display: block;background-color: white;">
+<div *ngIf="playlistEvent.status == 'done'" style="display: block;background-color: white;">
     <canvas baseChart width="400" height="400"
                 [datasets]="lineChartData"
                 [labels]="lineChartLabels"
@@ -9,4 +9,7 @@
                 [plugins]="lineChartPlugins"
                 (chartHover)="chartHovered($event)"
                 (chartClick)="chartClicked($event)"></canvas>
-    </div>
+</div>
+<div *ngIf="playlistEvent.status !== 'done'">
+    Loading...
+</div>

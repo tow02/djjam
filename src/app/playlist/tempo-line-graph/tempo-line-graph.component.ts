@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, Input } from '@angular/core';
 import { ChartDataSets, ChartOptions } from 'chart.js';
+import { PlaylistEvent } from "../playlist.event.interface"
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 
 @Component({
@@ -7,12 +8,13 @@ import { Color, BaseChartDirective, Label } from 'ng2-charts';
   templateUrl: './tempo-line-graph.component.html',
   styleUrls: ['./tempo-line-graph.component.css']
 })
-export class TempoLineGraphComponent implements OnInit {
+export class TempoLineGraphComponent implements OnChanges {
 
+  @Input()
+  playlistEvent:PlaylistEvent;
 
   public lineChartData: ChartDataSets[] = [
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Your Playlist' },
-    { data: [28, 48, 40, 19, 86], label: 'Guideline for Newbie' },
   ];
   public lineChartLabels: Label[] = ['1', '2', '3', '4', '5', '6', '7'];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
@@ -64,7 +66,11 @@ export class TempoLineGraphComponent implements OnInit {
 
 
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
+    if(this.playlistEvent.status === "done")
+      {
+        
+      }
   }
 
 }
