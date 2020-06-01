@@ -1,27 +1,8 @@
 import { Injectable, EventEmitter } from '@angular/core';
+import { TrackService } from "./track.service"
 import { environment } from "../../environments/environment"
+import { SpotifyPlaylist, AudioFeature } from "./spotify.interface"
 
-export interface SpotifyPlaylist{
-  collaborative: boolean
-  description: string
-  external_urls: any
-  followers: {href: any, total: number}
-  href: string
-  id: string
-  images: Array<{
-      height:number,
-      url:string,
-      width:string
-  }>
-  name: string
-  owner: {display_name: string, external_urls: any, href: string, id: string, type: string, uri:string}
-  primary_color: any
-  public: boolean
-  snapshot_id: string
-  tracks: {href: string, items: Array<any>, limit: number, next: any, offset: number, previous:any, total:number}
-  type: string
-  uri: string
-}
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +17,7 @@ export class SpotifyService {
   private accessToken: any;
   private tokenType: string;
 
-  constructor( ) { }
+  constructor(private trackService:TrackService ) { }
 
   isConnect(){
     if(localStorage[environment.localstorage.spotify_expire_in] && localStorage[environment.localstorage.spotify_access_token] && localStorage[environment.localstorage.spotify_age]){
@@ -146,15 +127,35 @@ export class SpotifyService {
     return playlists;
   }
 
-  swapToken(){
+  getAudioFeatures(ids: Array<string>){
+    let raw_ids = ids.join(",");
+    return fetch(`https://api.spotify.com/v1/audio-features?ids=${raw_ids}`, {
+      headers:this.getHeaderOptions()
+    }).then(res => res.json()).then(res => res.audio_features as Array<AudioFeature>);
+  }
 
+  async getPlaylistInformations(playlist:SpotifyPlaylist){
+      let spotifyTrackIds = playlist.tracks.items.map(item => item.track.id)
+       let djjamTracks = await Promise.all(spotifyTrackIds.map(id => this.trackService.get(id)));
+       djjamTracks = djjamTracks.filter( track => track?true:false)
+       let djjamIds =  djjamTracks.map(item => item.id)
+       let nodataIds = spotifyTrackIds.filter(spotifyTrackId => {
+          return djjamIds.findIndex(djjamId => djjamId == spotifyTrackId) === -1
+       })
+       let keyValue:{[key:string]:AudioFeature} = djjamTracks.map(item => item.audio_feature).reduce((prev, now) => prev[now.id] = now, {})
+       let data = await this.getAudioFeatures(nodataIds)
+       data.forEach(item => {
+         keyValue[item.id] = item;
+       })
+       return {
+         djjamTracks:djjamTracks,
+         audioFeatures:keyValue
+       };
   }
 
   getHeaderOptions(){
     if(!this.accessToken)
       this.accessToken = this.getTokenLocal();
-
-    
     if(!this.tokenType)
       this.tokenType = "Bearer";
     //console.log('header token', this.accessToken)

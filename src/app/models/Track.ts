@@ -1,4 +1,4 @@
-import { ElasticSearch } from "./Elastic"
+import { AudioFeature } from "../services/spotify.interface"
 interface Album{
     id:string
     images: Array<{
@@ -9,27 +9,6 @@ interface Album{
     release_date:string,
     release_date_precision:string
 }
-
-interface AudioFeature{
-    "acousticness": number,
-    "analysis_url": string,
-    "danceability": number,
-    "duration_ms": number,
-    "energy": number,
-    "id": string,
-    "instrumentalness": number,
-    "key": number,
-    "liveness": number,
-    "loudness": number,
-    "mode": number,
-    "speechiness": number,
-    "tempo": number,
-    "time_signature": number,
-    "track_href": string,
-    "type": string,
-    "uri": string,
-    "valence": number
-  }
 
 export interface TrackType{
     name: string,

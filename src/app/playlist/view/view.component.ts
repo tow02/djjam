@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
-import { SpotifyService, SpotifyPlaylist } from "../../services/spotify.service"
-import { ChartOptions,  ChartDataSets, Chart } from 'chart.js';
-import { Color, Label } from 'ng2-charts';
+import { SpotifyPlaylist } from "../../services//spotify.interface"
+import { SpotifyService } from "../../services/spotify.service"
 
 @Component({
   selector: 'app-view',
@@ -13,21 +12,6 @@ export class ViewComponent implements OnInit {
 
   playlistId:string;
   playlist:SpotifyPlaylist;
-  
-  public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-  ];
-  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChartColors: Color[] = [
-    {
-      borderColor: 'black',
-      backgroundColor: 'rgba(255,0,0,0.3)',
-    },
-  ];
-  public lineChartLegend = true;
-  public lineChartType = 'line';
-  public lineChartPlugins = [];
-
 
   constructor(private route:ActivatedRoute, private spotifyService:SpotifyService) { 
     this.route.params.subscribe(p => {
@@ -35,7 +19,10 @@ export class ViewComponent implements OnInit {
       if(this.spotifyService.isConnect()){
         this.spotifyService.getPlaylist(this.playlistId).then(playlists =>{
            this.playlist = playlists
+           console.log('yo')
            if(this.playlist){
+             console.log(this.playlist)
+             this.spotifyService.getPlaylistInformations(this.playlist);
           }
           
           

@@ -1,5 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore'
+
 import { Track } from "../models/Track"
 
 export interface TrackEvent{
@@ -11,8 +12,6 @@ export interface TrackEvent{
   providedIn: 'root'
 })
 export class TrackService {
-
-  private _currentTrackId:string;
   currentTrack:Track;
   onChangeTrack:EventEmitter<TrackEvent> = new EventEmitter<TrackEvent>();
 
@@ -21,11 +20,14 @@ export class TrackService {
    }
 
    get(trackId:string){
-    return  this.firestore.collection('track').doc(trackId).get().toPromise().then(snap => ({...snap.data(), id:snap.id} as Track) );
-  }
-
-  private isChangeTrack(trackID:string){
-      return !this.currentTrack || this.currentTrack.id != trackID;
+    return  this.firestore.collection('track').doc(trackId).get().toPromise().then(snap => 
+      {
+        if(snap && snap.exists)
+          return ({...snap.data(), id:snap.id} as Track)
+        else
+          return null;
+      }
+     );
   }
 
   async play(trackID:string){        
