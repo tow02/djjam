@@ -54,6 +54,16 @@ export class TempoLineGraphComponent implements OnInit {
   public lineChartPlugins = [];
   constructor() { }
 
+  chartClicked(e){
+  //  console.log(e);
+  }
+
+  chartHovered(e){
+   // console.log(e)
+  }
+
+
+
   ngOnInit(): void {
   }
 
