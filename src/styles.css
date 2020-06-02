@@ -33,3 +33,13 @@ input.form-control{
     box-sizing: content-box; 
 }
 
+.spotify-button{
+    background-color: #1ed760;;
+    cursor: pointer;;
+    font-weight: bold;
+    padding:1em;
+    border-radius: 2em;
+    border:0;
+    text-decoration: none;
+    color:white;
+}

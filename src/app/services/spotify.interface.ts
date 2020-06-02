@@ -1,3 +1,5 @@
+
+
 export interface SpotifyTrackItem{
     added_at:string,
     added_by:any;
@@ -6,7 +8,14 @@ export interface SpotifyTrackItem{
     track:{
       uri:string,
       album:any;
-      artist:Array<any>,
+      artists:Array<{
+        external_urls:{[key:string]:string},
+        href:string,
+        id:string,
+        name:string,
+        type:"artist",
+        uri:"string"
+      }>,
       available_markets:Array<string>,
       disc_number:1,
       duration_ms:number,

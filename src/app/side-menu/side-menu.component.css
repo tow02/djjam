@@ -42,18 +42,6 @@ h4.spotify{
     margin-bottom: 0;
 }
 
-.spotify-button{
-    background-color: #1ed760;;
-    cursor: pointer;;
-    font-weight: bold;
-    padding:1em;
-    border-radius: 2em;
-    border:0;
-    text-decoration: none;
-    color:white;
-}
-
-
 .buttom{
     position: fixed;
     bottom:0px;

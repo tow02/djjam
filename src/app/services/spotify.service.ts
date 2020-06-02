@@ -183,7 +183,6 @@ export class SpotifyService {
    }
     playlist.tracks.items.filter(item => !item.is_local).forEach(item => {
       let audioFeature = audioFeatures[item.track.id]
-
       let obj:any = {name:item.track.name, audio:audioFeature}//for testing      
       obj = item;
       if(audioFeature.liveness >= 0.8 || audioFeature.speechiness >= 0.3)
@@ -200,6 +199,19 @@ export class SpotifyService {
         tagCount['Vocal'].push(obj);
     })
     return tagCount;
+  }
+
+  getArtistsInfomation(playlist:SpotifyPlaylist){
+    const artistCounts:{[key:string]:{name:string, id:string, count:number}} = {};
+    playlist.tracks.items.filter(item => !item.is_local).forEach( item => {
+      item.track.artists.forEach(artist => {
+        if(!artistCounts[artist.id])
+          artistCounts[artist.id] = { name: artist.name, id:artist.id, count:0}
+        artistCounts[artist.id].count += 1;
+      })  
+    })
+    
+    return artistCounts;
   }
 
   getHeaderOptions(){
