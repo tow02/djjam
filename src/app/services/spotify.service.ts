@@ -135,10 +135,31 @@ export class SpotifyService {
     }).then(res => res.json()).then(res => res.audio_features as Array<AudioFeature>);
   }
 
-  getArtists(ids: Array<string>){
-    return fetch(`https://api.spotify.com/v1/artists?ids=${ids.join(',')}`, {
-      headers: this.getHeaderOptions()
-    } ).then(res => res.json()).then(res => (res.artists as Array<SpotifyArtist>))
+  async getArtists(ids: Array<string>, callback?:(partialArtists:Array<SpotifyArtist>)=>{} ){
+    if(ids.length < 50){
+        return fetch(`https://api.spotify.com/v1/artists?ids=${ids.join(',')}`, {
+        headers: this.getHeaderOptions()
+      } ).then(res => res.json()).then(res => (res.artists as Array<SpotifyArtist>))
+    }else{
+      //make array of ids
+      let setIds:Array<Array<string>> = [];
+      for(let index =0; index < ids.length; index += 50)
+        setIds.push( ids.slice(index, index + 50 ) );
+      let promiseSets = setIds.map(rawIds => fetch(`https://api.spotify.com/v1/artists?ids=${rawIds.join(',')}`, {
+        headers: this.getHeaderOptions()
+      } ).then(res => res.json()).then(res => (res.artists as Array<SpotifyArtist>)))
+      console.log(promiseSets)
+      let artists:Array<SpotifyArtist> = [];
+      for(let i = 0; i< promiseSets.length; i++){
+        let set = await promiseSets[i]
+        
+        artists = artists.concat(set);
+        if(callback)
+          callback(set)
+      }
+      return artists;
+    }
+    
   }
 
   async getPlaylistInformations(playlist:SpotifyPlaylist){
