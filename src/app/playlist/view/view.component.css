@@ -1,48 +1,73 @@
-.tempo, .character{
+.tempo, .second-section{
     display: flex;;
     flex-wrap: wrap;   
 }
 
+header{
+    display: flex;
+    margin-top:1em;
+}
+header .start{
+    flex:5;
+    
+    padding-left:1rem;
+}
 
-@media all and (min-width: 40em) {
+header .start h2{
+    color:var(--main-color)
+}
+
+header .start h5{
+    color:var(--secondary-text-color);;
+    letter-spacing: 0.5em;
+}
+
+header .start p{
+    color:var(--secondary-text-color);
+    font-size:0.7em;
+    align-self: center;;
+}
+
+header .start > div{
+    display:flex;
+}
+
+header .end{
+    display: flex;
+    flex:1;
+    text-align: right;
+    padding-right:1rem;
+    align-items: flex-end;;
+}
+
+header .end button{
+    min-width: 8em;;
+}
+
+.main  h3{
+    letter-spacing: 0.5em;
+    margin-left:1rem;
+    color:var(--secondary-text-color);;
+    margin-bottom: 0;
+    font-weight: 100;;
+}
+
+@media all and (max-width: 60em) {
     tempo-graph,tempo-line-graph {
       width: calc(100% - 2rem);
       padding: 1rem;
       padding-bottom:0.5rem;
       padding-top:0.5rem;
     }
-  }
-  @media all and (min-width: 60em) {
-    tempo-graph,tempo-line-graph {
-      width: calc(50% - 1.5rem);
-      
-    }
-    tempo-graph {
+}
+@media all and (min-width: 60em) {
+
+    tempo-graph, tempo-line-graph, .second-section > section {
         padding:1rem;
         padding-right:0.5rem;
+        width: calc(50% - 1.5rem);
     }
-    
-    tempo-line-graph{
-        padding:1rem;
-        padding-left:0.5rem;
-    }
-  }
+
+}
   
 
-.card{
-    margin-left:1rem;
-    margin-right:1rem;
-/*    background-color: white;
-    color:black;*/
-}
-
-
-tags-pie{
-    flex:1;
-    align-self: center;;
-    
-}
-artists-character {
-    flex:1;
-    padding: 1rem;
-}

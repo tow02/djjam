@@ -1,21 +1,50 @@
-<h2 *ngIf="playlistEvent && playlistEvent.playlist">{{playlistEvent.playlist.name}}</h2>
-<div>
+<header  *ngIf="playlistEvent && playlistEvent.playlist">
+  <div class="start">
+    <h5>PLAYLIST</h5>
+    <div>
+      <h2>{{playlistEvent.playlist.name}}</h2>
+      <p>&nbsp; by <a href="playlistEvent.playlist.owner.href">{{playlistEvent.playlist.owner.display_name}}</a></p>
+    </div>
+  </div>
+  <div class="end">
+    <button class="spotify-button">LISTEN</button>
+  </div>
+  
+</header>
+<section class="main">
+<!--<div>
   Compare <select>
     <option>Guideline for Newbie</option>
   </select>
-  <button class="spotify-button">Listen</button>
-  
-</div>
+</div>-->
 
-  <h3>Tempo</h3>
+  <h3>TEMPO</h3>
   <section class="tempo">
       <tempo-graph [(playlistEvent)]="playlistEvent"></tempo-graph>
       <tempo-line-graph [playlistEvent]="playlistEvent"></tempo-line-graph>
     </section>
+  
 
-  <h3>Characteristics</h3>
+  <div class="second-section">
+    <section class="character">
+      <h3>CHARACTER</h3>
+      <div class="container">
+        <tags-pie [playlistEvent]="playlistEvent"></tags-pie>
+        <artists-character [playlistEvent]="playlistEvent"></artists-character>
+      </div>
+      
+    </section>
+    <section class="tracks">
+      <h3>TRACKS</h3>
+    </section>
+  </div>
+  
+  
+<!--  <h3>Characteristics</h3>
   <section class="character">
-    <tags-pie [playlistEvent]="playlistEvent"></tags-pie>
+    
     <artists-character [playlistEvent]="playlistEvent"></artists-character>
   </section>
 
+-->
+</section>

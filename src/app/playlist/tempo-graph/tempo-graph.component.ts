@@ -52,7 +52,7 @@ export class TempoGraphComponent implements OnChanges {
     if(this.playlistEvent.status == "done"){
       console.log(this.getBpmRanges())
       this.barChartData = [
-        { data: this.getBpmRanges(), label: `${this.playlistEvent.playlist.name} % `,  backgroundColor:'#ffc218' },
+        { data: this.getBpmRanges(), label: `Categorized by BPM range in % `,  backgroundColor:'#ffc218' },
       ]
     }
       
