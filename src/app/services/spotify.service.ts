@@ -172,15 +172,13 @@ export class SpotifyService {
     })
   }
 
-  getTrackTags(playlist:SpotifyPlaylist, audioFeatures:{[key:string]:AudioFeature} ){
+  getTrackTags(playlist:SpotifyPlaylist, audioFeatures:{[key:string]:AudioFeature}, djjamTracks:{[key:string]:Track} ){
    let tagCount:{[key:string]:Array<SpotifyTrackItem>} = {
      'Instrusmental only':[],
      'Mellow':[],
      'Energetic':[],
      'Vocal':[],
      'Feel Good':[],
-     
-     
      'Live':[]
    }
     playlist.tracks.items.filter(item => !item.is_local).forEach(item => {
@@ -190,13 +188,13 @@ export class SpotifyService {
       obj = item;
       if(audioFeature.liveness >= 0.8 || audioFeature.speechiness >= 0.3)
         tagCount['Live'].push(obj);
-      if( audioFeature.valence >= environment.autotag.valence/environment.autotag.scale)
+      if( audioFeature.valence >= environment.autotag.valence/environment.autotag.scale || (djjamTracks[item.track.id] && djjamTracks[item.track.id].tags['valence']))
         tagCount['Feel Good'].push(obj);
       else if( audioFeature.valence <= 0.55)
         tagCount['Mellow'].push(obj)
-      if( audioFeature.energy >= environment.autotag.energetic /environment.autotag.scale)
+      if( audioFeature.energy >= environment.autotag.energetic /environment.autotag.scale  || (djjamTracks[item.track.id] && djjamTracks[item.track.id].tags['energetic']))
         tagCount['Energetic'].push(obj);
-      if(  audioFeature.instrumentalness >= 0.05)
+      if(  audioFeature.instrumentalness >= 0.05 ||( djjamTracks[item.track.id] && djjamTracks[item.track.id].tags['nonvocal']))
         tagCount['Instrusmental only'].push(obj);
       else
         tagCount['Vocal'].push(obj);

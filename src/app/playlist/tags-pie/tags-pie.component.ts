@@ -29,8 +29,8 @@ export class TagsPieComponent implements OnChanges {
 
   ngOnChanges(): void {
     if(this.playlistEvent.status == 'done'){
-      console.log('tags count', this.spotifyService.getTrackTags(this.playlistEvent.playlist, this.playlistEvent.audioFeatures));
-      let result = this.spotifyService.getTrackTags(this.playlistEvent.playlist, this.playlistEvent.audioFeatures)
+      console.log('after with dj Jam', this.spotifyService.getTrackTags(this.playlistEvent.playlist, this.playlistEvent.audioFeatures, this.playlistEvent.djjamTracks))
+      let result = this.spotifyService.getTrackTags(this.playlistEvent.playlist, this.playlistEvent.audioFeatures, this.playlistEvent.djjamTracks)
       this.radarChartData = [
         { data:Object.keys(result).map(tagName => result[tagName].length ), label:"Tags" }
       ]
