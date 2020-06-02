@@ -1,0 +1,50 @@
+.artists{
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.artists > article{
+    flex:1;
+    position: relative;
+    display: inline-block;
+}
+
+.artists > article img{
+    width:64px;
+    height:64px;
+    object-fit:cover;
+}
+
+
+.artists > article .cover{
+    width:56px;
+    height:56px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding:4px;
+    background-color: black;;
+    color:white;
+}
+
+.artists > article .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index: 1;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .artists > article:hover .tooltiptext {
+    visibility: visible;
+  }
+  
