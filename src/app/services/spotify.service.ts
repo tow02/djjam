@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { TrackService } from "./track.service"
 import { environment } from "../../environments/environment"
-import { SpotifyPlaylist, AudioFeature, SpotifyTrackItem } from "./spotify.interface"
+import { SpotifyPlaylist, AudioFeature, SpotifyTrackItem, SpotifyArtist } from "./spotify.interface"
 import { Track } from '../models/Track';
 
 
@@ -133,6 +133,12 @@ export class SpotifyService {
     return fetch(`https://api.spotify.com/v1/audio-features?ids=${raw_ids}`, {
       headers:this.getHeaderOptions()
     }).then(res => res.json()).then(res => res.audio_features as Array<AudioFeature>);
+  }
+
+  getArtists(ids: Array<string>){
+    return fetch(`https://api.spotify.com/v1/artists?ids=${ids.join(',')}`, {
+      headers: this.getHeaderOptions()
+    } ).then(res => res.json()).then(res => (res.artists as Array<SpotifyArtist>))
   }
 
   async getPlaylistInformations(playlist:SpotifyPlaylist){

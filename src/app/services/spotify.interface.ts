@@ -1,4 +1,26 @@
-
+export interface SpotifyArtist{
+  
+    "external_urls" : {
+      [key:string]: string
+    },
+    "followers" : {
+      "href" : string | null,
+      "total" : number
+    },
+    "genres" : Array<string>,
+    "href" : string,
+    "id" : String,
+    "images" : Array< {
+      "height" : number,
+      "url" : string,
+      "width" : number
+    }>,
+    "name" : string,
+    "popularity" : number,
+    "type" : "artist",
+    "uri" : string
+  
+}
 
 export interface SpotifyTrackItem{
     added_at:string,

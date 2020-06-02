@@ -1,1 +1,8 @@
-<p>artists-character works!</p>
+<div *ngIf="artists">
+    <article *ngFor="let item of artists">
+        <img *ngIf="item.images && item.images[item.images.length-1] " src="{{item.images[item.images.length-1].url}}" />
+        <h4>{{item.name}}</h4>
+        <p>{{item.genres.join(",")}}</p>
+        <p>Count : {{artistInfomation[item.id].count}}</p>
+    </article>
+</div>
