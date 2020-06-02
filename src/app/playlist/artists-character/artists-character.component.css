@@ -4,9 +4,9 @@
 }
 
 .artists > article{
-    flex:1;
     position: relative;
     display: inline-block;
+    height: 64px;;
 }
 
 .artists > article img{
