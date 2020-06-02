@@ -21,6 +21,7 @@ export class TempoLineGraphComponent implements OnChanges {
   customToolTips:string;
   public lineChartLabels: Label[] 
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
+  
     responsive: true,
     scales: {
       // We use this empty structure as a placeholder for dynamic theming.

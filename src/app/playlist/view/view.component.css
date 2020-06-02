@@ -1,12 +1,48 @@
-.tempo{
+.tempo, .character{
     display: flex;;
     flex-wrap: wrap;   
 }
 
-tempo-graph{
-    flex:1;
+
+@media all and (min-width: 40em) {
+    tempo-graph,tempo-line-graph {
+      width: calc(100% - 2rem);
+      padding: 1rem;
+      padding-bottom:0.5rem;
+      padding-top:0.5rem;
+    }
+  }
+  @media all and (min-width: 60em) {
+    tempo-graph,tempo-line-graph {
+      width: calc(50% - 1.5rem);
+      
+    }
+    tempo-graph {
+        padding:1rem;
+        padding-right:0.5rem;
+    }
+    
+    tempo-line-graph{
+        padding:1rem;
+        padding-left:0.5rem;
+    }
+  }
+  
+
+.card{
+    margin-left:1rem;
+    margin-right:1rem;
+/*    background-color: white;
+    color:black;*/
 }
 
-tempo-line-graph{
+
+tags-pie{
     flex:1;
+    align-self: center;;
+    
+}
+artists-character {
+    flex:1;
+    padding: 1rem;
 }

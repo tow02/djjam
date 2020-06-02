@@ -1,5 +1,4 @@
 <h2 *ngIf="playlistEvent && playlistEvent.playlist">{{playlistEvent.playlist.name}}</h2>
-
 <div>
   Compare <select>
     <option>Guideline for Newbie</option>
@@ -7,12 +6,16 @@
   <button class="spotify-button">Listen</button>
   
 </div>
-<h3>Tempo</h3>
-<section class="tempo">
-    <tempo-graph [(playlistEvent)]="playlistEvent"></tempo-graph>
-    <tempo-line-graph [playlistEvent]="playlistEvent"></tempo-line-graph>
-  </section>
-<h3>Characteristics</h3>
 
-  <tags-pie [playlistEvent]="playlistEvent"></tags-pie>
-  <artists-character [playlistEvent]="playlistEvent"></artists-character>
+  <h3>Tempo</h3>
+  <section class="tempo">
+      <tempo-graph [(playlistEvent)]="playlistEvent"></tempo-graph>
+      <tempo-line-graph [playlistEvent]="playlistEvent"></tempo-line-graph>
+    </section>
+
+  <h3>Characteristics</h3>
+  <section class="character">
+    <tags-pie [playlistEvent]="playlistEvent"></tags-pie>
+    <artists-character [playlistEvent]="playlistEvent"></artists-character>
+  </section>
+
