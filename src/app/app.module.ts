@@ -24,6 +24,7 @@ import { SpotifyService } from "./services/spotify.service"
 import { PlaylistModule } from "./playlist/playlist.module";
 import { SpotifySuccessComponent } from './pages/spotify-success/spotify-success.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { SignupComponent } from './pages/signup/signup.component';
     HomeComponent,
     SideMenuComponent,
     SpotifySuccessComponent,
-    SignupComponent
+    SignupComponent,
+    ProfileComponent
   ],
   imports: [
     

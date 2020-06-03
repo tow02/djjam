@@ -13,7 +13,10 @@
             
             <button mat-button color="primary">LOGIN</button>
             <div>
-                <a routerLink="['/signup']">Sign up</a>
+                <a (click)="forgotPassword()">Forgot password</a>
+            </div>
+            <div>
+                <a [routerLink]="['/signup']">Sign up</a>
             </div>
         </div>
         

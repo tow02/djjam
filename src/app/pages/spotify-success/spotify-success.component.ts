@@ -14,8 +14,7 @@ export class SpotifySuccessComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.router.url);
     this.spotifyService.processSignin(this.router.url);
-    
-
+    this.router.navigate(['/'])
     //  console.log(params);
     
 

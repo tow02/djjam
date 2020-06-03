@@ -26,4 +26,10 @@ export class LoginComponent implements OnInit {
     this.router.navigate([''])
   }
 
+  async forgotPassword(){
+    console.log('send forgot request to', this.email)
+    await this.authen.auth.sendPasswordResetEmail(this.email)
+    alert('done reset')
+  }
+
 }

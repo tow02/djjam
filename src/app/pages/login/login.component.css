@@ -41,7 +41,7 @@ button{
 a{
     color:var(--main-bg-color);
     font-size:0.8em;
-    ;
+    cursor: pointer;
 }
 
 @media all and (max-width: 30em) {

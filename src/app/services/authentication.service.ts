@@ -20,6 +20,4 @@ export class AuthenticationService {
     return this.auth.signOut();
   }
 
-
-
 }
