@@ -30,12 +30,15 @@
       <h3>CHARACTER</h3>
       <div class="container">
         <tags-pie [playlistEvent]="playlistEvent"></tags-pie>
+      </div>
+      <h3>ARTISTS</h3>
+      <div class="container">
         <artists-character [playlistEvent]="playlistEvent"></artists-character>
       </div>
-      
     </section>
     <section class="tracks">
       <h3>TRACKS</h3>
+      <tracks-controller></tracks-controller>
     </section>
   </div>
   

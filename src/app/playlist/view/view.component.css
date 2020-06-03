@@ -52,6 +52,13 @@ header .end button{
     font-weight: 100;;
 }
 
+.second-section .container{
+    padding-top:1rem;
+    padding-bottom:1rem;
+}
+
+
+
 @media all and (max-width: 60em) {
     tempo-graph,tempo-line-graph {
       width: calc(100% - 2rem);
