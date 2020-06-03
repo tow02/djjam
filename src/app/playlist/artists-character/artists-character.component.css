@@ -1,12 +1,16 @@
 .artists{
     display:flex;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
+    justify-content: space-between;
 }
 
 .artists > article{
     position: relative;
     display: inline-block;
     height: 64px;;
+    flex-basis: auto;
+    flex: 0 0 auto;
+    margin-bottom: 8px;
 }
 
 .artists > article img{
