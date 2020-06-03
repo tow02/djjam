@@ -4,6 +4,15 @@ import { environment } from "../../environments/environment"
 import { SpotifyPlaylist, AudioFeature, SpotifyTrackItem, SpotifyArtist } from "./spotify.interface"
 import { Track } from '../models/Track';
 
+const DJJAM_MAIN_TAGS = {
+  'live':"Live",
+  'valence':"Feel Good",
+  'energetic':'Energetic',
+  'energy':'Energetic',
+  'mellow':'Mellow',
+  'nonvocal':'Instrusmental only',
+  'vocal':'Vocal'
+}
 
 @Injectable({
   providedIn: 'root'
@@ -190,13 +199,62 @@ export class SpotifyService {
        };
   }
 
-  getTrackBpms(playlist:SpotifyPlaylist, djjamTracks:{[key:string]:Track}, audioFeatures:{[key:string]:AudioFeature} ){
-    return playlist.tracks.items.filter(item => !item.is_local).map(item => {  
-      if(djjamTracks[item.track.id])
+  _processSpotifyTrackToBpm(item:SpotifyTrackItem,  djjamTracks?:{[key:string]:Track}, audioFeatures?:{[key:string]:AudioFeature}  ){
+    if(djjamTracks && djjamTracks[item.track.id])
         return djjamTracks[item.track.id].bpm
-      else
+    else if(audioFeatures && audioFeatures[item.track.id])
         return audioFeatures[item.track.id].tempo < 100?audioFeatures[item.track.id].tempo *2:audioFeatures[item.track.id].tempo ;      
+    else
+      return 0;
+  }
+
+  getTrackBpms(playlist:SpotifyPlaylist, djjamTracks:{[key:string]:Track}, audioFeatures:{[key:string]:AudioFeature} ){
+    return playlist.tracks.items.filter(item => !item.is_local).map(item => this._processSpotifyTrackToBpm(item, djjamTracks, audioFeatures))
+  }
+
+  _processTagsToArrayTags(tags:{[key:string]:string} ){
+    return Object.keys(tags).map(tagName => {
+      if(DJJAM_MAIN_TAGS[tagName])
+        return DJJAM_MAIN_TAGS[tagName]
+      else
+        return tagName
     })
+  }
+
+  _processSpotifyTrackToTags(item:SpotifyTrackItem,  djjamTracks?:{[key:string]:Track}, audioFeatures?:{[key:string]:AudioFeature} ){
+    let tags:{[key:string]:string} ={};
+    //add tag from DJ JAM
+    Object.keys(DJJAM_MAIN_TAGS).forEach(tagName => {
+      
+      if(djjamTracks && djjamTracks[item.track.id] && djjamTracks[item.track.id].tags && djjamTracks[item.track.id].tags[tagName])
+        tags[tagName] = DJJAM_MAIN_TAGS[tagName]
+    })
+
+    //add main tag that doest have from DJJAM (previous tag)
+    if(audioFeatures && audioFeatures[item.track.id]){
+      let audioFeature = audioFeatures[item.track.id]
+      if(audioFeature.liveness >= 0.8 || audioFeature.speechiness >= 0.3)
+        tags['live'] = DJJAM_MAIN_TAGS['live']
+      if( audioFeature.valence >= environment.autotag.valence/environment.autotag.scale)
+        tags['valence'] = DJJAM_MAIN_TAGS['valence']
+      else
+        tags['mellow'] = DJJAM_MAIN_TAGS['mellow']
+      if( audioFeature.energy >= environment.autotag.energetic /environment.autotag.scale)
+        tags['energetic'] = DJJAM_MAIN_TAGS['energetic']
+      if(  audioFeature.instrumentalness >= 0.05)
+        tags['nonvocal'] = DJJAM_MAIN_TAGS['nonvocal']
+      else
+        tags['vocal'] = DJJAM_MAIN_TAGS['vocal']
+    }
+    //sub tags
+    if(djjamTracks && djjamTracks[item.track.id] && djjamTracks[item.track.id].tags){
+      Object.keys(djjamTracks[item.track.id].tags)
+        .filter(tagName => Object.keys(DJJAM_MAIN_TAGS).findIndex(mainTag => mainTag===tagName) == -1) //filter only not main tag
+        .forEach(tagName => {
+          tags[tagName] = tagName //add custom human tag
+        })
+    }
+    return tags;
   }
 
   getTrackTags(playlist:SpotifyPlaylist, audioFeatures:{[key:string]:AudioFeature}, djjamTracks:{[key:string]:Track} ){
