@@ -9,7 +9,8 @@ import { AuthenticationService} from "./services/authentication.service"
 export class AppComponent {
   title = 'djjam-v2';
 
-  isOpen = true;
+  isOpen = false;
+  isLogin = false;
   
   mode:"desktop"|"mobile" = "mobile";
 
@@ -17,8 +18,11 @@ export class AppComponent {
     if(window.innerWidth < 800)
       this.isOpen = false;
     this.authen.auth.authState.subscribe(user => {
-      if(!user)
+      if(!user){
+        this.isLogin =  false;
         this.isOpen = false;
+      }else
+        this.isLogin = true;
     })
   }
   
@@ -29,7 +33,7 @@ export class AppComponent {
             this.isOpen = false;
           this.mode = "mobile"
       }else{
-        if(this.mode == "mobile")
+        if(this.mode == "mobile" && this.isLogin )
           this.isOpen = true;
         this.mode = "desktop";
       }

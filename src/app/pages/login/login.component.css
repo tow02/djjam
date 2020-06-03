@@ -12,7 +12,10 @@
 }
 
 .login-area.isLogginIn{
-    background-color: black;;
+    opacity: 1;
+    
+    transition: opacity 1s ease-in-out;;
+    opacity: 0;
 }
 
 .full-width{
