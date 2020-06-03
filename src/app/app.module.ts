@@ -25,6 +25,7 @@ import { PlaylistModule } from "./playlist/playlist.module";
 import { SpotifySuccessComponent } from './pages/spotify-success/spotify-success.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { SettingComponent } from './pages/setting/setting.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     SideMenuComponent,
     SpotifySuccessComponent,
     SignupComponent,
-    ProfileComponent
+    ProfileComponent,
+    SettingComponent
   ],
   imports: [
     

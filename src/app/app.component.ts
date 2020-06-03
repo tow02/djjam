@@ -21,9 +21,14 @@ export class AppComponent {
       if(!user){
         this.isLogin =  false;
         this.isOpen = false;
-      }else
+        console.log('is log out')
+      }else{
         this.isLogin = true;
+        
+          this.isOpen = true;
+      }
     })
+    
   }
   
   @HostListener('window:resize', ['$event'])
