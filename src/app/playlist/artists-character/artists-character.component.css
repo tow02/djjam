@@ -32,7 +32,7 @@
 
 .artists > article .tooltiptext {
     visibility: hidden;
-    width: 120px;
+    width: 0px;
     background-color: rgba(0,0,0,0.5);
     color: #fff;
     text-align: center;
@@ -50,5 +50,6 @@
   /* Show the tooltip text when you mouse over the tooltip container */
   .artists > article:hover .tooltiptext {
     visibility: visible;
+    width:120px;
   }
   

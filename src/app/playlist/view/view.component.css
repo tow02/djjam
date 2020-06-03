@@ -66,6 +66,10 @@ header .end button{
       padding-bottom:0.5rem;
       padding-top:0.5rem;
     }
+    .second-section .container{
+        padding-left:1rem;
+        padding-right:1rem;
+    }
 }
 @media all and (min-width: 60em) {
 
