@@ -19,6 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule} from '@angular/material/sidenav';
 import { MatIconModule} from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
 import { SideMenuComponent } from './side-menu/side-menu.component'
 import { SpotifyService } from "./services/spotify.service"
 import { PlaylistModule } from "./playlist/playlist.module";
@@ -48,6 +49,7 @@ import { SettingComponent } from './pages/setting/setting.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    MatDividerModule,
     MatButtonModule,  
     MatInputModule,
     MatIconModule,
