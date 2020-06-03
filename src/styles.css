@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'aplayer/dist/APlayer.min.css';
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 :root{
     --main-color:#ffc218;
     --main-bg-color:#343a40;
@@ -43,4 +42,8 @@ input.form-control{
     border:0;
     text-decoration: none;
     color:white;
+}
+
+.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary{
+    color:black;
 }

@@ -6,6 +6,9 @@
     margin-top:10em;
     margin-left: auto;;
     margin-right:auto;
+    background-color: white;;
+    padding:2rem;
+    color:black;
 }
 
 .login-area.isLogginIn{
@@ -14,4 +17,39 @@
 
 .full-width{
     width: 100%;
+}
+
+.options{
+    display: flex;;
+    flex-flow: column;
+}
+
+
+button{
+    background-color: var(--main-color);
+    letter-spacing: 0.2em;
+    align-self:center;
+    width:10em;
+}
+.options > div{
+    padding-top:1em;
+    align-self:center
+}
+a{
+    color:var(--main-bg-color);
+    font-size:0.8em;
+    ;
+}
+
+@media all and (max-width: 30em) {
+    .login-area{
+        width:calc(100% - 2rem);
+        max-width:calc(100% - 2rem);
+        height:89.5vh;
+        margin:0;
+        padding:1rem;
+    }
+    form{
+        width:calc(100% - 2rem);
+    }
 }
