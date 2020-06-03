@@ -26,20 +26,24 @@
   
 
   <div class="second-section">
-    <section class="character">
+    <section class="first">
+      <h3>TRACKS</h3>
+      <div class="container">
+        <tracks-controller [playlistEvent]="playlistEvent"></tracks-controller>
+      </div>
+    </section>
+    <section class="second">
       <h3>CHARACTER</h3>
       <div class="container">
         <tags-pie [playlistEvent]="playlistEvent"></tags-pie>
       </div>
+      
       <h3>ARTISTS</h3>
       <div class="container">
         <artists-character [playlistEvent]="playlistEvent"></artists-character>
       </div>
     </section>
-    <section class="tracks">
-      <h3>TRACKS</h3>
-      <tracks-controller [playlistEvent]="playlistEvent"></tracks-controller>
-    </section>
+    
   </div>
   
   

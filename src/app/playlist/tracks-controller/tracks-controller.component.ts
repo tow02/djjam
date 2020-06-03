@@ -23,7 +23,7 @@ export class TracksControllerComponent implements OnChanges {
   playlistEvent:PlaylistEvent
 
   trackSource:Array<TrackElement> = [];
-  displayedColumns: string[] = ['name', 'artists', 'bpm', 'tags'];
+  displayedColumns: string[] = ['name', 'artists', 'bpm'];
   dataSource :MatTableDataSource<TrackElement>
 
   constructor(private spotifyService:SpotifyService) { }

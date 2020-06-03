@@ -33,7 +33,7 @@ header .start > div{
 }
 
 header .end{
-    display: flex;
+    
     flex:1;
     text-align: right;
     padding-right:1rem;
@@ -57,6 +57,10 @@ header .end button{
     padding-bottom:1rem;
 }
 
+.second-section  .first h3, .second-section  .second h3{
+    margin-left:0;
+}
+
 
 
 @media all and (max-width: 60em) {
@@ -66,10 +70,24 @@ header .end button{
       padding-bottom:0.5rem;
       padding-top:0.5rem;
     }
+
+    .second-section{
+        flex-wrap: wrap-reverse;
+    }
+
     .second-section .container{
         padding-left:1rem;
         padding-right:1rem;
     }
+
+    .second-section  .first h3, .second-section  .second h3{
+        margin-left:1rem;
+    }
+
+    .second-section  .first{
+        width: 100%;
+    }
+    
 }
 @media all and (min-width: 60em) {
 
