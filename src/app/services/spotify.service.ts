@@ -201,9 +201,9 @@ export class SpotifyService {
 
   _processSpotifyTrackToBpm(item:SpotifyTrackItem,  djjamTracks?:{[key:string]:Track}, audioFeatures?:{[key:string]:AudioFeature}  ){
     if(djjamTracks && djjamTracks[item.track.id])
-        return djjamTracks[item.track.id].bpm
+        return Math.round(djjamTracks[item.track.id].bpm);
     else if(audioFeatures && audioFeatures[item.track.id])
-        return audioFeatures[item.track.id].tempo < 100?audioFeatures[item.track.id].tempo *2:audioFeatures[item.track.id].tempo ;      
+        return Math.round(audioFeatures[item.track.id].tempo < 100?audioFeatures[item.track.id].tempo *2:audioFeatures[item.track.id].tempo) ;      
     else
       return 0;
   }

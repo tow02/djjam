@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatTableModule } from '@angular/material/table'
 import { PlaylistRoutingModule } from './playlist-routing.module';
 import { ViewComponent } from './view/view.component';
 import { ChartsModule } from 'ng2-charts';
@@ -14,6 +15,7 @@ import { TracksControllerComponent } from './tracks-controller/tracks-controller
   declarations: [ViewComponent, TempoGraphComponent, TempoLineGraphComponent, TagsPieComponent, ArtistsCharacterComponent, TracksControllerComponent],
   imports: [
     CommonModule,
+    MatTableModule,
     ChartsModule,
     PlaylistRoutingModule
   ]

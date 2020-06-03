@@ -1,10 +1,12 @@
 import { Component, OnChanges, Input } from '@angular/core';
 import { PlaylistEvent } from "../playlist.event.interface"
 import { SpotifyService } from "../../services/spotify.service"
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 
 interface TrackElement{
   name:string,
-  artist:string,
+  artists:string,
   bpm:number,
   tags:string
 }
@@ -21,6 +23,8 @@ export class TracksControllerComponent implements OnChanges {
   playlistEvent:PlaylistEvent
 
   trackSource:Array<TrackElement> = [];
+  displayedColumns: string[] = ['name', 'artists', 'bpm', 'tags'];
+  dataSource :MatTableDataSource<TrackElement>
 
   constructor(private spotifyService:SpotifyService) { }
 
@@ -30,7 +34,7 @@ export class TracksControllerComponent implements OnChanges {
       this.trackSource =this.playlistEvent.playlist.tracks.items.filter(item => !item.is_local).map(item => {
           const trackElement:TrackElement = {
             name:item.track.name,
-            artist:item.track.artists.map(a => a.name).join(','),
+            artists:item.track.artists.map(a => a.name).join(','),
             bpm:0,
             tags:''
           };
@@ -40,6 +44,7 @@ export class TracksControllerComponent implements OnChanges {
           trackElement.tags = this.spotifyService._processTagsToArrayTags(this.spotifyService._processSpotifyTrackToTags(item,  this.playlistEvent.djjamTracks, this.playlistEvent.audioFeatures)).join(',');
           return trackElement;
       })
+      this.dataSource = new MatTableDataSource(this.trackSource);
       console.log(this.trackSource)
     }
       
