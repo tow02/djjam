@@ -2,10 +2,14 @@
 
 
 <section class="playlists">
-    <airticle>
+    <article *ngFor="let playlist of playlists;let i =index" (click)="playlist.selected = !playlist.selected" [ngClass]="{'selected':playlist.selected}">
         <div class="container">
-            
+            <div class="image">
+                <img src="{{playlist.playlist.images[0]?.url}}" />
+                
+            </div>
+            <h4>{{playlist.playlist.name}}</h4>
         </div>
-    </airticle>
+    </article>
 
 </section>

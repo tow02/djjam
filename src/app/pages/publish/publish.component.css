@@ -1,0 +1,29 @@
+.playlists{
+    display:flex;
+    flex-flow: row wrap;
+}
+
+.playlists article{
+    width: 120px;
+    
+}
+
+.playlists article .container{
+    padding:5px;
+    text-align: center;
+}
+
+.image img{
+    width: 100px;
+    height: 100px;
+    object-fit:cover;
+}
+
+article h4{ 
+    width:100px;
+}
+
+.playlists article.selected{
+    background-color: var(--main-color);
+    color:black;
+}
