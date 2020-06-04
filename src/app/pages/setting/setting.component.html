@@ -18,7 +18,9 @@
             </mat-form-field>
         </div>
         <div class="container half">
-            <div class="preview"></div>
+            <div class="preview">
+                <img src="{{profileForm.value.imageUrl}}" />
+            </div>
             <mat-form-field class="half-width second">
                 <mat-label>Image URL</mat-label>
                 <input name="name" formControlName="imageUrl" matInput placeholder="http://placehold.it/100x100" value="">

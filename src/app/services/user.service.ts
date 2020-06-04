@@ -3,7 +3,7 @@ import { AngularFirestore, DocumentReference } from '@angular/fire/firestore'
 import { UserData } from "../models/User"
 import { AuthenticationService } from "./authentication.service"
 
-interface User{
+export interface User{
   name?:string,
     picture?:string,
     level:number,
@@ -40,6 +40,28 @@ export class UserService {
     u.community = citySnap.data() as  { name:string, city:string}
     return u;
 
+  }
+
+  async update(user:User, fields?:Array<string>){
+    const id =  (await this.authen.auth.currentUser).uid;
+    console.log(id, user, fields)
+    let obj:any = {};
+    if(fields)
+      fields.forEach(field => obj[field] = user[field] );
+    else
+      obj = {...user};
+    console.log(obj);
+    if(obj['community']){  
+        let result = await  this.firestore.collection('community') .doc(user.community['name']).get().toPromise()
+        if(!result.exists)
+          await this.firestore.collection('community') .doc(user.community['name']).set({
+            name:user.community['name'],
+            city:user.community['city']
+          })
+      obj['community'] = this.firestore.collection('community') .doc(user.community['name']).ref;
+    }
+    console.log('going to update', obj);
+    return this.firestore.collection('user').doc(id).update(obj);
   }
 
 }
