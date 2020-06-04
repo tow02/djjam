@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule  } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms'
 import { NgModule } from '@angular/core';
 import { SearchModule } from './search/search.module'
 import { AngularFireModule } from '@angular/fire';
@@ -22,6 +22,7 @@ import { MatIconModule} from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { SideMenuComponent } from './side-menu/side-menu.component'
 import { SpotifyService } from "./services/spotify.service"
+import { UserService } from "./services/user.service"
 import { PlaylistModule } from "./playlist/playlist.module";
 import { SpotifySuccessComponent } from './pages/spotify-success/spotify-success.component';
 import { SignupComponent } from './pages/signup/signup.component';
@@ -46,6 +47,7 @@ import { SettingComponent } from './pages/setting/setting.component';
     
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
@@ -55,12 +57,13 @@ import { SettingComponent } from './pages/setting/setting.component';
     MatIconModule,
     MatMenuModule,
     MatSidenavModule,
+    
     SearchModule,
     PlaylistModule,
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [SpotifyService],
+  providers: [SpotifyService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

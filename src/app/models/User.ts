@@ -1,10 +1,10 @@
-export interface UserRecentPlaylist{
+    export interface UserRecentPlaylist{
     name:string,
     image:any,
     spotify_user_id:string,
     spotify_playlist_id:string
 }
-
+//this is the old version one
 export interface UserData{
     name?:string,
     level:number,
@@ -22,4 +22,3 @@ export interface UserData{
     recent_playlists?:Array<UserRecentPlaylist>
     upload_limit?:number;
 }
-

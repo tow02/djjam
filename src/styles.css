@@ -51,3 +51,8 @@ input.form-control{
 .mat-divider{
     border-top-color:#a6b1b714
 }
+
+.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary{
+    background-color: var(--main-color);
+    
+}

@@ -1,1 +1,45 @@
-<p>setting works!</p>
+
+
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()" >
+    <div class="container">
+        <h2>Profile</h2>
+        <mat-form-field class="full-width">
+            <mat-label>DJ Name</mat-label>
+            <input name="name"  formControlName="djName" matInput placeholder="Ex. me@sompop.dev" value="">
+        </mat-form-field>
+        <div class="container half">
+            <mat-form-field class="half-width first">
+                <mat-label>Community name</mat-label>
+                <input name="name" formControlName="communityName" matInput placeholder="Ex. Bangkok Swing" value="">
+            </mat-form-field>
+            <mat-form-field class="half-width second">
+                <mat-label>City</mat-label>
+                <input name="name" formControlName="cityName" matInput placeholder="Ex. Bangkok" value="">
+            </mat-form-field>
+        </div>
+        <div class="container half">
+            <div class="preview"></div>
+            <mat-form-field class="half-width second">
+                <mat-label>Image URL</mat-label>
+                <input name="name" formControlName="imageUrl" matInput placeholder="http://placehold.it/100x100" value="">
+            </mat-form-field>
+        </div>
+        <h2>Playlist sets</h2>
+        <ul  formArrayName="playlistSets">
+            <li *ngFor="let item of playlistSets.controls; let i=index"> 
+                <mat-form-field class="full-width">
+                    <mat-label>Playlist set</mat-label>
+                    <input name="name" matInput placeholder="" [formControlName]="i">
+                </mat-form-field>
+                <button (click)="removePlaySet(i)" mat-button>X</button>    
+            </li>
+        </ul>
+        <div class="container">
+            <button (click)="addPlaylistSet()" mat-button>Add a playlist set</button>
+            <button mat-button color="primary">Save</button>
+        </div>
+    </div>
+    
+    
+</form>
+

@@ -59,7 +59,7 @@ header .second span{
     padding-top:1rem;
     display:flex;
     flex-flow: row ;
-    justify-content: start;
+    justify-content: flex-start;
     overflow-x: auto;
     
 }
