@@ -71,8 +71,7 @@ export class SettingComponent implements OnInit {
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    console.warn(this.profileForm.value);
-    console.log(this.transform());
+    
     this.userService.update(this.transform(), ['name', 'community', 'picture', 'playlist_sets'])
   }
 

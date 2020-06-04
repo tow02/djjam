@@ -13,7 +13,7 @@
             Favorites
             </a>    </li>
         <li  *ngIf="isConnect">
-            <a    mat-button>
+            <a  [routerLink]="['/publish']"  mat-button>
             <mat-icon>publish</mat-icon>
             Publish
             </a>    </li>

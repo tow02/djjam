@@ -28,6 +28,7 @@ import { SpotifySuccessComponent } from './pages/spotify-success/spotify-success
 import { SignupComponent } from './pages/signup/signup.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SettingComponent } from './pages/setting/setting.component';
+import { PublishComponent } from './pages/publish/publish.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { SettingComponent } from './pages/setting/setting.component';
     SpotifySuccessComponent,
     SignupComponent,
     ProfileComponent,
-    SettingComponent
+    SettingComponent,
+    PublishComponent
   ],
   imports: [
     

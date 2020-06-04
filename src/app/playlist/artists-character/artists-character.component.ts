@@ -34,6 +34,7 @@ export class ArtistsCharacterComponent implements OnChanges {
         else
           return 1;
       }).map(item => item.id)
+      
       this.artists = await this.spotifyService.getArtists(ids);
       console.log('artists', this.artists)
     }

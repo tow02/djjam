@@ -4,6 +4,7 @@ import { LoginComponent }  from  './pages/login/login.component'
 import { HomeComponent } from './pages/home/home.component'
 import { ProfileComponent } from './pages/profile/profile.component'
 import { SettingComponent } from "./pages/setting/setting.component"
+import { PublishComponent } from './pages/publish/publish.component'
 import { SpotifySuccessComponent } from "./pages/spotify-success/spotify-success.component"
 import { AngularFireAuthGuard, redirectUnauthorizedTo,redirectLoggedInTo } from '@angular/fire/auth-guard';
 import { SignupComponent } from "./pages/signup/signup.component"
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path:"signup", component:SignupComponent, canActivate:[AngularFireAuthGuard], data:{authGuardPipe:redirectLoggedInToItems}},
   { path:"profile", component:ProfileComponent, canActivate:[AngularFireAuthGuard], data:{authGuardPipe:redirectUnauthorizedToLogin}},
   { path:"setting", component:SettingComponent, canActivate:[AngularFireAuthGuard], data:{authGuardPipe:redirectUnauthorizedToLogin}},
+  { path:"publish", component:PublishComponent, canActivate:[AngularFireAuthGuard], data:{authGuardPipe:redirectUnauthorizedToLogin}},
   { path:'spotify-success', component:SpotifySuccessComponent },
   { path:"", component:HomeComponent, canActivate:[AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } }
 ];
