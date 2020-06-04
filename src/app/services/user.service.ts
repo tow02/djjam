@@ -16,6 +16,13 @@ export interface User{
         spotify_user_id:string,
         spotify_playlist_id:string
     }>
+    playlist_set_map?:{
+      [key:string]:Array<{
+        name:string,
+        image:string,
+        id:string
+      }>
+    }
   community:DocumentReference | { name:string, city:string}
 }
 

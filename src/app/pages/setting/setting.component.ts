@@ -35,8 +35,14 @@ export class SettingComponent implements OnInit {
         cityName:this.currentUser.community['city'],
         communityName:this.currentUser.community['name'],
         imageUrl:this.currentUser.picture,
-        playlistSets:this.currentUser.playlist_sets?this.currentUser.playlist_sets:[]
     })
+    if(this.currentUser.playlist_sets && this.currentUser.playlist_sets.length > 0)
+      this.currentUser.playlist_sets.forEach(set => {
+        this.playlistSets.push(this.formBuilder.control(set, Validators.required));
+      })
+    else
+      this.playlistSets.push(this.formBuilder.control('', Validators.required));
+    console.log(this.profileForm.value);
   }
 
   addPlaylistSet(){
@@ -48,7 +54,7 @@ export class SettingComponent implements OnInit {
   }
 
   transform(){
-     this.profileForm.value
+     
      let u:User = {
        name:this.profileForm.value.djName,
        community:{
@@ -57,7 +63,8 @@ export class SettingComponent implements OnInit {
        },
        level:this.currentUser.level,
        preference_tags:this.currentUser.preference_tags,
-       picture:this.profileForm.value.imageUrl
+       picture:this.profileForm.value.imageUrl,
+       playlist_sets:this.profileForm.value.playlistSets
      }
      return u;
   }
@@ -66,7 +73,7 @@ export class SettingComponent implements OnInit {
     // TODO: Use EventEmitter with form value
     console.warn(this.profileForm.value);
     console.log(this.transform());
-    this.userService.update(this.transform(), ['name', 'community', 'picture'])
+    this.userService.update(this.transform(), ['name', 'community', 'picture', 'playlist_sets'])
   }
 
 }
