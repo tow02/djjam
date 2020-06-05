@@ -30,6 +30,12 @@ export class AppComponent {
     })
     
   }
+
+  onClickSideMenu(){
+    console.log('onCLickSide')
+    if(this.mode == "mobile")
+      this.isOpen = false;
+  }
   
   @HostListener('window:resize', ['$event'])
   onResize(event) {

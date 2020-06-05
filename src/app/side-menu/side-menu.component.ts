@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SpotifyService } from "../services/spotify.service"
 
 @Component({
@@ -12,6 +12,9 @@ export class SideMenuComponent implements OnInit {
 
   isConnect = false;
   playlists = [];
+
+  @Output()
+  onClickSideMenu:EventEmitter<void> = new EventEmitter<void>();
   
   async ngOnInit() {
     
@@ -39,6 +42,11 @@ export class SideMenuComponent implements OnInit {
 
   spotifyConnnect(){
     this.spotifyService.authen();
+  }
+
+  navigate(){
+    if(this.onClickSideMenu)
+      this.onClickSideMenu.emit();
   }
 
 }

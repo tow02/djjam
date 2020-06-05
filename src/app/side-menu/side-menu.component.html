@@ -1,7 +1,7 @@
 <section class="container">
     <ul>
         <li>
-            <a  [routerLink]="['/']"  mat-button>
+            <a  (click)="navigate()"  [routerLink]="['/']"  mat-button>
                 <mat-icon>home</mat-icon>
                 Home
             </a>    
@@ -13,7 +13,7 @@
             Favorites
             </a>    </li>
         <li  *ngIf="isConnect">
-            <a  [routerLink]="['/publish']"  mat-button>
+            <a (click)="navigate()"  [routerLink]="['/publish']"  mat-button>
             <mat-icon>publish</mat-icon>
             Publish
             </a>    </li>
@@ -24,7 +24,7 @@
     <button (click)="spotifyConnnect()" class="spotify-button">Connect to Spotify</button>
 </form>
 <ul class="spotify" *ngIf="isConnect">
-    <li *ngFor="let item of playlists"><a [routerLink]="['/playlist', item.id]" mat-button><mat-icon>queue_music</mat-icon> {{item.name}}</a></li>
+    <li *ngFor="let item of playlists"><a (click)="navigate()"  [routerLink]="['/playlist', item.id]" mat-button><mat-icon>queue_music</mat-icon> {{item.name}}</a></li>
     
     
 </ul>

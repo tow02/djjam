@@ -2,7 +2,7 @@
 <mat-sidenav-container class="example-container">
     <mat-sidenav  #sidenav [fixedInViewport]="true" [fixedTopGap]="0"
     [fixedBottomGap]="0"  mode="side" [opened]="isOpen">
-        <app-side-menu ></app-side-menu>
+        <app-side-menu (onClickSideMenu)="onClickSideMenu()" ></app-side-menu>
         
     </mat-sidenav>
     <mat-sidenav-content>
