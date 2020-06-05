@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
   async ngOnInit() {
     let user = await this.userService.get();
     if(user.playlist_sets){
-      this.sets = user.playlist_sets.map(setName => {
+      this.sets = user.playlist_sets.filter(setName => user.playlist_set_map && user.playlist_set_map[this.userService.nameToSlug(setName)] ).map(setName => {
         if(user.playlist_set_map[this.userService.nameToSlug(setName)])
           return {
             name:setName,

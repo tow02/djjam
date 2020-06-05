@@ -63,5 +63,9 @@ export class TrackService {
     
   }
 
+  getCommunityPlaylists(){
+    this.firestore.collection('')
+  }
+
 
 }
