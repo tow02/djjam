@@ -21,11 +21,13 @@ import { MatSidenavModule} from '@angular/material/sidenav';
 import { MatIconModule} from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatStepperModule} from '@angular/material/stepper';
+import { MatRadioModule } from '@angular/material/radio';
 import { SideMenuComponent } from './side-menu/side-menu.component'
 import { SpotifyService } from "./services/spotify.service"
 import { UserService } from "./services/user.service"
 import { PlaylistModule } from "./playlist/playlist.module";
 import { SpotifySuccessComponent } from './pages/spotify-success/spotify-success.component';
+
 import { SignupComponent } from './pages/signup/signup.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SettingComponent } from './pages/setting/setting.component';
@@ -59,6 +61,7 @@ import { PublishComponent } from './pages/publish/publish.component';
     MatInputModule,
     MatIconModule,
     MatMenuModule,
+    MatRadioModule,
     MatSidenavModule,
     MatStepperModule,
     SearchModule,

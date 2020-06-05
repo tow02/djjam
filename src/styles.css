@@ -60,7 +60,7 @@ input.form-control{
 
 .mat-step-header .mat-step-icon{
     background-color: rgb(53, 58, 64);
-    color: #ffc218;
+    color: var(--main-color);
 }
 
 .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit{
@@ -77,4 +77,16 @@ input.form-control{
 
 .mat-step-header .mat-step-label, .mat-step-header .mat-step-optional{
     color:var(--secondary-text-color);
+}
+
+.mat-radio-outer-circle,.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+    border-color: var(--main-color);
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple{
+    background-color: var(--main-color);
+}
+
+span[color="primary"]{
+    color:var(--main-color)
 }

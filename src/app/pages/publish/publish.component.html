@@ -1,9 +1,9 @@
 <mat-horizontal-stepper [linear]="true" #stepper>
-    <mat-step >
-      <form >
+    <mat-step [stepControl]="playlistsFormGroup" >
+      <form [formGroup]="playlistsFormGroup">
         <ng-template matStepLabel>Select your playlists</ng-template>
-        <section class="playlists">
-            <article *ngFor="let playlist of playlists;let i =index" (click)="playlist.selected = !playlist.selected" [ngClass]="{'selected':playlist.selected}">
+        <section  class="playlists">
+            <article *ngFor="let playlist of  playlists;let i =index" (click)="toggle(i)" [ngClass]="{'selected':playlist.selected}">
                 <div class="container">
                     <div class="image">
                         <img src="{{playlist.playlist.images[0]?.url}}" />
@@ -15,30 +15,41 @@
         
         </section>
         <div>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button color="primary" matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
-    <mat-step >
-      <form>
+    <mat-step  [stepControl]="setFormGroup" >
+      <form [formGroup]="setFormGroup">
         <ng-template matStepLabel>Select a playlists set</ng-template>
-        <mat-form-field>
-          <mat-label>Address</mat-label>
-          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                 required>
-        </mat-form-field>
+        <mat-radio-group formControlName="set"  aria-label="Select a playlists set">
+          <mat-radio-button  *ngFor="let set of sets" value="{{set}}">{{set}}</mat-radio-button>
+        </mat-radio-group>
         <div>
           <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button color="primary" matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Publish</ng-template>
-      <p>You are now done.</p>
+      <p>You will these playlists to <span color="primary">{{setFormGroup.value.set}}</span> and publish to community playlists</p>
+      <section  class="playlists selected">
+        <article *ngFor="let playlist of selectedPlaylists" >
+            <div class="container">
+                <div class="image">
+                    <img src="{{playlist.images[0]?.url}}" />
+                    
+                </div>
+                <h4>{{playlist.name}}</h4>
+            </div>
+        </article>
+    
+    </section>
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-button (click)="stepper.reset();reset();">Reset</button>
+        <button mat-button color="primary" (click)="publish()">Publish</button>
       </div>
     </mat-step>
   </mat-horizontal-stepper>
