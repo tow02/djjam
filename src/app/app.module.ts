@@ -20,6 +20,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule} from '@angular/material/sidenav';
 import { MatIconModule} from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatStepperModule} from '@angular/material/stepper';
 import { SideMenuComponent } from './side-menu/side-menu.component'
 import { SpotifyService } from "./services/spotify.service"
 import { UserService } from "./services/user.service"
@@ -59,7 +60,7 @@ import { PublishComponent } from './pages/publish/publish.component';
     MatIconModule,
     MatMenuModule,
     MatSidenavModule,
-    
+    MatStepperModule,
     SearchModule,
     PlaylistModule,
     AppRoutingModule,

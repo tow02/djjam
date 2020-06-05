@@ -1,7 +1,8 @@
 {
   "hosting": [
     {
-      "target": "djjam-v2",
+      "site": "djjam-staging",
+      "target": "djjam-staging",
       "public": "dist/djjam-v2",
       "ignore": [
         "firebase.json",

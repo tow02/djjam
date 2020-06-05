@@ -1,15 +1,50 @@
-<p>publish works!</p>
-
-
-<section class="playlists">
-    <article *ngFor="let playlist of playlists;let i =index" (click)="playlist.selected = !playlist.selected" [ngClass]="{'selected':playlist.selected}">
-        <div class="container">
-            <div class="image">
-                <img src="{{playlist.playlist.images[0]?.url}}" />
-                
-            </div>
-            <h4>{{playlist.playlist.name}}</h4>
+<mat-horizontal-stepper [linear]="true" #stepper>
+    <mat-step >
+      <form >
+        <ng-template matStepLabel>Select your playlists</ng-template>
+        <section class="playlists">
+            <article *ngFor="let playlist of playlists;let i =index" (click)="playlist.selected = !playlist.selected" [ngClass]="{'selected':playlist.selected}">
+                <div class="container">
+                    <div class="image">
+                        <img src="{{playlist.playlist.images[0]?.url}}" />
+                        
+                    </div>
+                    <h4>{{playlist.playlist.name}}</h4>
+                </div>
+            </article>
+        
+        </section>
+        <div>
+          <button mat-button matStepperNext>Next</button>
         </div>
-    </article>
+      </form>
+    </mat-step>
+    <mat-step >
+      <form>
+        <ng-template matStepLabel>Select a playlists set</ng-template>
+        <mat-form-field>
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                 required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Publish</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+
+
+
+<section class="sets">
 
 </section>

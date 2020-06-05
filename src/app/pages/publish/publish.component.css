@@ -27,3 +27,7 @@ article h4{
     background-color: var(--main-color);
     color:black;
 }
+
+.mat-stepper-horizontal, .mat-stepper-vertical{
+    background-color: var(--main-content-bg-color);
+}
