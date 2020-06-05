@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore'
-
+import { AngularFirestore, DocumentReference } from '@angular/fire/firestore'
+import { UserService } from "./user.service"
 import { Track } from "../models/Track"
 
 export interface TrackEvent{
@@ -15,7 +15,7 @@ export class TrackService {
   currentTrack:Track;
   onChangeTrack:EventEmitter<TrackEvent> = new EventEmitter<TrackEvent>();
 
-  constructor(private firestore:AngularFirestore) {
+  constructor(private firestore:AngularFirestore, private userService:UserService) {
   
    }
 
@@ -63,8 +63,16 @@ export class TrackService {
     
   }
 
-  getCommunityPlaylists(){
-    this.firestore.collection('')
+  //fucking expensive loader
+  async getCommunityPlaylists(){
+    let snap = await this.firestore.collection('community_playlist').get().toPromise()
+    return Promise.all( snap.docs.map(doc => doc.data() as {
+      by:DocumentReference,
+      id:string,
+      imageUrl:string,
+      name:string
+    }).map(async (item )=> ({...item, by:(await this.userService.get(item.by))})));
+    
   }
 
 
