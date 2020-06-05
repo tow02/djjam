@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, EventEmitter } from '@angular/core';
 import { SpotifyPlaylist } from "../../services/spotify.interface"
-import { FormGroup, FormControl, FormBuilder, Validators, FormArray, ValidatorFn } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, ValidatorFn } from '@angular/forms';
+import { Router } from "@angular/router"
 import { SpotifyService } from "../../services/spotify.service"
 import { UserService, User } from "../../services/user.service"
 
@@ -11,7 +12,7 @@ import { UserService, User } from "../../services/user.service"
 })
 export class PublishComponent implements OnInit, OnDestroy {
 
-
+  isLoading = false;
   playlistsFormGroup:FormGroup =  this.formBuilder.group({
     playlistsForm: this.formBuilder.array([], atLeastOneCheckboxCheckedValidator(1))
   });
@@ -25,7 +26,7 @@ export class PublishComponent implements OnInit, OnDestroy {
 
   selectedPlaylists:Array<SpotifyPlaylist> =[]
 
-  constructor(private spotifyService:SpotifyService, private userService:UserService, private formBuilder:FormBuilder) { }
+  constructor(private spotifyService:SpotifyService, private userService:UserService, private formBuilder:FormBuilder, private router:Router) { }
   
   get playlistsForm(){
     return this.playlistsFormGroup.get('playlistsForm') as FormArray;
@@ -62,8 +63,11 @@ export class PublishComponent implements OnInit, OnDestroy {
     })
   }
 
-  publish(){
+  async publish(){
     console.log(this.selectedPlaylists, this.setFormGroup.value.set)
+    this.isLoading = true;
+    await this.userService.addPlaylistsToSet(this.selectedPlaylists, this.setFormGroup.value.set)
+    this.router.navigate(['/']);
   }
 
 }

@@ -1,4 +1,4 @@
-<mat-horizontal-stepper [linear]="true" #stepper>
+<mat-horizontal-stepper [linear]="true" #stepper [ngClass]="{'loading':isLoading}">
     <mat-step [stepControl]="playlistsFormGroup" >
       <form [formGroup]="playlistsFormGroup">
         <ng-template matStepLabel>Select your playlists</ng-template>

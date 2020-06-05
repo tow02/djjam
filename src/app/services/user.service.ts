@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, DocumentReference } from '@angular/fire/firestore'
-import { UserData } from "../models/User"
+import { SpotifyPlaylist } from "../services/spotify.interface"
 import { AuthenticationService } from "./authentication.service"
+import { Playlist } from "../models/Track"
 
 export interface User{
   name?:string,
@@ -17,11 +18,7 @@ export interface User{
         spotify_playlist_id:string
     }>
     playlist_set_map?:{
-      [key:string]:Array<{
-        name:string,
-        image:string,
-        id:string
-      }>
+      [key:string]:Array<Playlist>
     }
   community:DocumentReference | { name:string, city:string}
 }
@@ -69,6 +66,36 @@ export class UserService {
     }
     console.log('going to update', obj);
     return this.firestore.collection('user').doc(id).update(obj);
+  }
+
+  nameToSlug(str:string){
+    str = str.replace(/^\s+|\s+$/g, ''); // trim
+    str = str.toLowerCase();
+    // remove accents, swap ñ for n, etc
+    var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+    var to   = "aaaaeeeeiiiioooouuuunc------";
+    for (var i=0, l=from.length ; i<l ; i++) {
+        str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+    }
+    str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+        .replace(/\s+/g, '-') // collapse whitespace and replace by -
+        .replace(/-+/g, '-'); // collapse dashes
+
+    return str;
+  }
+
+  async addPlaylistsToSet(playlists:Array<SpotifyPlaylist>, setName:string){
+    const id =  (await this.authen.auth.currentUser).uid;
+     const newPlaylists = playlists.map(item => ({
+      id:item.id,
+      name:item.name,
+      imageUrl:item.images[0].url
+    }) as Playlist);
+    console.log('going to save', newPlaylists);
+    const obj:any = {playlist_set_map:{}};
+    obj.playlist_set_map[this.nameToSlug(setName)] = newPlaylists;
+    this.firestore.collection('user').doc(id).update(obj);
+    return Promise.all(newPlaylists.map(item => this.firestore.collection('user').doc(id).collection('set').doc(item.id).set(item)));
   }
 
 }
