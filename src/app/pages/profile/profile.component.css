@@ -75,6 +75,7 @@ header .second span{
     overflow: hidden;
     align-self: center;
     margin-right:1em;
+    cursor: pointer;
 }
 
 .set .playlist img{

@@ -14,99 +14,17 @@
     </section>
 </header>
 <section class="main">
-    <div class="set">
-        <h2>Recent Playlists</h2>
+    <div *ngFor="let item of sets" class="set">
+        <h2>{{item.name}}</h2>
         <mat-divider ></mat-divider>
         <div class="container" id="testSet">
             <!-- Playlists-->
-            <article class="playlist">
-                <img src="https://mosaic.scdn.co/300/ab67616d0000b273186763817f7f6ee46d712555ab67616d0000b27350d3be7eea9d9df6fd9d0fd5ab67616d0000b273a8c5029325a2aae63966512dab67616d0000b273b84122fb5286ec9975e783f6">
-                <h4>This is awesome mix Live at The Hop!!!!!!!!!</h4>
-            </article>
-            <article class="playlist">
-                <img src="https://mosaic.scdn.co/300/ab67616d0000b273186763817f7f6ee46d712555ab67616d0000b27350d3be7eea9d9df6fd9d0fd5ab67616d0000b273a8c5029325a2aae63966512dab67616d0000b273b84122fb5286ec9975e783f6">
-                <h4>This is awesome mix Live at The Hop!!!!!!!!!</h4>
-            </article>
-            <article class="playlist">
-                <img src="https://mosaic.scdn.co/300/ab67616d0000b273186763817f7f6ee46d712555ab67616d0000b27350d3be7eea9d9df6fd9d0fd5ab67616d0000b273a8c5029325a2aae63966512dab67616d0000b273b84122fb5286ec9975e783f6">
-                <h4>This is awesome mix Live at The Hop!!!!!!!!!</h4>
-            </article>
-            <article class="playlist">
-                <img src="https://mosaic.scdn.co/300/ab67616d0000b273186763817f7f6ee46d712555ab67616d0000b27350d3be7eea9d9df6fd9d0fd5ab67616d0000b273a8c5029325a2aae63966512dab67616d0000b273b84122fb5286ec9975e783f6">
-                <h4>This is awesome mix Live at The Hop!!!!!!!!!</h4>
-            </article>
-            <article class="playlist">
-                <img src="https://mosaic.scdn.co/300/ab67616d0000b273186763817f7f6ee46d712555ab67616d0000b27350d3be7eea9d9df6fd9d0fd5ab67616d0000b273a8c5029325a2aae63966512dab67616d0000b273b84122fb5286ec9975e783f6">
-                <h4>This is awesome mix Live at The Hop!!!!!!!!!</h4>
-            </article>
-            <article class="playlist">
-                <img src="https://mosaic.scdn.co/300/ab67616d0000b273186763817f7f6ee46d712555ab67616d0000b27350d3be7eea9d9df6fd9d0fd5ab67616d0000b273a8c5029325a2aae63966512dab67616d0000b273b84122fb5286ec9975e783f6">
-                <h4>This is awesome mix Live at The Hop!!!!!!!!!</h4>
-            </article>
-            <article class="playlist">
-                <img src="https://mosaic.scdn.co/300/ab67616d0000b273186763817f7f6ee46d712555ab67616d0000b27350d3be7eea9d9df6fd9d0fd5ab67616d0000b273a8c5029325a2aae63966512dab67616d0000b273b84122fb5286ec9975e783f6">
-                <h4>This is awesome mix Live at The Hop!!!!!!!!!</h4>
+            <article (click)="select(playlist)" *ngFor="let playlist of item.playlists" class="playlist">
+                <img src="{{playlist.imageUrl}}">
+                <h4>{{playlist.name}}</h4>
             </article>
         </div>
     </div>
 
-    <div class="set">
-        <h2>Social at The Hop</h2>
-        <mat-divider ></mat-divider>
-        <div class="container">
-            <!-- Playlists-->
-            <article class="playlist">
-                <img src="https://mosaic.scdn.co/300/ab67616d0000b273186763817f7f6ee46d712555ab67616d0000b27350d3be7eea9d9df6fd9d0fd5ab67616d0000b273a8c5029325a2aae63966512dab67616d0000b273b84122fb5286ec9975e783f6">
-                <h4>This is awesome mix Live at The Hop!!!!!!!!!</h4>
-            </article>
-            <article class="playlist">
-                <img src="https://mosaic.scdn.co/300/ab67616d0000b273186763817f7f6ee46d712555ab67616d0000b27350d3be7eea9d9df6fd9d0fd5ab67616d0000b273a8c5029325a2aae63966512dab67616d0000b273b84122fb5286ec9975e783f6">
-                <h4>This is awesome mix Live at The Hop!!!!!!!!!</h4>
-            </article>
-            <article class="playlist">
-                <img src="https://mosaic.scdn.co/300/ab67616d0000b273186763817f7f6ee46d712555ab67616d0000b27350d3be7eea9d9df6fd9d0fd5ab67616d0000b273a8c5029325a2aae63966512dab67616d0000b273b84122fb5286ec9975e783f6">
-                <h4>This is awesome mix Live at The Hop!!!!!!!!!</h4>
-            </article>
-            <article class="playlist">
-                <img src="https://mosaic.scdn.co/300/ab67616d0000b273186763817f7f6ee46d712555ab67616d0000b27350d3be7eea9d9df6fd9d0fd5ab67616d0000b273a8c5029325a2aae63966512dab67616d0000b273b84122fb5286ec9975e783f6">
-                <h4>This is awesome mix Live at The Hop!!!!!!!!!</h4>
-            </article>
-            <article class="playlist">
-                <img src="https://mosaic.scdn.co/300/ab67616d0000b273186763817f7f6ee46d712555ab67616d0000b27350d3be7eea9d9df6fd9d0fd5ab67616d0000b273a8c5029325a2aae63966512dab67616d0000b273b84122fb5286ec9975e783f6">
-                <h4>This is awesome mix Live at The Hop!!!!!!!!!</h4>
-            </article>
-            <article class="playlist">
-                <img src="https://mosaic.scdn.co/300/ab67616d0000b273186763817f7f6ee46d712555ab67616d0000b27350d3be7eea9d9df6fd9d0fd5ab67616d0000b273a8c5029325a2aae63966512dab67616d0000b273b84122fb5286ec9975e783f6">
-                <h4>This is awesome mix Live at The Hop!!!!!!!!!</h4>
-            </article>
-            <article class="playlist">
-                <img src="https://mosaic.scdn.co/300/ab67616d0000b273186763817f7f6ee46d712555ab67616d0000b27350d3be7eea9d9df6fd9d0fd5ab67616d0000b273a8c5029325a2aae63966512dab67616d0000b273b84122fb5286ec9975e783f6">
-                <h4>This is awesome mix Live at The Hop!!!!!!!!!</h4>
-            </article>
-        </div>
-    </div>
-
-    <div class="set">
-        <h2>Events</h2>
-        <mat-divider ></mat-divider>
-        <div class="container">
-            <!-- Playlists-->
-            <article class="playlist">
-                <img src="https://mosaic.scdn.co/300/ab67616d0000b273186763817f7f6ee46d712555ab67616d0000b27350d3be7eea9d9df6fd9d0fd5ab67616d0000b273a8c5029325a2aae63966512dab67616d0000b273b84122fb5286ec9975e783f6">
-                <h4>Bigbang 2018</h4>
-            </article>
-            <article class="playlist">
-                <img src="https://mosaic.scdn.co/300/ab67616d0000b273186763817f7f6ee46d712555ab67616d0000b27350d3be7eea9d9df6fd9d0fd5ab67616d0000b273a8c5029325a2aae63966512dab67616d0000b273b84122fb5286ec9975e783f6">
-                <h4>DJ Battle 2019</h4>
-            </article>
-            <article class="playlist">
-                <img src="https://mosaic.scdn.co/300/ab67616d0000b273186763817f7f6ee46d712555ab67616d0000b27350d3be7eea9d9df6fd9d0fd5ab67616d0000b273a8c5029325a2aae63966512dab67616d0000b273b84122fb5286ec9975e783f6">
-                <h4>This is awesome mix Live at The Hop!!!!!!!!!</h4>
-            </article>
-            <article class="playlist"></article>
-            <article class="playlist"></article>
-            <article class="playlist"></article>
-        </div>
-    </div>
 
 </section>

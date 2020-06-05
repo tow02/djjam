@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-
-interface ProfilePlaylist{
-    name:string,
-    url:string,
-    id:string
-}
+import { Router } from '@angular/router'
+import { UserService } from "../../services/user.service"
+import { Playlist } from "../../models/Track"
 
 interface ProfilePlaylistSet{
   name:string
-  playlists:Array<ProfilePlaylist>
+  playlists:Array<Playlist>
 }
 
 @Component({
@@ -18,11 +15,31 @@ interface ProfilePlaylistSet{
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService:UserService, private router:Router) { }
 
   sets:Array<ProfilePlaylistSet> = []
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    let user = await this.userService.get();
+    if(user.playlist_sets){
+      this.sets = user.playlist_sets.map(setName => {
+        if(user.playlist_set_map[this.userService.nameToSlug(setName)])
+          return {
+            name:setName,
+            playlists:user.playlist_set_map[this.userService.nameToSlug(setName)]
+          } as ProfilePlaylistSet
+        else
+          return {
+            name:setName,
+            playlists:[]
+          } as ProfilePlaylistSet
+      }).filter(item => item.playlists.length > 0)
+      console.log(this.sets)
+    }
+  }
+
+  select(playlist:Playlist){
+    this.router.navigate(['/playlist', playlist.id]);
   }
 
 }
