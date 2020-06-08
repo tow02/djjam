@@ -28,9 +28,11 @@ jobs:
     # Runs a single command using the runners shell
     - name: Install
       run: npm install
-    - name: config
-      run: npm run config
     - name: build
       run : npm run-script build
+      env : 
+        FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+        SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+        RECAPCHA_KEY: ${{ secrets.RECAPCHA_KEY }}
     - name: deploy
       run : firebase deploy --only hosting:djjam-staging;

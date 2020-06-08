@@ -29,8 +29,6 @@ export class LoginComponent implements OnInit {
         this.errorMessage = environment.errorMessages[e.code];
       else
         this.errorMessage =  e.message;
-      
-
     })
     this.isLogginIn = false;
     this.router.navigate([''])
