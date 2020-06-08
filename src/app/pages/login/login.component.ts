@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
   password:string
   isLogginIn = false;
   errorMessage:string = "";
+  isForgetPassword = false;
+  statusMessage = "";
 
   ngOnInit(): void {
   }
@@ -35,9 +37,9 @@ export class LoginComponent implements OnInit {
   }
 
   async forgotPassword(){
-    console.log('send forgot request to', this.email)
+    this.statusMessage = environment.statusMessaages.sending_reset_password;
     await this.authen.auth.sendPasswordResetEmail(this.email)
-    alert('done reset')
+    this.statusMessage = environment.statusMessaages.done_sent;
   }
 
 }
