@@ -35,6 +35,20 @@ jobs:
         FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
         SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
         RECAPCHA_KEY: ${{ secrets.RECAPCHA_KEY }}
+     - name: firebase use
+      uses : w9jds/firebase-action@master
+      with:
+          args: firebase use \ djjam-d7ae7
+      env: 
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        PROJECT_ID: djjam-d7ae7
+    - name: firebase use
+      uses : w9jds/firebase-action@master
+      with:
+          args: firebase target:apply hosting djjam-staging djjam-d7ae7
+      env: 
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        PROJECT_ID: djjam-d7ae7
     - name: deploy to firebase
       uses : w9jds/firebase-action@master
       with:
