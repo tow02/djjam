@@ -32,7 +32,7 @@ button{
     background-color: var(--main-color);
     letter-spacing: 0.2em;
     align-self:center;
-    width:10em;
+    min-width:10em;
 }
 .options > div{
     padding-top:1em;
@@ -60,5 +60,10 @@ a{
 p.error{
     font-size: 0.8em;
     color:red;
+    text-align: center;;
+}
+
+p.message{
+    font-size: 0.8em;
     text-align: center;;
 }

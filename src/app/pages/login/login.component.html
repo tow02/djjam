@@ -1,4 +1,4 @@
-<section class="login-area" [ngClass]="{'isLogginIn':isLogginIn}">
+<section class="login-area" *ngIf="!isForgetPassword" [ngClass]="{'isLogginIn':isLogginIn}">
     <form  (submit)="login()">
         <mat-form-field class="full-width">
             <mat-label>Email</mat-label>
@@ -13,7 +13,7 @@
             <p  class="error" *ngIf="errorMessage">{{errorMessage}}</p>
             <button mat-button color="primary">LOGIN</button>
             <div>
-                <a (click)="forgotPassword()">Forgot password</a>
+                <a (click)="isForgetPassword = true">Forgot password</a>
             </div>
             <div>
                 <a [routerLink]="['/signup']">Sign up</a>
@@ -24,4 +24,19 @@
     </form>
 
 
+</section>
+<section class="login-area" *ngIf="isForgetPassword">
+    <form  (submit)="forgotPassword()">
+        <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input [(ngModel)]="email" name="emal" matInput placeholder="Ex. me@sompop.dev" value="">
+        </mat-form-field>
+        <div class="options">
+            <button mat-button color="primary">Reset password</button>
+            <p  class="message" *ngIf="statusMessage">{{statusMessage}}</p>
+            <div>
+                <a (click)="isForgetPassword = false">Back</a>
+            </div>
+        </div>
+    </form>
 </section>

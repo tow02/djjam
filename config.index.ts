@@ -143,6 +143,11 @@ const envConfigFile = `export const environment = {
       'auth/user-not-found':"This user has not signup",
       'auth/wrong-password':"Credential is not correct please retype again"
     },
+    statusMessaages:{
+      sending_reset_password:"Sending a reset password to your email",
+      done_sent:"Done sending a reset email"
+    }
+    ,
     hideFooterPaths:[
       '/',
       '/battle',
