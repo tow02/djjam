@@ -4,7 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "config": 
+     "ts-node -O '{\"module\": \"commonjs\"}' ./config.index.ts",
+    "build": "ng build --prod",
     "release": "firebase deploy --only hosting:djjam-staging",
     "test": "ng test",
     "lint": "ng lint",
