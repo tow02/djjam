@@ -35,7 +35,7 @@ jobs:
         FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
         SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
         RECAPCHA_KEY: ${{ secrets.RECAPCHA_KEY }}
-     - name: firebase use
+    - name: firebase use
       uses : w9jds/firebase-action@master
       with:
           args: firebase use \ djjam-d7ae7
