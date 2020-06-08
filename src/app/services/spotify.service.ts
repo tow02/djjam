@@ -96,27 +96,30 @@ export class SpotifyService {
     localStorage[ environment.localstorage.spotify_access_token ] = accessToken;
   }
 
-  setRefreshToLocal(refreshToken:string){
-    
-    localStorage[ environment.localstorage.refresh_token ] = refreshToken;
-  }
-
   getTokenLocal(){
     return localStorage[ environment.localstorage.spotify_access_token ]
   }
 
+  clearToken(){
+      this.onAuthChange.emit({state:"signout"});
+      delete localStorage[ environment.localstorage.spotify_age ] ;
+      delete localStorage[ environment.localstorage.spotify_expire_in ];
+      delete localStorage[ environment.localstorage.spotify_access_token ];
+  }
 
   getMyPlaylists(offset:number = 0){
     return fetch(`https://api.spotify.com/v1/me/playlists?offset=${offset}`,{
       headers:this.getHeaderOptions()
     }).then(res => res.json())
+    .catch(e => this.clearToken())
       
   }
 
   getPlaylist( playlist_id:string){
       return fetch(`https://api.spotify.com/v1/playlists/${playlist_id}`,{
         headers:this.getHeaderOptions()
-      }).then(res => res.json()).then(res => (res as SpotifyPlaylist));
+      }).then(res => res.json()).then(res => (res as SpotifyPlaylist))
+      .catch(e => this.clearToken())
   }
 
   async getMyWholePlaylists(callback?:Function){

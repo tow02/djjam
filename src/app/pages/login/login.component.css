@@ -56,3 +56,9 @@ a{
         width:calc(100% - 2rem);
     }
 }
+
+p.error{
+    font-size: 0.8em;
+    color:red;
+    text-align: center;;
+}

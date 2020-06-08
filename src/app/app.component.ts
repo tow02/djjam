@@ -15,8 +15,11 @@ export class AppComponent {
   mode:"desktop"|"mobile" = "mobile";
 
   constructor(private authen:AuthenticationService){
-    if(window.innerWidth < 800)
+    if(window.innerWidth < 800){
       this.isOpen = false;
+    }else
+      this.mode = "desktop"
+      
     this.authen.auth.authState.subscribe(user => {
       if(!user){
         this.isLogin =  false;
@@ -32,7 +35,7 @@ export class AppComponent {
   }
 
   onClickSideMenu(){
-    console.log('onCLickSide')
+    console.log('onCLickSide', this.mode)
     if(this.mode == "mobile")
       this.isOpen = false;
   }

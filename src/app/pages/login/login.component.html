@@ -10,7 +10,7 @@
             <input [(ngModel)]="password" name="password" matInput type="password" placeholder="">
         </mat-form-field>
         <div class="options">
-            
+            <p  class="error" *ngIf="errorMessage">{{errorMessage}}</p>
             <button mat-button color="primary">LOGIN</button>
             <div>
                 <a (click)="forgotPassword()">Forgot password</a>
