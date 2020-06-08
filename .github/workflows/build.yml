@@ -38,6 +38,6 @@ jobs:
     - name: deploy to firebase
       uses : w9jds/firebase-action@master
       with:
-          args: deploy --only hosting:djjam-staging  --project djjam-d7ae7
+          args: deploy --only hosting:djjam-staging  --project djjam
       env: 
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }};
