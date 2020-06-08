@@ -6,7 +6,7 @@
     "start": "ng serve",
     "config": 
      "ts-node -O '{\"module\": \"commonjs\"}' ./config.index.ts",
-    "build": "npm run config && ng build --prod",
+    "build": "ng build --prod",
     "release": "firebase deploy --only hosting:djjam-staging",
     "test": "ng test",
     "lint": "ng lint",
