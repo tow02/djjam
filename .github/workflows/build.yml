@@ -36,7 +36,7 @@ jobs:
         SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
         RECAPCHA_KEY: ${{ secrets.RECAPCHA_KEY }}
     - name: deploy to firebase
-      run : w9jds/firebase-action@master
+      uses : w9jds/firebase-action@master
       with:
           args: deploy --only hosting:djjam-staging 
       env: 
