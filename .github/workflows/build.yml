@@ -29,7 +29,7 @@ jobs:
     - name: Install
       run: npm ci
     - name : copy env
-      run:  cp .src/environments/environment.prod.ts ..src/environments/environment.ts 
+      run:  cp ./src/environments/environment.prod.ts ./src/environments/environment.ts 
     - name: build
       run : npm run-script build
       env : 
