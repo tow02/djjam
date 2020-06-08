@@ -24,9 +24,7 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-
     - name: Install Firebase
-      run: npm install firebase-tools
     # Runs a single command using the runners shell
     - name: Install
       run: npm ci
@@ -39,4 +37,4 @@ jobs:
         SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
         RECAPCHA_KEY: ${{ secrets.RECAPCHA_KEY }}
     - name: deploy
-      run : firebase deploy --only hosting:djjam-staging --token ${{ secrets.FIREBASE_TOKEN}};
+      run : npm install firebase && firebase deploy --only hosting:djjam-staging --token ${{ secrets.FIREBASE_TOKEN}};
