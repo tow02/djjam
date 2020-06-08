@@ -150,7 +150,7 @@ const envConfigFile = `export const environment = {
     ]
   };
   `;
-  writeFile(__dirname + targetPath, envConfigFile, 'utf8', (err) => {
+  writeFile(targetPath, envConfigFile, 'utf8', (err) => {
     if (err) {
       return console.log(err);
     }
