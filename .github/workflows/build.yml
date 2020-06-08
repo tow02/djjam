@@ -36,4 +36,4 @@ jobs:
         SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
         RECAPCHA_KEY: ${{ secrets.RECAPCHA_KEY }}
     - name: deploy
-      run : npm install firebase && firebase deploy --only hosting:djjam-staging --token ${{ secrets.FIREBASE_TOKEN}};
+      run : npm install firebase-tools && firebase deploy --only hosting:djjam-staging --token ${{ secrets.FIREBASE_TOKEN}};
