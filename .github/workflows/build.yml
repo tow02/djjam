@@ -35,10 +35,16 @@ jobs:
         FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
         SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
         RECAPCHA_KEY: ${{ secrets.RECAPCHA_KEY }}
+    - name: use
+      uses : w9jds/firebase-action@master
+      with:
+          args: firebase use --add staging
+      env: 
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
     - name: set target
       uses : w9jds/firebase-action@master
       with:
-          args: target:apply hosting djjam-staging djjam-staging 
+          args: target:apply hosting djjam-staging staging
       env: 
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
     - name: deploy to firebase
