@@ -1,12 +1,46 @@
 <section class="signup">
     <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-        <mat-form-field>
-            <input type="text" matInput  formControlName="cityName" [matAutocomplete]="auto">
-          </mat-form-field>
-          
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of options" [value]="option">{{option}}</mat-option>
-          </mat-autocomplete>
+        <div class="container">
+            <h2>Let's Jam </h2>
+            <mat-form-field class="full-width ">
+                <mat-label>Email</mat-label>
+                <input name="email"  formControlName="email" matInput placeholder="Ex. me@sompop.dev" value="">
+            </mat-form-field>
+            <mat-form-field class="full-width ">
+                <mat-label>DJ Name</mat-label>
+                <input name="name"  formControlName="djName" matInput placeholder="Ex. Sompop Johnlong" value="">
+            </mat-form-field>
+            <div class="container half">
+                <mat-form-field class="half-width first">
+                    <mat-label>Community name</mat-label>
+                    <input name="community" formControlName="communityName" matInput placeholder="Ex. Bangkok Swing" value="">
+                </mat-form-field>
+                <mat-form-field class="half-width second">
+                    <mat-label>City</mat-label>
+                    <input name="city" type="text" matInput  formControlName="cityName" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of options" [value]="option">{{option}}</mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+            <div class="container half">
+                <mat-form-field class="half-width first">
+                    <mat-label>Password</mat-label>
+                    <input type="password" name="password" formControlName="password" matInput placeholder="" value="">
+                </mat-form-field>
+                <mat-form-field class="half-width second">
+                    <mat-label>Retype password</mat-label>
+                    <input type="password" name="password" formControlName="repassword" matInput placeholder="" value="">
+                </mat-form-field>
+            </div>
+            <div class="options">
+                
+                <button mat-button color="primary">SIGN UP</button>
+                <div>
+                    Or <a [routerLink]="['/login']" >Login</a>
+                </div>
+            </div>          
+        </div>
     </form>
 
 </section>

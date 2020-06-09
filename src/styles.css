@@ -87,14 +87,14 @@ input.form-control{
     background-color: var(--main-color);
 }
 
-span[color="primary"]{
+span[color="primary"], .mat-form-field.mat-focused .mat-form-field-label{
     color:var(--main-color)
 }
 
-.mat-input-element{
+.mat-input-element,.mat-form-field.mat-focused .mat-input-element{
     caret-color:var(--secondary-bg-color);
 }
 
-.mat-form-field.mat-focused .mat-form-field-ripple {
+.mat-form-field.mat-focused .mat-form-field-ripple  {
     background-color: var(--main-color);
 }

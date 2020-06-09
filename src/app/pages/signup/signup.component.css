@@ -1,0 +1,66 @@
+form{
+    background-color: white;;
+    min-height:40vh;
+    width:40em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:5vh;
+    color:black;
+}
+
+form > .container{
+    padding:var(--main-padding);
+}
+
+form > .container > .container{
+    display:flex;
+}
+
+form > .container > .container .half-width{
+    flex:1;   
+}
+
+form > .container > .container .half-width.first{
+    padding-right: 0.5rem;
+}
+
+form > .container > .container .half-width.second{
+    padding-left:0.5rem;
+}
+.options{
+    display: flex;;
+    flex-flow: column;
+}
+
+button{
+    letter-spacing: 0.2em;
+    align-self:center;
+    min-width:10em;
+}
+
+.options > div{
+    padding-top:1em;
+    align-self:center;
+    font-size:0.8em;
+}
+
+a{
+    color:var(--main-bg-color);
+    
+}
+
+.full-width{
+    width: 100%;
+}
+
+@media all and (max-width: 30em) {
+    
+    form{
+        
+        width:calc(100% - 2rem);
+        max-width:calc(100% - 2rem);
+        height:89.5vh;
+        margin:0;
+        padding:1rem;
+    }
+}
