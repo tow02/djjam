@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {  FormBuilder, Validators } from '@angular/forms';
 import { UserService, User } from "../../services/user.service"
+import { ConfirmPasswordValidator } from "./confirm-password.validator"
 import { filterByCityName } from "filterbycities"
 
 @Component({
@@ -11,13 +12,13 @@ import { filterByCityName } from "filterbycities"
 export class SignupComponent implements OnInit {
 
   profileForm  =  this.formBuilder.group({
-    email:['', Validators.email],
-    djName:['', Validators.required ],
-    communityName: ['',Validators.minLength(5)],
-    cityName: ['',Validators.minLength(3)],
-    password:['', Validators.minLength(8)],
-    repassword:['', Validators.minLength(8)]
-  })
+    email:['', [Validators.required, Validators.email]],
+    djName:['', [Validators.required, Validators.minLength(5)] ],
+    communityName: ['', [Validators.required, Validators.minLength(5)]],
+    cityName: ['', [Validators.required, Validators.minLength(3)]],
+    password:['', [Validators.required, Validators.minLength(8)]],
+    confirmPassword:['', [Validators.required, Validators.minLength(8)]]
+  }, { validators: ConfirmPasswordValidator.MatchPassword })
   constructor(private userService:UserService, private formBuilder:FormBuilder) {
      
   }
@@ -30,6 +31,22 @@ export class SignupComponent implements OnInit {
       this.options = filterByCityName(val.cityName)
       
     })    
+  }
+
+  get djName(){
+    return this.profileForm.get('djName');
+  }
+
+  get email(){
+    return this.profileForm.get('email')
+  }
+
+  get communityName(){
+    return this.profileForm.get('communityName')
+  }
+
+  get cityName(){
+    return this.profileForm.get('cityName')
   }
 
   onSubmit(){

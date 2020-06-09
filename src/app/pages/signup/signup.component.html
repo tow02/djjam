@@ -6,10 +6,26 @@
                 <mat-label>Email</mat-label>
                 <input name="email"  formControlName="email" matInput placeholder="Ex. me@sompop.dev" value="">
             </mat-form-field>
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                <div *ngIf="email.errors.required">
+                    Email is required.
+                </div>
+                <div *ngIf="email.errors.email">
+                    Wrong email format
+                </div>
+            </div>
             <mat-form-field class="full-width ">
-                <mat-label>DJ Name</mat-label>
+                <mat-label>DJ name</mat-label>
                 <input name="name"  formControlName="djName" matInput placeholder="Ex. Sompop Johnlong" value="">
             </mat-form-field>
+            <div *ngIf="djName.invalid && (djName.dirty || djName.touched)" class="alert alert-danger">
+                <div *ngIf="djName.errors.required">
+                    DJ name is required.
+                </div>
+                <div *ngIf="djName.errors.minlength">
+                    DJ name has to be at least 5 characters
+                </div>
+            </div>
             <div class="container half">
                 <mat-form-field class="half-width first">
                     <mat-label>Community name</mat-label>
@@ -23,14 +39,36 @@
                     </mat-autocomplete>
                 </mat-form-field>
             </div>
+            <div  *ngIf="(communityName.invalid && (communityName.dirty || communityName.touched)) || (cityName.invalid && (cityName.dirty || cityName.touched))"  class="container half">
+                <div class="half-width first">
+                    <div  class="alert" *ngIf="communityName.invalid && (communityName.dirty || communityName.touched)" >
+                        <div *ngIf="communityName.errors.required">
+                            Community name is required.
+                        </div>
+                        <div *ngIf="communityName.errors.minlength">
+                            Community name has to be at least 5 characters
+                        </div>
+                    </div>
+                </div>
+                <div class="half-width  half">
+                    <div  class="alert" *ngIf="cityName.invalid && (cityName.dirty || cityName.touched)" >
+                        <div *ngIf="cityName.errors.required">
+                            City is required.
+                        </div>
+                        <div *ngIf="cityName.errors.minlength">
+                            City has to be at least 3 characters
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="container half">
                 <mat-form-field class="half-width first">
                     <mat-label>Password</mat-label>
                     <input type="password" name="password" formControlName="password" matInput placeholder="" value="">
                 </mat-form-field>
                 <mat-form-field class="half-width second">
-                    <mat-label>Retype password</mat-label>
-                    <input type="password" name="password" formControlName="repassword" matInput placeholder="" value="">
+                    <mat-label>Confirm password</mat-label>
+                    <input type="password" name="confirm-password" formControlName="confirmPassword" matInput placeholder="" value="">
                 </mat-form-field>
             </div>
             <div class="options">

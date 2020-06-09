@@ -53,6 +53,11 @@ a{
     width: 100%;
 }
 
+.alert{
+    font-size:0.7em;
+    color:red;
+}
+
 @media all and (max-width: 30em) {
     
     form{
