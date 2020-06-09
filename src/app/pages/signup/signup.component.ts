@@ -14,7 +14,7 @@ export class SignupComponent implements OnInit {
     email:['', Validators.email],
     djName:['', Validators.required ],
     communityName: ['',Validators.minLength(5)],
-    cityName: ['',Validators.minLength(5)],
+    cityName: ['',Validators.minLength(3)],
     password:['', Validators.minLength(8)],
     repassword:['', Validators.minLength(8)]
   })
