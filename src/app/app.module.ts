@@ -22,7 +22,8 @@ import { MatIconModule} from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatStepperModule} from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { SideMenuComponent } from './side-menu/side-menu.component'
 import { SpotifyService } from "./services/spotify.service"
 import { UserService } from "./services/user.service"
@@ -57,7 +58,6 @@ import { PublishComponent } from './pages/publish/publish.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    MatSnackBarModule,
     MatDividerModule,
     MatButtonModule,  
     MatInputModule,
@@ -66,6 +66,7 @@ import { PublishComponent } from './pages/publish/publish.component';
     MatRadioModule,
     MatSidenavModule,
     MatStepperModule,
+    MatAutocompleteModule,
     SearchModule,
     PlaylistModule,
     AppRoutingModule,

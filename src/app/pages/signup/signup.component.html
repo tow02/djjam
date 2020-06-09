@@ -1,1 +1,12 @@
-<iframe class="airtable-embed" src="https://airtable.com/embed/shrtwj4aiKwHwlDIb?backgroundColor=red" frameborder="0" onmousewheel="" width="100%" height="100vh" style="background: transparent;height:150vh;"></iframe>
+<section class="signup">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+            <input type="text" matInput  formControlName="cityName" [matAutocomplete]="auto">
+          </mat-form-field>
+          
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of options" [value]="option">{{option}}</mat-option>
+          </mat-autocomplete>
+    </form>
+
+</section>

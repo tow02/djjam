@@ -90,3 +90,11 @@ input.form-control{
 span[color="primary"]{
     color:var(--main-color)
 }
+
+.mat-input-element{
+    caret-color:var(--secondary-bg-color);
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: var(--main-color);
+}
