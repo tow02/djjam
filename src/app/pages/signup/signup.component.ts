@@ -49,6 +49,14 @@ export class SignupComponent implements OnInit {
     return this.profileForm.get('cityName')
   }
 
+  get password(){
+    return this.profileForm.get("password");
+  }
+
+  get confirmPassword(){
+    return this.profileForm.get("confirmPassword");
+  }
+
   onSubmit(){
     console.log(this.profileForm.errors);
     console.log(this.profileForm.value);

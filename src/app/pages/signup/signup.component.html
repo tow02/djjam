@@ -71,6 +71,31 @@
                     <input type="password" name="confirm-password" formControlName="confirmPassword" matInput placeholder="" value="">
                 </mat-form-field>
             </div>
+            <div  *ngIf="(password.invalid && (password.dirty || password.touched)) || (confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched))"  class="container half">
+                <div class="half-width first">
+                    <div  class="alert" *ngIf="password.invalid && (password.dirty || password.touched)" >
+                        <div *ngIf="password.errors.required">
+                            Password is required.
+                        </div>
+                        <div *ngIf="password.errors.minlength">
+                            Password has to be at least 8 characters
+                        </div>
+                    </div>
+                </div>
+                <div class="half-width  half">
+                    <div  class="alert" *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" >
+                        <div *ngIf="confirmPassword.errors.required">
+                            You have to confirm your password.
+                        </div>
+                        <div *ngIf="confirmPassword.errors.minlength">
+                            Password has to be at least 8 characters
+                        </div>
+                        <div *ngIf="confirmPassword.errors.MatchPassword">
+                            Confirm password has to match with the password
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="options">
                 
                 <button mat-button color="primary">SIGN UP</button>
