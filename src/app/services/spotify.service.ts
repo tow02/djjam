@@ -48,8 +48,9 @@ export class SpotifyService {
       return false;*/
   }
 
-  authen(){
-    window.location.href = `https://accounts.spotify.com/authorize?client_id=${this.client_id}&redirect_uri=${environment.host_url}/spotify-success&scope=user-read-email%20playlist-read-private%20playlist-modify-public&response_type=token&state=1`;
+  authen(isLogin:boolean = false){
+    const afterRoute = isLogin?"spotify-login":"spotify-success";
+    window.location.href = `https://accounts.spotify.com/authorize?client_id=${this.client_id}&redirect_uri=${environment.host_url}/${afterRoute}&scope=user-read-email%20playlist-read-private%20playlist-modify-public&response_type=token&state=1`;
   }
 
   parseUrl(url:string){

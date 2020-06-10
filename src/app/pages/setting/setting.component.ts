@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
+import {  FormBuilder, Validators, FormArray } from '@angular/forms';
 import { UserService, User } from "../../services/user.service"
+import { AuthenticationService } from "../../services/authentication.service"
 
 @Component({
   selector: 'app-setting',
@@ -12,7 +13,6 @@ export class SettingComponent implements OnInit {
 
   profileForm  =  this.formBuilder.group({
     djName:['', Validators.required ],
-    communityName: ['',Validators.minLength(5)],
     cityName: ['',Validators.minLength(5)],
     imageUrl: ['',Validators.minLength(5)],
     playlistSets: this.formBuilder.array([])
@@ -23,17 +23,17 @@ export class SettingComponent implements OnInit {
     return this.profileForm.get('playlistSets') as FormArray;
   }
 
-  constructor(private userService:UserService, private formBuilder:FormBuilder) {
+  constructor(private userService:UserService, private formBuilder:FormBuilder, private authen:AuthenticationService) {
      
    }
 
   async ngOnInit(){
+    console.log('email verify', (await this.authen.auth.currentUser).emailVerified)
     this.currentUser = await this.userService.get()
     console.log(this.currentUser);
     this.profileForm.patchValue(  {
         djName:this.currentUser.name,
-        cityName:this.currentUser.community['city'],
-        communityName:this.currentUser.community['name'],
+        cityName:this.currentUser.city,
         imageUrl:this.currentUser.picture,
     })
     if(this.currentUser.playlist_sets && this.currentUser.playlist_sets.length > 0)
@@ -57,10 +57,7 @@ export class SettingComponent implements OnInit {
      
      let u:User = {
        name:this.profileForm.value.djName,
-       community:{
-         city:this.profileForm.value.cityName,
-         name:this.profileForm.value.communityName
-       },
+       city:this.profileForm.value.cityName,
        level:this.currentUser.level,
        preference_tags:this.currentUser.preference_tags,
        picture:this.profileForm.value.imageUrl,
