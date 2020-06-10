@@ -69,3 +69,14 @@ a{
         padding:1rem;
     }
 }
+
+p.error{
+    font-size: 0.8em;
+    color:red;
+    text-align: center;;
+}
+
+p.message{
+    font-size: 0.8em;
+    text-align: center;;
+}

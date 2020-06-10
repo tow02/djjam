@@ -27,15 +27,18 @@ export class AuthenticationService {
     return this.auth.signOut();
   }
 
-  signup(user:{cityName:string, communityName:string, password:string, confirmPassword:string, djName:string, email:string}){
-    return fetch(`${environment.api_url}/user`, {
+  async signup(user:{cityName:string, communityName:string, password:string, confirmPassword:string, djName:string, email:string}){
+    const res =  await fetch(`${environment.api_url}/user`, {
       method:"POST",
       headers: {
         'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body:JSON.stringify(user)
-    }).then(res => res.json())
+    })
+    if(res.status != 200)
+      throw await res.json();
+    else
+      return res.json();
   }
 
 }

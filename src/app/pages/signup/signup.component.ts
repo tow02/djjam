@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {  FormBuilder, Validators } from '@angular/forms';
-import { UserService, User } from "../../services/user.service"
+import { UserService  } from "../../services/user.service"
+import { Router } from "@angular/router"
 import { ConfirmPasswordValidator } from "./confirm-password.validator"
+import { AuthenticationService } from "../../services/authentication.service"
 import { filterByCityName } from "filterbycities"
 
 @Component({
@@ -19,9 +21,12 @@ export class SignupComponent implements OnInit {
     password:['', [Validators.required, Validators.minLength(8)]],
     confirmPassword:['', [Validators.required, Validators.minLength(8)]]
   }, { validators: ConfirmPasswordValidator.MatchPassword })
-  constructor(private userService:UserService, private formBuilder:FormBuilder) {
+  constructor(private userService:UserService, private formBuilder:FormBuilder, private authen:AuthenticationService, private router:Router) {
      
   }
+  isInProcess = false;
+  errorMessage = "";
+  statusMessage = "";
   options:Array<string> = [];
 
   ngOnInit(): void {
@@ -57,9 +62,24 @@ export class SignupComponent implements OnInit {
     return this.profileForm.get("confirmPassword");
   }
 
-  onSubmit(){
+  async  onSubmit(){
     console.log(this.profileForm.errors);
-    console.log(this.profileForm.value);
+    if(!this.profileForm.invalid){
+      const result = await this.authen.signup(this.profileForm.value).catch(e => {
+        console.log(e);
+        this.errorMessage = e.error;
+      })
+      
+      console.log(result);
+      if(result && result.status && result.status === 'done')
+      {
+        delete this.errorMessage;
+        this.statusMessage = result.message;
+        await this.authen.login(this.profileForm.value.email, this.profileForm.value.password)
+        this.router.navigate(['/']);
+      }
+    }else
+      console.log(this.profileForm.value);
   }
 
 }
