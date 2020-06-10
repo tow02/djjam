@@ -38,8 +38,6 @@ export class MenuComponent implements OnInit {
           console.log(resultMatch)
         this.q =  decodeURIComponent(resultMatch[0].split('/')[1]);
         }
-        
-
       }
         
     })
