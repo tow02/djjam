@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI DEvelop
+name: CI Develop
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -39,5 +39,5 @@ jobs:
       run: |
         sudo npm install -g firebase-tools
         firebase use djjam-d7ae7 --token ${{ secrets.FIREBASE_TOKEN }}
-        firebase target:apply hosting djjam-staging djjam-staging --token ${{ secrets.FIREBASE_TOKEN }}
+        firebase target:apply hosting djjam-develop djjam-develop --token ${{ secrets.FIREBASE_TOKEN }}
         firebase deploy --project djjam-d7ae7 --only hosting:djjam-staging --token ${{ secrets.FIREBASE_TOKEN }}
