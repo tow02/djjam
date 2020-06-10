@@ -35,7 +35,7 @@ export class UserService {
 
   async get(userReference?:DocumentReference){
     let snap;
-    if(!userReference){
+    if(userReference){
       snap = await userReference.get()
     }else{
       const user = await this.authen.auth.currentUser;

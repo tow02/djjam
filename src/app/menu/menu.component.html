@@ -29,8 +29,7 @@
 
             
     </div>
-    
-    
-    
-    
 </nav>
+<div class="warning" *ngIf="isLoginIn && !isVerify" >
+Your email hasn't verified, Please check your email for complete the verification steps &nbsp; <a color="primary" (click)="isVerify = true">(X)</a>
+</div>

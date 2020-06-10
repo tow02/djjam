@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {  FormBuilder, Validators, FormArray } from '@angular/forms';
 import { UserService, User } from "../../services/user.service"
+import { AuthenticationService } from "../../services/authentication.service"
 
 @Component({
   selector: 'app-setting',
@@ -23,11 +24,12 @@ export class SettingComponent implements OnInit {
     return this.profileForm.get('playlistSets') as FormArray;
   }
 
-  constructor(private userService:UserService, private formBuilder:FormBuilder) {
+  constructor(private userService:UserService, private formBuilder:FormBuilder, private authen:AuthenticationService) {
      
    }
 
   async ngOnInit(){
+    console.log('email verify', (await this.authen.auth.currentUser).emailVerified)
     this.currentUser = await this.userService.get()
     console.log(this.currentUser);
     this.profileForm.patchValue(  {

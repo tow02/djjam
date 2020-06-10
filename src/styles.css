@@ -87,7 +87,7 @@ input.form-control{
     background-color: var(--main-color);
 }
 
-span[color="primary"], .mat-form-field.mat-focused .mat-form-field-label{
+span[color="primary"], .mat-form-field.mat-focused .mat-form-field-label, a[color="primary"]{
     color:var(--main-color)
 }
 
