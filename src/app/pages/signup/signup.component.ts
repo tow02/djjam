@@ -16,7 +16,6 @@ export class SignupComponent implements OnInit {
   profileForm  =  this.formBuilder.group({
     email:['', [Validators.required, Validators.email]],
     djName:['', [Validators.required, Validators.minLength(5)] ],
-    communityName: ['', [Validators.required, Validators.minLength(5)]],
     cityName: ['', [Validators.required, Validators.minLength(3)]],
     password:['', [Validators.required, Validators.minLength(8)]],
     confirmPassword:['', [Validators.required, Validators.minLength(8)]]
@@ -44,10 +43,6 @@ export class SignupComponent implements OnInit {
 
   get email(){
     return this.profileForm.get('email')
-  }
-
-  get communityName(){
-    return this.profileForm.get('communityName')
   }
 
   get cityName(){

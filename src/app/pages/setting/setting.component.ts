@@ -13,7 +13,6 @@ export class SettingComponent implements OnInit {
 
   profileForm  =  this.formBuilder.group({
     djName:['', Validators.required ],
-    communityName: ['',Validators.minLength(5)],
     cityName: ['',Validators.minLength(5)],
     imageUrl: ['',Validators.minLength(5)],
     playlistSets: this.formBuilder.array([])
@@ -34,8 +33,7 @@ export class SettingComponent implements OnInit {
     console.log(this.currentUser);
     this.profileForm.patchValue(  {
         djName:this.currentUser.name,
-        cityName:this.currentUser.community['city'],
-        communityName:this.currentUser.community['name'],
+        cityName:this.currentUser.city,
         imageUrl:this.currentUser.picture,
     })
     if(this.currentUser.playlist_sets && this.currentUser.playlist_sets.length > 0)
@@ -59,10 +57,7 @@ export class SettingComponent implements OnInit {
      
      let u:User = {
        name:this.profileForm.value.djName,
-       community:{
-         city:this.profileForm.value.cityName,
-         name:this.profileForm.value.communityName
-       },
+       city:this.profileForm.value.cityName,
        level:this.currentUser.level,
        preference_tags:this.currentUser.preference_tags,
        picture:this.profileForm.value.imageUrl,

@@ -20,7 +20,7 @@ export interface User{
     playlist_set_map?:{
       [key:string]:Array<Playlist>
     }
-  community:DocumentReference | { name:string, city:string}
+  city?: string
 }
 
 @Injectable({
@@ -45,9 +45,7 @@ export class UserService {
     let u =  {
       ...snap.data(),
     } as User
-
-    const citySnap = await (u.community as DocumentReference).get()
-    u.community = citySnap.data() as  { name:string, city:string}
+    
     return u;
 
   }
@@ -61,7 +59,8 @@ export class UserService {
     else
       obj = {...user};
     console.log(obj);
-    if(obj['community']){  
+ 
+    /*if(obj['community']){  
         let result = await  this.firestore.collection('community') .doc(user.community['name']).get().toPromise()
         if(!result.exists)
           await this.firestore.collection('community') .doc(user.community['name']).set({
@@ -69,7 +68,7 @@ export class UserService {
             city:user.community['city']
           })
       obj['community'] = this.firestore.collection('community') .doc(user.community['name']).ref;
-    }
+    }*/
     console.log('going to update', obj);
     return this.firestore.collection('user').doc(id).update(obj);
   }

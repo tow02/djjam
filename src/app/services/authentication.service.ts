@@ -26,7 +26,7 @@ export class AuthenticationService {
     this.clearToken();
     return this.auth.signOut();
   }
-
+  
   async signup(user:{cityName:string, communityName:string, password:string, confirmPassword:string, djName:string, email:string}){
     const res =  await fetch(`${environment.api_url}/user`, {
       method:"POST",
