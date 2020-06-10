@@ -22,12 +22,7 @@
                 </a>
                 <a   [routerLink]="['/setting']"   mat-menu-item>Setting</a>
                 <button (click)="logout()" mat-menu-item>Logout</button>
-                
-                
-            </mat-menu>
-
-
-            
+            </mat-menu>            
     </div>
 </nav>
 <div class="warning" *ngIf="isLoginIn && !isVerify" >
