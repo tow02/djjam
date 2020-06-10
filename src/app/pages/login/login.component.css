@@ -27,13 +27,39 @@
     flex-flow: column;
 }
 
+.or{
+    display: flex;
+    padding-top:1em;
+}
+
+.or > .first, .or .end{
+    flex:1 1 auto;
+    
+}
+
+.or > .middle{
+    flex:0 1 auto;
+    padding-left:1em;
+    padding-right:1em;
+    color:var(--main-bg-color);
+    letter-spacing: 0.1em;
+    font-size:1.2em;
+}
 
 button{
-    background-color: var(--main-color);
     letter-spacing: 0.2em;
     align-self:center;
     min-width:10em;
 }
+
+button.mat-button[color="spotify"]{
+    width:100%
+}
+
+button:nth-child(2){
+    margin-top:1em;
+}
+
 .options > div{
     padding-top:1em;
     align-self:center

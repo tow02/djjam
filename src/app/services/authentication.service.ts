@@ -26,7 +26,19 @@ export class AuthenticationService {
     this.clearToken();
     return this.auth.signOut();
   }
-  
+
+  authenWithSpotify(accessToken:string){
+    return fetch(`${environment.api_url}/spotify/authentication`, {
+      method:"POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body:JSON.stringify({
+        access_token:accessToken
+      })
+    })    
+  }
+
   async signup(user:{cityName:string, communityName:string, password:string, confirmPassword:string, djName:string, email:string}){
     const res =  await fetch(`${environment.api_url}/user`, {
       method:"POST",

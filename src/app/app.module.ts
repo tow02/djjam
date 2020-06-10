@@ -34,6 +34,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SettingComponent } from './pages/setting/setting.component';
 import { PublishComponent } from './pages/publish/publish.component';
+import { SpotifyLoginComponent } from './pages/spotify-login/spotify-login.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { PublishComponent } from './pages/publish/publish.component';
     SignupComponent,
     ProfileComponent,
     SettingComponent,
-    PublishComponent
+    PublishComponent,
+    SpotifyLoginComponent
   ],
   imports: [
     
