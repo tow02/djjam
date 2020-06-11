@@ -20,7 +20,7 @@ export interface User{
     playlist_set_map?:{
       [key:string]:Array<Playlist>
     }
-  community:DocumentReference | { name:string, city:string}
+  city?: string
 }
 
 @Injectable({
@@ -33,10 +33,17 @@ export class UserService {
     
   }
 
-  async get(userReference?:DocumentReference){
+  async getUserId(){
+    const id =  (await this.authen.auth.currentUser).uid;
+    return id;
+  }
+
+  async get(userReference?:DocumentReference| string){
     let snap;
-    if(!userReference){
-      snap = await userReference.get()
+    if(userReference && typeof(userReference) === "string")
+      snap = await this.firestore.collection('user').doc(userReference).get().toPromise();
+    else if(userReference){
+      snap = await (userReference as DocumentReference).get()
     }else{
       const user = await this.authen.auth.currentUser;
      snap = await this.firestore.collection('user').doc(user.uid).get().toPromise()
@@ -45,14 +52,13 @@ export class UserService {
     let u =  {
       ...snap.data(),
     } as User
-
-    const citySnap = await (u.community as DocumentReference).get()
-    u.community = citySnap.data() as  { name:string, city:string}
+    
     return u;
 
   }
 
   async update(user:User, fields?:Array<string>){
+    console.log('user', user)
     const id =  (await this.authen.auth.currentUser).uid;
     console.log(id, user, fields)
     let obj:any = {};
@@ -61,7 +67,8 @@ export class UserService {
     else
       obj = {...user};
     console.log(obj);
-    if(obj['community']){  
+ 
+    /*if(obj['community']){  
         let result = await  this.firestore.collection('community') .doc(user.community['name']).get().toPromise()
         if(!result.exists)
           await this.firestore.collection('community') .doc(user.community['name']).set({
@@ -69,7 +76,7 @@ export class UserService {
             city:user.community['city']
           })
       obj['community'] = this.firestore.collection('community') .doc(user.community['name']).ref;
-    }
+    }*/
     console.log('going to update', obj);
     return this.firestore.collection('user').doc(id).update(obj);
   }

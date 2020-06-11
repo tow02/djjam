@@ -14,15 +14,18 @@ export class MenuComponent implements OnInit {
   constructor(private authen:AuthenticationService, private router:Router) { }
   q:string;
   isLoginIn = false;
+  isVerify = false;
   
+
   @Output()
   onToggleMenu:EventEmitter<void> = new EventEmitter<void>();
 
   ngOnInit(): void {
     this.authen.auth.authState.subscribe(user => {
-      if(user)
+      if(user){
         this.isLoginIn = true;
-      else
+        this.isVerify = user.emailVerified
+      }else
         this.isLoginIn = false;
       
     })
@@ -35,8 +38,6 @@ export class MenuComponent implements OnInit {
           console.log(resultMatch)
         this.q =  decodeURIComponent(resultMatch[0].split('/')[1]);
         }
-        
-
       }
         
     })

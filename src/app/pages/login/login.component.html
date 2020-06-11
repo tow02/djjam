@@ -1,4 +1,10 @@
 <section class="login-area" *ngIf="!isForgetPassword" [ngClass]="{'isLogginIn':isLogginIn}">
+    <button (click)="spotifyLogin()" mat-button color="spotify">LOGIN WITH SPOTIFY</button>
+    <div class="or">
+        <div class="first"></div>
+        <div class="middle">OR</div>
+        <div class="end"></div>
+    </div>
     <form  (submit)="login()">
         <mat-form-field class="full-width">
             <mat-label>Email</mat-label>

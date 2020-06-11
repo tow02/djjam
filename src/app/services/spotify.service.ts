@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { TrackService } from "./track.service"
 import { environment } from "../../environments/environment"
-import { SpotifyPlaylist, AudioFeature, SpotifyTrackItem, SpotifyArtist } from "./spotify.interface"
+import { SpotifyPlaylist, AudioFeature, SpotifyTrackItem, SpotifyArtist, SpotifyUser } from "./spotify.interface"
 import { Track } from '../models/Track';
 
 const DJJAM_MAIN_TAGS = {
@@ -48,8 +48,9 @@ export class SpotifyService {
       return false;*/
   }
 
-  authen(){
-    window.location.href = `https://accounts.spotify.com/authorize?client_id=${this.client_id}&redirect_uri=${environment.host_url}/spotify-success&scope=user-read-email%20playlist-read-private%20playlist-modify-public&response_type=token&state=1`;
+  authen(isLogin:boolean = false){
+    const afterRoute = isLogin?"spotify-login":"spotify-success";
+    window.location.href = `https://accounts.spotify.com/authorize?client_id=${this.client_id}&redirect_uri=${environment.host_url}/${afterRoute}&scope=user-read-email%20playlist-read-private%20playlist-modify-public&response_type=token&state=1`;
   }
 
   parseUrl(url:string){
@@ -105,6 +106,14 @@ export class SpotifyService {
       delete localStorage[ environment.localstorage.spotify_age ] ;
       delete localStorage[ environment.localstorage.spotify_expire_in ];
       delete localStorage[ environment.localstorage.spotify_access_token ];
+  }
+
+  getProfile(accessToken:string){
+    return fetch(`https://api.spotify.com/v1/me`,{
+      headers:{
+        'Authorization':'Bearer ' + accessToken
+      }
+    }).then(res => res.json()).then(res => res as SpotifyUser)
   }
 
   getMyPlaylists(offset:number = 0){

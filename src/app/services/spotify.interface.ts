@@ -97,3 +97,20 @@ export interface SpotifyTrackItem{
     uri: string
     valence: number
   }
+
+  export interface SpotifyUser{
+    country: string
+    display_name: string
+    email:string
+    explicit_content: {filter_enabled: boolean, filter_locked: boolean}
+    external_urls:{
+        [key:string]:string
+    }
+    followers: {href: string | null, total: number}
+    href: string
+    id: string
+    images: Array<any>
+    product: string
+    type: "user"
+    uri: string
+}

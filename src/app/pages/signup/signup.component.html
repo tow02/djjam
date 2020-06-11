@@ -1,1 +1,94 @@
-<iframe class="airtable-embed" src="https://airtable.com/embed/shrtwj4aiKwHwlDIb?backgroundColor=red" frameborder="0" onmousewheel="" width="100%" height="100vh" style="background: transparent;height:150vh;"></iframe>
+<section class="signup">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div class="container">
+            <h2>Let's Jam </h2>
+            <mat-form-field class="full-width ">
+                <mat-label>Email</mat-label>
+                <input name="email"  formControlName="email" matInput placeholder="Ex. me@sompop.dev" value="">
+            </mat-form-field>
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                <div *ngIf="email.errors.required">
+                    Email is required.
+                </div>
+                <div *ngIf="email.errors.email">
+                    Wrong email format
+                </div>
+            </div>
+            <mat-form-field class="full-width ">
+                <mat-label>DJ name</mat-label>
+                <input name="name"  formControlName="djName" matInput placeholder="Ex. Sompop Johnlong" value="">
+            </mat-form-field>
+            <div *ngIf="djName.invalid && (djName.dirty || djName.touched)" class="alert alert-danger">
+                <div *ngIf="djName.errors.required">
+                    DJ name is required.
+                </div>
+                <div *ngIf="djName.errors.minlength">
+                    DJ name has to be at least 5 characters
+                </div>
+            </div>
+            
+            <mat-form-field class="full-width">
+                <mat-label>City</mat-label>
+                <input name="city" type="text" matInput  formControlName="cityName" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of options" [value]="option">{{option}}</mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            
+            
+            <div  class="alert" *ngIf="cityName.invalid && (cityName.dirty || cityName.touched)" >
+                <div *ngIf="cityName.errors.required">
+                    City is required.
+                </div>
+                <div *ngIf="cityName.errors.minlength">
+                    City has to be at least 3 characters
+                </div>
+            </div>
+        
+            <div class="container half">
+                <mat-form-field class="half-width first">
+                    <mat-label>Password</mat-label>
+                    <input type="password" name="password" formControlName="password" matInput placeholder="" value="">
+                </mat-form-field>
+                <mat-form-field class="half-width second">
+                    <mat-label>Confirm password</mat-label>
+                    <input type="password" name="confirm-password" formControlName="confirmPassword" matInput placeholder="" value="">
+                </mat-form-field>
+            </div>
+            <div  *ngIf="(password.invalid && (password.dirty || password.touched)) || (confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched))"  class="container half">
+                <div class="half-width first">
+                    <div  class="alert" *ngIf="password.invalid && (password.dirty || password.touched)" >
+                        <div *ngIf="password.errors.required">
+                            Password is required.
+                        </div>
+                        <div *ngIf="password.errors.minlength">
+                            Password has to be at least 8 characters
+                        </div>
+                    </div>
+                </div>
+                <div class="half-width  half">
+                    <div  class="alert" *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" >
+                        <div *ngIf="confirmPassword.errors.required">
+                            You have to confirm your password.
+                        </div>
+                        <div *ngIf="confirmPassword.errors.minlength">
+                            Password has to be at least 8 characters
+                        </div>
+                        <div *ngIf="confirmPassword.errors.MatchPassword">
+                            Confirm password has to match with the password
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="options">
+                <p  class="message" *ngIf="statusMessage">{{statusMessage}}</p>
+                <p  class="error" *ngIf="errorMessage">{{errorMessage}}</p>
+                <button mat-button color="primary">JOIN</button>
+                <div>
+                    Or <a [routerLink]="['/login']" >Login</a>
+                </div>
+            </div>          
+        </div>
+    </form>
+
+</section>

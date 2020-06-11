@@ -3,6 +3,7 @@ export const environment = {
   version:"0.1",
   client_id:"${process.env.SPOTIFY_CLIENT_ID}",
   host_url:"https://djjam-staging.web.app",
+  api_url:"https://djjam-staging.web.app/api",
   search_url:"https://djjam.app/queryTrack",
   default_suffix_search:`exclude "notswing,uncheck"`,
   search_size:20,

@@ -60,3 +60,24 @@ input{
 nav img{
     max-height: 2.5em;
 }
+
+div.warning{
+    position: fixed;
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    color:white;
+    margin-top: calc(var(--menu-height) + var(--main-padding) + var(--main-padding));
+    z-index: 9;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    line-height: 2em;
+}
+
+div.warning a{
+    cursor: pointer;
+}
+
+mat-icon, .mat-menu-item .mat-icon{
+    color:var(--main-color);
+}
