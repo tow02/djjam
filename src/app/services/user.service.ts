@@ -33,10 +33,17 @@ export class UserService {
     
   }
 
-  async get(userReference?:DocumentReference){
+  async getUserId(){
+    const id =  (await this.authen.auth.currentUser).uid;
+    return id;
+  }
+
+  async get(userReference?:DocumentReference| string){
     let snap;
-    if(userReference){
-      snap = await userReference.get()
+    if(userReference && typeof(userReference) === "string")
+      snap = await this.firestore.collection('user').doc(userReference).get().toPromise();
+    else if(userReference){
+      snap = await (userReference as DocumentReference).get()
     }else{
       const user = await this.authen.auth.currentUser;
      snap = await this.firestore.collection('user').doc(user.uid).get().toPromise()

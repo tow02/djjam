@@ -18,10 +18,10 @@
         </button>
             <mat-menu #menu="matMenu">
                 <a   [routerLink]="['/profile']"   mat-menu-item>
-                    Profile
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">account_circle</mat-icon> Profile
                 </a>
-                <a   [routerLink]="['/setting']"   mat-menu-item>Setting</a>
-                <button (click)="logout()" mat-menu-item>Logout</button>
+                <a   [routerLink]="['/setting']"   mat-menu-item> <mat-icon aria-hidden="false" aria-label="Example home icon">settings</mat-icon>  Setting</a>
+                <button (click)="logout()" mat-menu-item>  <mat-icon aria-hidden="false" aria-label="Example home icon">login</mat-icon>  Logout</button>
             </mat-menu>            
     </div>
 </nav>

@@ -29,7 +29,7 @@ export class SettingComponent implements OnInit {
    }
 
   async ngOnInit(){
-    console.log('email verify', (await this.authen.auth.currentUser).emailVerified)
+    
     this.currentUser = await this.userService.get()
     console.log(this.currentUser);
     this.profileForm.patchValue(  {

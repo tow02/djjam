@@ -8,8 +8,18 @@
         <div class="container" *ngIf="user">
             <h5>DJ</h5>
             <h1>{{this.user.name}}</h1>
-            <h5>COMMUNITY</h5>
+            <h5>FROM</h5>
             <span> <a href="">{{this.user.city}}</a></span>
+        </div>
+    </section>
+    <section class="end">
+        <div class="container">
+            <button mat-icon-button [matMenuTriggerFor]="optionMenu"><mat-icon>share</mat-icon></button>
+            <mat-menu #optionMenu="matMenu">
+                <button (click)="copy()"  mat-menu-item><mat-icon aria-hidden="false" aria-label="copy">file_copy</mat-icon> Copy Link</button>
+                <!--<button  mat-menu-item><mat-icon aria-hidden="false" aria-label="Example home icon">thumb_up_alt</mat-icon> Facebook News Feed</button>
+                <button  mat-menu-item><mat-icon aria-hidden="false" aria-label="Example home icon">message</mat-icon> Messenger</button>-->
+            </mat-menu>   
         </div>
     </section>
 </header>
