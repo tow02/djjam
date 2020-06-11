@@ -18,6 +18,7 @@ const routes: Routes = [
   { path:"signup", component:SignupComponent, canActivate:[AngularFireAuthGuard], data:{authGuardPipe:redirectLoggedInToItems}},
   { path:"signup/:accessToken", component:SignupComponent, canActivate:[AngularFireAuthGuard], data:{authGuardPipe:redirectLoggedInToItems}},
   { path:"profile", component:ProfileComponent, canActivate:[AngularFireAuthGuard], data:{authGuardPipe:redirectUnauthorizedToLogin}},
+  { path:"users/:uid", component:ProfileComponent },
   { path:"setting", component:SettingComponent, canActivate:[AngularFireAuthGuard], data:{authGuardPipe:redirectUnauthorizedToLogin}},
   { path:"publish", component:PublishComponent, canActivate:[AngularFireAuthGuard], data:{authGuardPipe:redirectUnauthorizedToLogin}},
   { path:'spotify-success', component:SpotifySuccessComponent },
