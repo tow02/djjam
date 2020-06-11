@@ -1,13 +1,14 @@
 
 
-<form [formGroup]="profileForm" (ngSubmit)="onSubmit()" >
+<form (keydown.enter)="false" [formGroup]="profileForm" (ngSubmit)="onSubmit()" >
     <div class="container">
         <h2>Profile</h2>
-        <mat-form-field class="full-width">
-            <mat-label>DJ Name</mat-label>
-            <input name="name"  formControlName="djName" matInput placeholder="Ex. me@sompop.dev" value="">
-        </mat-form-field>
+        
         <div class="container half">
+            <mat-form-field class="half-width first">
+                <mat-label>DJ Name</mat-label>
+                <input name="name"  formControlName="djName" matInput placeholder="Ex. me@sompop.dev" value="">
+            </mat-form-field>
             <mat-form-field class="half-width second">
                 <mat-label>City</mat-label>
                 <input name="name" formControlName="cityName" matInput placeholder="Ex. Bangkok" value="">
@@ -27,14 +28,17 @@
             <li *ngFor="let item of playlistSets.controls; let i=index"> 
                 <mat-form-field class="full-width">
                     <mat-label>Playlist set</mat-label>
-                    <input name="name" matInput placeholder="" [formControlName]="i">
+                    
+                        <input  (keyup.enter)="addPlaylistSet()" name="set-{{i}}" matInput placeholder="" [formControlName]="i">
+                    
                 </mat-form-field>
                 <button (click)="removePlaySet(i)" mat-button>X</button>    
             </li>
         </ul>
-        <div class="container">
+        <div class="options container">
             <a (click)="addPlaylistSet()" mat-button>Add a playlist set</a>
             <button mat-button color="primary">Save</button>
+            
         </div>
     </div>
     

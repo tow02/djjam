@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {  FormBuilder, Validators, FormArray } from '@angular/forms';
 import { UserService, User } from "../../services/user.service"
+import { Router } from "@angular/router"
 import { AuthenticationService } from "../../services/authentication.service"
 
 @Component({
@@ -23,7 +24,7 @@ export class SettingComponent implements OnInit {
     return this.profileForm.get('playlistSets') as FormArray;
   }
 
-  constructor(private userService:UserService, private formBuilder:FormBuilder, private authen:AuthenticationService) {
+  constructor(private userService:UserService, private formBuilder:FormBuilder, private authen:AuthenticationService, private router:Router) {
      
    }
 
@@ -46,7 +47,14 @@ export class SettingComponent implements OnInit {
   }
 
   addPlaylistSet(){
-    this.playlistSets.push(this.formBuilder.control('', Validators.required));
+
+    this.playlistSets.push(this.formBuilder.control('', Validators.required) );
+    const name = `set-${this.playlistSets.length -1}`
+    setTimeout(() => {
+      document.getElementsByName(name)[0].focus()
+    }, 100)
+    
+    
   }
 
   removePlaySet(index:number){
@@ -66,10 +74,11 @@ export class SettingComponent implements OnInit {
      return u;
   }
 
-  onSubmit() {
+  async onSubmit() {
     // TODO: Use EventEmitter with form value
     
-    this.userService.update(this.transform(), ['name', 'community', 'picture', 'playlist_sets'])
+    await this.userService.update(this.transform(), ['name', 'city', 'picture', 'playlist_sets'])
+    this.router.navigate(['/profile'])
   }
 
 }
