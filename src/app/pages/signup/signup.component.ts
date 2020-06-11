@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {  FormBuilder, Validators } from '@angular/forms';
-import { UserService  } from "../../services/user.service"
+import { ActivatedRoute } from "@angular/router"
+import { SpotifyService } from "../../services/spotify.service"
 import { Router } from "@angular/router"
 import { ConfirmPasswordValidator } from "./confirm-password.validator"
 import { AuthenticationService } from "../../services/authentication.service"
 import { filterByCityName } from "filterbycities"
+import { SpotifyUser } from "../../services/spotify.interface"
 
 @Component({
   selector: 'app-signup',
@@ -18,15 +20,32 @@ export class SignupComponent implements OnInit {
     djName:['', [Validators.required, Validators.minLength(5)] ],
     cityName: ['', [Validators.required, Validators.minLength(3)]],
     password:['', [Validators.required, Validators.minLength(8)]],
-    confirmPassword:['', [Validators.required, Validators.minLength(8)]]
+    confirmPassword:['', [Validators.required, Validators.minLength(8)]],
+    spotifyUserId:['']
   }, { validators: ConfirmPasswordValidator.MatchPassword })
-  constructor(private userService:UserService, private formBuilder:FormBuilder, private authen:AuthenticationService, private router:Router) {
-     
-  }
+
   isInProcess = false;
   errorMessage = "";
   statusMessage = "";
   options:Array<string> = [];
+  spotifyUser:SpotifyUser;
+
+  constructor(private spotifyService:SpotifyService, private formBuilder:FormBuilder, private authen:AuthenticationService, private router:Router, private route:ActivatedRoute) {
+    this.route.params.subscribe(param => {
+      if(param["accessToken"]){
+        this.initBySpotify(param['accessToken']);
+      }
+    })
+     
+  }
+  
+  async initBySpotify(accessToken:string){
+    this.spotifyUser =  await this.spotifyService.getProfile(accessToken)
+    this.djName.setValue(this.spotifyUser.display_name);
+    this.email.setValue(this.spotifyUser.email);
+    this.profileForm.get('spotifyUserId').setValue(this.spotifyUser.id)
+    console.log(this.spotifyUser.id)
+  }
 
   ngOnInit(): void {
 

@@ -108,3 +108,7 @@ button.mat-button[color="spotify"]{
     background-color: var(--spotify-color);
     color:white;
 }
+
+.mat-progress-spinner circle, .mat-spinner circle{
+    stroke:var(--main-color);
+}

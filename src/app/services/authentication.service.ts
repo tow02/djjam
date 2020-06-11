@@ -39,7 +39,7 @@ export class AuthenticationService {
     })    
   }
 
-  async signup(user:{cityName:string, communityName:string, password:string, confirmPassword:string, djName:string, email:string}){
+  async signup(user:{cityName:string, communityName:string, password:string, confirmPassword:string, djName:string, email:string, spotifyUserId?:string}){
     const res =  await fetch(`${environment.api_url}/user`, {
       method:"POST",
       headers: {
