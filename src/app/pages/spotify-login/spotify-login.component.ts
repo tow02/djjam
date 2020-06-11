@@ -14,14 +14,20 @@ export class SpotifyLoginComponent implements OnInit {
 
   async ngOnInit() {
     const result = this.spotifyService.parseUrl(this.router.url)
-    const spotifyUser:{status:string, token:string} = await this.authen.authenWithSpotify(result.access_token).then(result => {
+    const spotifyResult:{status:string, token?:string} = await this.authen.authenWithSpotify(result.access_token).then(result => {
       return result.json()
     }).catch(e => {
       console.log('e', e)
     });
-    await this.authen.auth.signInWithCustomToken(spotifyUser.token)
-    this.spotifyService.processSignin(this.router.url);
-    this.router.navigate(['/']);
+    if(spotifyResult.status === 'done'){
+      await this.authen.auth.signInWithCustomToken(spotifyResult.token)
+      this.spotifyService.processSignin(this.router.url);
+      this.router.navigate(['/']);
+    }else{
+      this.spotifyService.processSignin(this.router.url);
+      this.router.navigate(['/signup', result.access_token]);
+    }
+  
     
   }
 

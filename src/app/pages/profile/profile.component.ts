@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
-import { UserService } from "../../services/user.service"
+import { UserService, User } from "../../services/user.service"
 import { Playlist } from "../../models/Track"
 
 interface ProfilePlaylistSet{
@@ -19,14 +19,16 @@ export class ProfileComponent implements OnInit {
 
   sets:Array<ProfilePlaylistSet> = []
 
+  user:User;
   async ngOnInit() {
-    let user = await this.userService.get();
-    if(user.playlist_sets){
-      this.sets = user.playlist_sets.filter(setName => user.playlist_set_map && user.playlist_set_map[this.userService.nameToSlug(setName)] ).map(setName => {
-        if(user.playlist_set_map[this.userService.nameToSlug(setName)])
+    this.user = await this.userService.get();
+    console.log(this.user)
+    if(this.user.playlist_sets){
+      this.sets = this.user.playlist_sets.filter(setName => this.user.playlist_set_map && this.user.playlist_set_map[this.userService.nameToSlug(setName)] ).map(setName => {
+        if(this.user.playlist_set_map[this.userService.nameToSlug(setName)])
           return {
             name:setName,
-            playlists:user.playlist_set_map[this.userService.nameToSlug(setName)]
+            playlists:this.user.playlist_set_map[this.userService.nameToSlug(setName)]
           } as ProfilePlaylistSet
         else
           return {

@@ -22,7 +22,7 @@ import { MatIconModule} from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatStepperModule} from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
-
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { SideMenuComponent } from './side-menu/side-menu.component'
 import { SpotifyService } from "./services/spotify.service"
@@ -69,6 +69,7 @@ import { SpotifyLoginComponent } from './pages/spotify-login/spotify-login.compo
     MatSidenavModule,
     MatStepperModule,
     MatAutocompleteModule,
+    MatProgressSpinnerModule,
     SearchModule,
     PlaylistModule,
     AppRoutingModule,

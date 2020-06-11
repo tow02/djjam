@@ -16,6 +16,7 @@ const redirectLoggedInToItems = () => redirectLoggedInTo(['']);
 const routes: Routes = [
   { path:"login", component:LoginComponent, canActivate:[AngularFireAuthGuard], data:{authGuardPipe:redirectLoggedInToItems}},
   { path:"signup", component:SignupComponent, canActivate:[AngularFireAuthGuard], data:{authGuardPipe:redirectLoggedInToItems}},
+  { path:"signup/:accessToken", component:SignupComponent, canActivate:[AngularFireAuthGuard], data:{authGuardPipe:redirectLoggedInToItems}},
   { path:"profile", component:ProfileComponent, canActivate:[AngularFireAuthGuard], data:{authGuardPipe:redirectUnauthorizedToLogin}},
   { path:"setting", component:SettingComponent, canActivate:[AngularFireAuthGuard], data:{authGuardPipe:redirectUnauthorizedToLogin}},
   { path:"publish", component:PublishComponent, canActivate:[AngularFireAuthGuard], data:{authGuardPipe:redirectUnauthorizedToLogin}},

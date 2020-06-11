@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { TrackService } from "./track.service"
 import { environment } from "../../environments/environment"
-import { SpotifyPlaylist, AudioFeature, SpotifyTrackItem, SpotifyArtist } from "./spotify.interface"
+import { SpotifyPlaylist, AudioFeature, SpotifyTrackItem, SpotifyArtist, SpotifyUser } from "./spotify.interface"
 import { Track } from '../models/Track';
 
 const DJJAM_MAIN_TAGS = {
@@ -106,6 +106,14 @@ export class SpotifyService {
       delete localStorage[ environment.localstorage.spotify_age ] ;
       delete localStorage[ environment.localstorage.spotify_expire_in ];
       delete localStorage[ environment.localstorage.spotify_access_token ];
+  }
+
+  getProfile(accessToken:string){
+    return fetch(`https://api.spotify.com/v1/me`,{
+      headers:{
+        'Authorization':'Bearer ' + accessToken
+      }
+    }).then(res => res.json()).then(res => res as SpotifyUser)
   }
 
   getMyPlaylists(offset:number = 0){

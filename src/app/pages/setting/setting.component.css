@@ -40,3 +40,12 @@ form > .container  .preview img{
     max-width: 100%;
     clip-path: circle(50px at center);
 }
+
+.options.container{
+    display: flex;
+    flex-flow: column;
+}
+
+.options.container a{
+    margin-bottom:1em;
+}

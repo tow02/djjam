@@ -51,6 +51,7 @@ export class UserService {
   }
 
   async update(user:User, fields?:Array<string>){
+    console.log('user', user)
     const id =  (await this.authen.auth.currentUser).uid;
     console.log(id, user, fields)
     let obj:any = {};
