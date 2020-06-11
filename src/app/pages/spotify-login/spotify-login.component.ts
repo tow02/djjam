@@ -24,6 +24,7 @@ export class SpotifyLoginComponent implements OnInit {
       this.spotifyService.processSignin(this.router.url);
       this.router.navigate(['/']);
     }else{
+      this.spotifyService.processSignin(this.router.url);
       this.router.navigate(['/signup', result.access_token]);
     }
   

@@ -8,6 +8,7 @@ import { AuthenticationService } from "../../services/authentication.service"
 import { filterByCityName } from "filterbycities"
 import { SpotifyUser } from "../../services/spotify.interface"
 
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -21,7 +22,7 @@ export class SignupComponent implements OnInit {
     cityName: ['', [Validators.required, Validators.minLength(3)]],
     password:['', [Validators.required, Validators.minLength(8)]],
     confirmPassword:['', [Validators.required, Validators.minLength(8)]],
-    spotifyUserId:['']
+    accessToken:['']
   }, { validators: ConfirmPasswordValidator.MatchPassword })
 
   isInProcess = false;
@@ -29,6 +30,7 @@ export class SignupComponent implements OnInit {
   statusMessage = "";
   options:Array<string> = [];
   spotifyUser:SpotifyUser;
+  
 
   constructor(private spotifyService:SpotifyService, private formBuilder:FormBuilder, private authen:AuthenticationService, private router:Router, private route:ActivatedRoute) {
     this.route.params.subscribe(param => {
@@ -43,9 +45,12 @@ export class SignupComponent implements OnInit {
     this.spotifyUser =  await this.spotifyService.getProfile(accessToken)
     this.djName.setValue(this.spotifyUser.display_name);
     this.email.setValue(this.spotifyUser.email);
-    this.profileForm.get('spotifyUserId').setValue(this.spotifyUser.id)
+    this.profileForm.get('accessToken').setValue(accessToken)
+    
     console.log(this.spotifyUser.id)
   }
+
+  
 
   ngOnInit(): void {
 
@@ -79,17 +84,21 @@ export class SignupComponent implements OnInit {
   async  onSubmit(){
     console.log(this.profileForm.errors);
     if(!this.profileForm.invalid){
+      this.isInProcess = true;
+      this.profileForm.disable();
       const result = await this.authen.signup(this.profileForm.value).catch(e => {
         console.log(e);
         this.errorMessage = e.error;
       })
-      
+      this.isInProcess = false;
+      this.profileForm.enable();
       console.log(result);
       if(result && result.status && result.status === 'done')
       {
         delete this.errorMessage;
         this.statusMessage = result.message;
         await this.authen.login(this.profileForm.value.email, this.profileForm.value.password)
+
         this.router.navigate(['/']);
       }
     }else
