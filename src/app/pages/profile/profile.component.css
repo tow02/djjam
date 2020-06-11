@@ -15,7 +15,7 @@ header .first .clip-circle {
     clip-path: circle(50px at center);
   }
 
-header > .first > .container, header > .second > .container{
+header > .first > .container, header > .second > .container, header > .first > .container, header > .end > .container{
     padding-top:var(--main-padding)
 }
 
@@ -44,6 +44,10 @@ header .second h1{
 header .second span{
     letter-spacing: 0.1em;;
     text-transform: uppercase;
+}
+
+header > .end > .container{
+    padding-right:var(--main-padding);
 }
 
 .main{
@@ -91,4 +95,8 @@ header .second span{
 .set .playlist h4{
     font-weight: 600;
     width: 180px;
+}
+
+mat-icon, .mat-menu-item .mat-icon{
+    color:var(--main-color);
 }

@@ -33,6 +33,11 @@ export class UserService {
     
   }
 
+  async getUserId(){
+    const id =  (await this.authen.auth.currentUser).uid;
+    return id;
+  }
+
   async get(userReference?:DocumentReference){
     let snap;
     if(userReference){

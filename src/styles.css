@@ -112,3 +112,11 @@ button.mat-button[color="spotify"]{
 .mat-progress-spinner circle, .mat-spinner circle{
     stroke:var(--main-color);
 }
+
+.mat-menu-panel{
+    background-color: #353a40;
+}
+
+.mat-menu-item{
+    color:var(--main-color)
+}

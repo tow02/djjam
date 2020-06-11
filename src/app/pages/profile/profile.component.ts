@@ -19,9 +19,12 @@ export class ProfileComponent implements OnInit {
 
   sets:Array<ProfilePlaylistSet> = []
 
+  uid:string;
   user:User;
   async ngOnInit() {
+    
     this.user = await this.userService.get();
+    this.uid = await this.userService.getUserId();
     console.log(this.user)
     if(this.user.playlist_sets){
       this.sets = this.user.playlist_sets.filter(setName => this.user.playlist_set_map && this.user.playlist_set_map[this.userService.nameToSlug(setName)] ).map(setName => {
