@@ -10,12 +10,12 @@
         <article>
             <img src="https://mosaic.scdn.co/300/ab67616d0000b273186763817f7f6ee46d712555ab67616d0000b27350d3be7eea9d9df6fd9d0fd5ab67616d0000b273a8c5029325a2aae63966512dab67616d0000b273b84122fb5286ec9975e783f6" />
             <h4>sweet 140-160</h4>
-            <p>DJ Donut - <span>Bangkok</span></p>
+            <p>DJ Donut <span class="city">Bangkok</span></p>
         </article>
         <article>
             <img src="https://mosaic.scdn.co/300/ab67616d0000b27389e3b033a9d63882a6c0d055ab67616d0000b273b52982bdd0f4771b7296de62ab67616d0000b273bc8e5a7dff01549ac7816454ab67616d0000b273f56f2d8641b16ceb95a6f5c9" />
             <h4>New swing 2020</h4>
-            <p>DJ Nan - <span>Bangkok</span></p>
+            <p>DJ Nan <span class="city">Bangkok</span></p>
         </article>
     </section>
     <h2>Community playlists</h2>
@@ -23,7 +23,7 @@
         <article (click)="select(item)" *ngFor="let item of communityPlaylists">
             <img src="{{item.imageUrl}}" />
             <h4>{{item.name}}</h4>
-            <p>{{item.by.name}} - <span>Bangkok</span></p>
+            <p>{{item.by.name}} <span class="city">{{item.by.city}}</span></p>
         </article>
     </section>
     
