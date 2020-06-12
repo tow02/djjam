@@ -31,6 +31,7 @@ export class ProfileComponent implements OnInit {
   }
 
   sets:Array<ProfilePlaylistSet> = []
+  positions:Array<number> = [];
   isLogin = false;
   uid:string;
   user:User;
@@ -56,6 +57,8 @@ export class ProfileComponent implements OnInit {
             playlists:[]
           } as ProfilePlaylistSet
       }).filter(item => item.playlists.length > 0)
+      this.positions = new Array(this.sets.length).fill(0);
+      
       console.log(this.sets)
     }
   }
@@ -65,6 +68,17 @@ export class ProfileComponent implements OnInit {
       this.router.navigate(['/playlist', playlist.id]);
     else
       window.location.href = `https://open.spotify.com/playlist/${playlist.id}`
+  }
+
+  next(i:number){
+    console.log(this.positions)
+    this.positions[i] = this.positions[i] - 100;
+    document.getElementById("set-" + i).style.transform = `translateX(${this.positions[i]}vw)`;
+  }
+
+  back(i:number){
+    this.positions[i] = this.positions[i] + 100;
+    document.getElementById("set-" + i).style.transform = `translateX(${this.positions[i]}vw)`;
   }
 
   async copy(){
