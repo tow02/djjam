@@ -1,0 +1,30 @@
+[debug] [2020-06-12T07:47:17.263Z] ----------------------------------------------------------------------
+[debug] [2020-06-12T07:47:17.265Z] Command:       /Users/sompopkulapalanont/.nvm/versions/node/v10.18.1/bin/node /Users/sompopkulapalanont/.nvm/versions/node/v10.18.1/bin/firebase deploy --project djjam-d7ae7 --only hosting:djjam-develop
+[debug] [2020-06-12T07:47:17.266Z] CLI Version:   8.2.0
+[debug] [2020-06-12T07:47:17.266Z] Platform:      darwin
+[debug] [2020-06-12T07:47:17.266Z] Node Version:  v10.18.1
+[debug] [2020-06-12T07:47:17.267Z] Time:          Fri Jun 12 2020 14:47:17 GMT+0700 (Indochina Time)
+[debug] [2020-06-12T07:47:17.267Z] ----------------------------------------------------------------------
+[debug] [2020-06-12T07:47:17.267Z] 
+[debug] [2020-06-12T07:47:17.276Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-06-12T07:47:17.277Z] > authorizing via signed-in user
+[debug] [2020-06-12T07:47:17.277Z] [iam] checking project djjam-d7ae7 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-06-12T07:47:17.280Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/djjam-d7ae7:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2020-06-12T07:47:18.430Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 12 Jun 2020 07:47:18 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=991","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-06-12T07:47:18.434Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/djjam-d7ae7  
+ 
+[debug] [2020-06-12T07:47:18.704Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 12 Jun 2020 07:47:18 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'djjam-d7ae7'...
+[info] 
+[info] i  deploying hosting
+[debug] [2020-06-12T07:47:18.711Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/djjam-develop/versions  
+ {"config":{"rewrites":[{"glob":"/api/users","function":"user"},{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2020-06-12T07:47:20.534Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 12 Jun 2020 07:47:20 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  hosting[djjam-develop]: beginning deploy...
+[info] i  hosting[djjam-develop]: found 13 files in dist/djjam-v2
+[debug] [2020-06-12T07:47:20.781Z] [hosting] hash cache [ZGlzdC9kamphbS12Mg] stored for 13 files
+[debug] [2020-06-12T07:47:20.781Z] [hosting][hash queue][FINAL] {"max":222,"min":11,"avg":46.84615384615385,"active":0,"complete":13,"success":13,"errored":0,"retried":0,"total":13,"elapsed":231}
+[debug] [2020-06-12T07:47:20.781Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/djjam-develop/versions/caa14ce1b3d47cff:populateFiles  
+ <request body omitted>
