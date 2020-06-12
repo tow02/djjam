@@ -8,7 +8,7 @@ on:
   push:
     branches: [ develop ]
   pull_request:
-    branches: [ develop ]
+    branches: [  ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -40,4 +40,4 @@ jobs:
         sudo npm install -g firebase-tools
         firebase use djjam-d7ae7 --token ${{ secrets.FIREBASE_TOKEN }}
         firebase target:apply hosting djjam-develop djjam-develop --token ${{ secrets.FIREBASE_TOKEN }}
-        firebase deploy --project djjam-d7ae7 --only hosting:djjam-staging --token ${{ secrets.FIREBASE_TOKEN }}
+        firebase deploy --project djjam-d7ae7 --only hosting:djjam-develop --token ${{ secrets.FIREBASE_TOKEN }}
