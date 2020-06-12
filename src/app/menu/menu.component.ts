@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { AuthenticationService } from "../services/authentication.service"
 import { Router, NavigationEnd } from '@angular/router';
 
@@ -15,7 +15,9 @@ export class MenuComponent implements OnInit {
   q:string;
   isLoginIn = false;
   isVerify = false;
-  
+
+  @Input()
+  isOpen = false;
 
   @Output()
   onToggleMenu:EventEmitter<void> = new EventEmitter<void>();

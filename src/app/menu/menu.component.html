@@ -2,7 +2,8 @@
     
     <div id="start">
         <button *ngIf="isLoginIn"  (click)="toggle()" mat-icon-button >
-            <mat-icon>menu</mat-icon>
+            <mat-icon *ngIf="!isOpen">menu</mat-icon>
+            <mat-icon *ngIf="isOpen">menu_open</mat-icon>
           </button>
         <a [routerLink]="['/']"> <img src="https://djjam.app/assets/bannerlogo.png" /></a>
     </div>
