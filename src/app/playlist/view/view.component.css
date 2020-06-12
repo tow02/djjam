@@ -32,6 +32,16 @@ header .start > div{
     display:flex;
 }
 
+
+@media only screen and (max-width: 800px){
+    header .start > div{
+        flex-flow: column;
+    }
+    header .start p{
+        align-self: flex-start;;
+    }
+}
+
 header .end{
     
     flex:1;
@@ -78,13 +88,14 @@ header .end button{
     .second-section .container{
         padding-left:1rem;
         padding-right:1rem;
+        
     }
 
     .second-section  .first h3, .second-section  .second h3{
         margin-left:1rem;
     }
 
-    .second-section  .first{
+    .second-section  .first, .second-section .second{
         width: 100%;
     }
     

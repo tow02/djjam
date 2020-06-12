@@ -13,11 +13,10 @@
     max-height: 100%;
 }
 
-
-
 .playlists{
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(calc(120px + 2em), 1fr) );
+    
 }
 
 .playlists article{
@@ -26,11 +25,34 @@
 }
 
 .playlists article img{
-    height: 10em;
+    height: 120px;
+    
 }
 
 .playlists article h4{
     font-weight: bold;
+    height:3em;
+    width:120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
+.playlists article .city{
+    font-size:0.8em;
+    color:#b7b7b7;
+}
 
+@media only screen and (min-width: 800px){
+    .playlists{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(calc(140px + 1em), 1fr) );
+        
+    }
+    .playlists article,.playlists article h4 {
+        width:140px
+    }
+
+    .playlists article img{
+        height: 140px;
+    }
+}

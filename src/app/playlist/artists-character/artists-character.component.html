@@ -9,3 +9,6 @@
     </article>
     
 </div>
+<div  *ngIf="!(artists && playlistEvent.status === 'done')">
+    <mat-spinner></mat-spinner>
+</div>
