@@ -24,10 +24,23 @@
     </section>
 </header>
 <section class="main">
-    <div *ngFor="let item of sets" class="set">
-        <h2>{{item.name}}</h2>
+    <div *ngFor="let item of sets;let i = index" class="set">
+        <header>
+            <div class="first">
+                <h2>{{item.name}}</h2>
+            </div>
+            <div class="end">
+                <button (click)="back(i)" mat-icon-button >
+                    <mat-icon>keyboard_arrow_left</mat-icon>
+                </button>
+                <button (click)="next(i)" mat-icon-button >
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </button>
+                
+            </div>
+        </header>
         <mat-divider ></mat-divider>
-        <div class="container" id="testSet">
+        <div class="container" id="set-{{i}}">
             <!-- Playlists-->
             <article (click)="select(playlist)" *ngFor="let playlist of item.playlists" class="playlist">
                 <img src="{{playlist.imageUrl}}">

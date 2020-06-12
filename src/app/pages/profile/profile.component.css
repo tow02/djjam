@@ -70,7 +70,8 @@ header > .end > .container{
     flex-flow: row ;
     justify-content: flex-start;
     overflow-x: auto;
-    
+    align-items: stretch;
+    transition: transform 1s ease-in-out;
 }
 
 .set .container::-webkit-scrollbar {  
@@ -99,4 +100,15 @@ header > .end > .container{
 
 mat-icon, .mat-menu-item .mat-icon{
     color:var(--main-color);
+}
+
+.main header .end{
+    flex: 1 1 auto;
+    justify-content: flex-end;
+    align-content: center;;
+    display: flex;
+}
+
+.main header .end button{
+    align-self: flex-end;
 }
