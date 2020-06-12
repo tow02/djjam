@@ -1,4 +1,4 @@
-<app-menu (onNavigateProfile)="isOpen=false" [(isOpen)]="isOpen" (onToggleMenu)="toggleMenu()" > </app-menu>
+<app-menu (onNavigateProfile)="onClickSideMenu()" [(isOpen)]="isOpen" (onToggleMenu)="toggleMenu()" > </app-menu>
 <mat-sidenav-container class="example-container">
     <mat-sidenav  #sidenav [fixedInViewport]="true" [fixedTopGap]="0"
     [fixedBottomGap]="0"  mode="side" [opened]="isOpen">
