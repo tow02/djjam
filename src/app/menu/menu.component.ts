@@ -22,6 +22,9 @@ export class MenuComponent implements OnInit {
   @Output()
   onToggleMenu:EventEmitter<void> = new EventEmitter<void>();
 
+  @Output()
+  onNavigateProfile:EventEmitter<void> = new EventEmitter<void>();
+
   ngOnInit(): void {
     this.authen.auth.authState.subscribe(user => {
       if(user){
@@ -43,6 +46,12 @@ export class MenuComponent implements OnInit {
       }
         
     })
+  }
+
+  navigateProfile(path:Array<any>){
+    this.onNavigateProfile.emit();
+    this.router.navigate(path);
+
   }
 
   toggle(){
