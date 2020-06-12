@@ -3,6 +3,7 @@ import { AngularFirestore, DocumentReference } from '@angular/fire/firestore'
 import { SpotifyPlaylist } from "../services/spotify.interface"
 import { AuthenticationService } from "./authentication.service"
 import { Playlist } from "../models/Track"
+import * as firebase from 'firebase'
 
 export interface User{
   name?:string,
@@ -98,16 +99,23 @@ export class UserService {
   }
 
   async addPlaylistsToSet(playlists:Array<SpotifyPlaylist>, setName:string){
+
     const id =  (await this.authen.auth.currentUser).uid;
+    const user = await this.get();
      const newPlaylists = playlists.map(item => ({
       id:item.id,
       name:item.name,
       imageUrl:item.images[0].url
     }) as Playlist);
     console.log('going to save', newPlaylists);
-    const obj:any = {playlist_set_map:{}};
-    obj.playlist_set_map[this.nameToSlug(setName)] = newPlaylists;
-    this.firestore.collection('user').doc(id).update(obj);
+    const obj:any = {playlist_set_map:{}}
+    if(!user.playlist_set_map[this.nameToSlug(setName)])
+      user.playlist_set_map[this.nameToSlug(setName)] = [];
+    user.playlist_set_map[this.nameToSlug(setName)] = user.playlist_set_map[this.nameToSlug(setName)].concat(newPlaylists)
+    
+    this.firestore.collection('user').doc(id).update({
+      playlist_set_map:user.playlist_set_map
+    });
     return Promise.all(newPlaylists.map(item => this.firestore.collection('user').doc(id).collection('set').doc(item.id).set(item)));
   }
 
