@@ -34,6 +34,7 @@ jobs:
       env : 
         FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
         SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+        HOST_URL: https://djjam-develop.web.app
         RECAPCHA_KEY: ${{ secrets.RECAPCHA_KEY }}
     - name: Firebase Deploy
       run: |
