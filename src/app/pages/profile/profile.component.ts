@@ -30,6 +30,7 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+  SET_VIEW_LIMIT = 6;
   sets:Array<ProfilePlaylistSet> = []
   positions:Array<number> = [];
   isLogin = false;

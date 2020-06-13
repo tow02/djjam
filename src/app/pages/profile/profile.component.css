@@ -74,6 +74,11 @@ header > .end > .container{
     transition: transform 1s ease-in-out;
 }
 
+.set .container.lesser-than-6{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr) );
+}
+
 .set .container::-webkit-scrollbar {  
       visibility: hidden;
 }

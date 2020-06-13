@@ -29,7 +29,7 @@
             <div class="first">
                 <h2>{{item.name}}</h2>
             </div>
-            <div class="end">
+            <div class="end" *ngIf="!(item.playlists.length < SET_VIEW_LIMIT)">
                 <button (click)="back(i)" mat-icon-button >
                     <mat-icon>keyboard_arrow_left</mat-icon>
                 </button>
@@ -40,7 +40,7 @@
             </div>
         </header>
         <mat-divider ></mat-divider>
-        <div class="container" id="set-{{i}}">
+        <div class="container" id="set-{{i}}" [ngClass]="{'lesser-than-6':(item.playlists.length < SET_VIEW_LIMIT)}">
             <!-- Playlists-->
             <article (click)="select(playlist)" *ngFor="let playlist of item.playlists" class="playlist">
                 <img src="{{playlist.imageUrl}}">
