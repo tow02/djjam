@@ -35,6 +35,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { SettingComponent } from './pages/setting/setting.component';
 import { PublishComponent } from './pages/publish/publish.component';
 import { SpotifyLoginComponent } from './pages/spotify-login/spotify-login.component';
+import { ProfileEditComponent } from './pages/profile-edit/profile-edit.component';
+import { ProfileEditSetComponent } from './profile-edit-set/profile-edit-set.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { SpotifyLoginComponent } from './pages/spotify-login/spotify-login.compo
     ProfileComponent,
     SettingComponent,
     PublishComponent,
-    SpotifyLoginComponent
+    SpotifyLoginComponent,
+    ProfileEditComponent,
+    ProfileEditSetComponent
   ],
   imports: [
     
