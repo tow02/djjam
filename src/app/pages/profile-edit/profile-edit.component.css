@@ -143,3 +143,8 @@ mat-icon, .mat-menu-item .mat-icon{
         border:1px solid rgba(0,0,0,0);
     }
 }
+
+.main > .options{
+    padding-bottom:var(--main-padding);
+    text-align: center;;
+}

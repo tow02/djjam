@@ -50,7 +50,9 @@ export class ProfileEditComponent implements OnInit {
     
     console.log(this.user)
     if(this.user.playlist_sets){
-      this.sets = this.user.playlist_sets.filter(setName => this.user.playlist_set_map && this.user.playlist_set_map[this.userService.nameToSlug(setName)] ).map(setName => {
+      //filter(setName => this.user.playlist_set_map && this.user.playlist_set_map[this.userService.nameToSlug(setName)] )
+      console.log('this.user.playlist_sets', this.user.playlist_sets)
+      this.sets = this.user.playlist_sets.map(setName => {
         if(this.user.playlist_set_map[this.userService.nameToSlug(setName)])
           return {
             name:setName,
@@ -61,7 +63,7 @@ export class ProfileEditComponent implements OnInit {
             name:setName,
             playlists:[]
           } as ProfilePlaylistSet
-      }).filter(item => item.playlists.length > 0)
+      })
       this.positions = new Array(this.sets.length).fill(0);
       this.isMoveAnimation = new Array(this.sets.length).fill(false);
       console.log(this.sets)
