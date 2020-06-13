@@ -66,15 +66,19 @@ header > .end > .container{
 
 .set .container{
     padding-top:1rem;
+    overflow-x: auto;
+}
+
+.set .container .wrap{
     display:flex;
     flex-flow: row ;
     justify-content: flex-start;
-    overflow-x: auto;
+    
     align-items: stretch;
     transition: transform 1s ease-in-out;
 }
 
-.set .container.lesser-than-6{
+.set .container .wrap.lesser-than-6{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr) );
 }
@@ -103,6 +107,8 @@ header > .end > .container{
     width: 180px;
 }
 
+
+
 mat-icon, .mat-menu-item .mat-icon{
     color:var(--main-color);
 }
@@ -116,4 +122,8 @@ mat-icon, .mat-menu-item .mat-icon{
 
 .main header .end button{
     align-self: flex-end;
+}
+
+.main header .end button.disabled mat-icon{
+    color:#ffc21863;
 }

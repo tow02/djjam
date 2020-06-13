@@ -23,29 +23,31 @@
         </div>
     </section>
 </header>
-<section class="main">
+<section #main class="main">
     <div *ngFor="let item of sets;let i = index" class="set">
         <header>
             <div class="first">
                 <h2>{{item.name}}</h2>
             </div>
             <div class="end" *ngIf="!(item.playlists.length < SET_VIEW_LIMIT)">
-                <button (click)="back(i)" mat-icon-button >
+                <button [ngClass]="{'disabled':positions[i]>=0}" (click)="back(i)" mat-icon-button >
                     <mat-icon>keyboard_arrow_left</mat-icon>
                 </button>
-                <button (click)="next(i)" mat-icon-button >
+                <button [ngClass]="{'disabled':!canGoNext(i)}" (click)="next(i)" mat-icon-button >
                     <mat-icon>keyboard_arrow_right</mat-icon>
                 </button>
                 
             </div>
         </header>
         <mat-divider ></mat-divider>
-        <div class="container" id="set-{{i}}" [ngClass]="{'lesser-than-6':(item.playlists.length < SET_VIEW_LIMIT)}">
-            <!-- Playlists-->
-            <article (click)="select(playlist)" *ngFor="let playlist of item.playlists" class="playlist">
-                <img src="{{playlist.imageUrl}}">
-                <h4>{{playlist.name}}</h4>
-            </article>
+        <div class="container" >
+            <div class="wrap" id="set-{{i}}"  [ngClass]="{'lesser-than-6':(item.playlists.length < SET_VIEW_LIMIT)}">
+                <!-- Playlists-->
+                <article (click)="select(playlist)" *ngFor="let playlist of item.playlists" class="playlist">
+                    <img src="{{playlist.imageUrl}}">
+                    <h4>{{playlist.name}}</h4>
+                </article>
+            </div>
         </div>
     </div>
 

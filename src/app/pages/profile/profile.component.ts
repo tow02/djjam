@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
 import { UserService, User } from "../../services/user.service"
 import { AuthenticationService } from "../../services/authentication.service"
@@ -16,6 +16,9 @@ interface ProfilePlaylistSet{
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+
+  @ViewChild('main')
+  mainContainer:ElementRef
 
   constructor(private userService:UserService, private router:Router, private route:ActivatedRoute, private authen:AuthenticationService) { 
     this.route.params.subscribe(params => {
@@ -71,15 +74,27 @@ export class ProfileComponent implements OnInit {
       window.location.href = `https://open.spotify.com/playlist/${playlist.id}`
   }
 
+  canGoNext(i:number){
+    const visibleAmountPerPage = Math.floor(this.mainContainer.nativeElement.offsetWidth/ 180);
+    const turnedPageCount = this.positions[i]/this.mainContainer.nativeElement.offsetWidth
+    return this.sets[i].playlists.length + turnedPageCount * visibleAmountPerPage - visibleAmountPerPage  >= 0
+  }
+
   next(i:number){
-    console.log(this.positions)
-    this.positions[i] = this.positions[i] - 100;
-    document.getElementById("set-" + i).style.transform = `translateX(${this.positions[i]}vw)`;
+   
+    if(this.canGoNext(i)){
+      this.positions[i] = this.positions[i] - this.mainContainer.nativeElement.offsetWidth;
+      document.getElementById("set-" + i).style.transform = `translateX(${this.positions[i]}px)`;
+    }
+      
   }
 
   back(i:number){
-    this.positions[i] = this.positions[i] + 100;
-    document.getElementById("set-" + i).style.transform = `translateX(${this.positions[i]}vw)`;
+    if(this.positions[i] < 0){
+      this.positions[i] = this.positions[i] + this.mainContainer.nativeElement.offsetWidth;
+      document.getElementById("set-" + i).style.transform = `translateX(${this.positions[i]}px)`;
+    }
+    
   }
 
   async copy(){
