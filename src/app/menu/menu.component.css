@@ -35,13 +35,19 @@ nav{
 input{
     line-height: 30px;;
     background: url('https://djjam.app/assets/imgs/search-icon.png') no-repeat scroll 7px 7px;
-    width: calc(100% - 30px - var(--main-padding));
+    width: calc(100% - 100px - var(--main-padding));
     padding-left: 30px;
     background-color: white;
     border:0px;
 }
 #center form{
     flex:1;
+    display:flex;
+}
+
+#center form button{
+    line-height: 32px;
+    border-radius: 0;
 }
 
 #end{

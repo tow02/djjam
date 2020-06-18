@@ -1,4 +1,37 @@
-p{
+.controls{
     padding-left:var(--main-padding);
+    padding-top:var(--main-padding);
     padding-right:var(--main-padding);
+}
+
+h3{
+    margin-bottom: 0px;;
+}
+
+.controls .container{
+    display: flex;
+}
+
+.controls .container div{
+    flex:1
+}
+
+.controls .container .second{
+    justify-content: flex-end;
+    display: flex;
+}
+
+.filter{
+    display: flex;
+    
+}
+
+.filter div{
+    flex-shrink: 1;
+    flex-basis: 15em;
+}
+
+.filter ul{
+    list-style-type: none;   
+    padding-inline-start: 0;
 }

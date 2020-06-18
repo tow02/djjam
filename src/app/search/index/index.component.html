@@ -1,2 +1,47 @@
-<p *ngIf="searchResult">Search result of "{{query}}" found {{searchResult.hits.total}} tracks <a href="#">Load all at once</a></p>
+<!--<p *ngIf="searchResult">Search result of "{{query}}" found {{searchResult.hits.total}} tracks <a href="#">Load all at once</a></p>-->
+<div class="controls">
+    <section class="container">
+        <div class="first" >
+            <p>Showing Songs for <span color="primary">{{query}}</span></p>
+        </div>
+        <div class="second">
+            <button mat-button>
+                <mat-icon>tune</mat-icon>
+                FILTER
+            </button>
+        </div>
+    </section>
+    <section class="filter">
+        <div>
+            <h3>TYPE</h3>
+            <ul>
+                <li>MODERN</li>
+                <li>CLASSIC</li>
+                <li>BLUES</li>
+                <li>NEWS ORLEANS</li>
+                <li>SOUL</li>
+            </ul>
+        </div>
+        <div>
+            <h3>TEMPO</h3>
+            <ul>
+                <li>SUPER SLOW</li>
+                <li>SLOW</li>
+                <li>MEDIUM</li>
+                <li>FAST</li>
+                <li>SUPER FAST</li>
+            </ul>
+        </div>
+        <div>
+            <h3>DURATION</h3>
+            <ul>
+                <li>SHORT (< 2 minutes)</li>
+                <li>MEDIUM ( < 4 minutes)</li>
+                <li>LONG ( > 4 minutes)</li>
+            </ul>
+        </div>
+    </section>
+
+    <mat-divider></mat-divider>
+</div>
 <elastic-tracks [elasticTracks]="elasticTracks"  (onPause)="pause()" (onPlay)="play($event)" (onSelected)="select($event)" (onDeselected)="deSelect()" ></elastic-tracks>

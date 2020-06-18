@@ -10,7 +10,10 @@
     <div id="center">
         <form *ngIf="isLoginIn"  (submit)="search()">
             <input [(ngModel)]="q"  name="q" type="text" placeholder="Search for swing music" />
-
+            <button type="submit"  mat-button color="primary" >
+                <mat-icon style="color:var(--main-bg-color);">search</mat-icon>
+            </button>
+       
         </form>
     </div>
     <div id="end" *ngIf="isLoginIn" >
