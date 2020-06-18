@@ -35,22 +35,29 @@ export class ProfileEditSetComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<Playlist[]>) {
-    console.log(event)
+    
+    console.log('move', this.user)
+    this.userService.update(this.user, ['playlist_set_map'])
     moveItemInArray(this.playlists, event.previousIndex, event.currentIndex);
   }
 
   moveup(index:number){
     let newIndex = index -1 >=0?index-1:this.playlists.length-1;
     moveItemInArray(this.playlists, index, newIndex);
+    console.log('move', this.user)
+    this.userService.update(this.user, ['playlist_set_map'])
   }
 
   movedown(index:number){
     let newIndex = index + 1 < this.playlists.length?index + 1:0
     moveItemInArray(this.playlists, index, newIndex);
+    console.log('move', this.user)
+    this.userService.update(this.user, ['playlist_set_map'])
   }
 
   remove(index:number){
     this.playlists.splice(index, 1);
+    this.userService.update(this.user, ['playlist_set_map'])
   }
 
 }

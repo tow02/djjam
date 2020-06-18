@@ -81,6 +81,8 @@ export class ProfileEditComponent implements OnInit {
     const origin = {...this.sets[setIndex]};
     this.sets[setIndex] = this.sets[target];
     this.sets[target] = origin;
+    this.user.playlist_sets = this.sets.map(item => item.name);
+    this.userService.update(this.user, ['playlist_sets'])
   }
 
   moveUp(setIndex:number){
