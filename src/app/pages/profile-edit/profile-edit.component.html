@@ -14,13 +14,10 @@
     </section>
     <section class="end">
         <div class="container">
-            <button mat-icon-button [matMenuTriggerFor]="optionMenu">
-                <mat-icon *ngIf="!isOwner">share</mat-icon>
-                <mat-icon *ngIf="isOwner">more_vert</mat-icon>
-            </button>
+            <button mat-icon-button [matMenuTriggerFor]="optionMenu"><mat-icon>more_vert</mat-icon></button>
             <mat-menu #optionMenu="matMenu">
                 <button (click)="copy()"  mat-menu-item><mat-icon aria-hidden="false" aria-label="copy">file_copy</mat-icon> Copy Link</button>
-                <a [routerLink]="['/profile/edit']" mat-menu-item><mat-icon aria-hidden="false" aria-label="copy">create</mat-icon> Edit</a>
+                <a [routerLink]="['/profile']" mat-menu-item><mat-icon aria-hidden="false" aria-label="copy">visibility</mat-icon>  User view</a>
                 <!--<button  mat-menu-item><mat-icon aria-hidden="false" aria-label="Example home icon">thumb_up_alt</mat-icon> Facebook News Feed</button>
                 <button  mat-menu-item><mat-icon aria-hidden="false" aria-label="Example home icon">message</mat-icon> Messenger</button>-->
             </mat-menu>   
@@ -33,27 +30,35 @@
             <div class="first">
                 <h2>{{item.name}}</h2>
             </div>
-            <div class="end" *ngIf="!(item.playlists.length < SET_VIEW_LIMIT)">
-                <button [ngClass]="{'disabled':positions[i]>=0}" (click)="back(i)" mat-icon-button >
-                    <mat-icon>keyboard_arrow_left</mat-icon>
+            <div class="end" > 
+                <button (click)="moveDown(i)"  mat-icon-button >
+                    <mat-icon>keyboard_arrow_down</mat-icon>
                 </button>
-                <button [ngClass]="{'disabled':!canGoNext(i)}" (click)="next(i)" mat-icon-button >
-                    <mat-icon>keyboard_arrow_right</mat-icon>
+                <button  (click)="moveUp(i)"  mat-icon-button >
+                    <mat-icon>keyboard_arrow_up</mat-icon>
                 </button>
-                
+                <button (click)="edit(i)" mat-icon-button >
+                    <mat-icon>create</mat-icon>
+                </button>
             </div>
         </header>
         <mat-divider ></mat-divider>
-        <div class="container" >
+        <div class="empty" *ngIf="item.playlists.length == 0">
+            This set is empty please <a [routerLink]="['/publish']">publish</a> some playlists to make this work
+        </div>
+        <div  class="container" >
             <div class="wrap" id="set-{{i}}"  [ngClass]="{'lesser-than-6':(item.playlists.length < SET_VIEW_LIMIT)}">
                 <!-- Playlists-->
-                <article (click)="select(playlist)" *ngFor="let playlist of item.playlists" class="playlist">
+                <article (click)="edit(i)" [ngClass]="{'moved': isMoveAnimation[j]}" *ngFor="let playlist of item.playlists;let j = index" class="playlist">
                     <img src="{{playlist.imageUrl}}">
                     <h4>{{playlist.name}}</h4>
+                    
                 </article>
             </div>
         </div>
     </div>
-
+    <div class="options">
+        <a [routerLink]="['/setting']" mat-button color="primary">ADD A NEW SET</a>
+    </div>
 
 </section>

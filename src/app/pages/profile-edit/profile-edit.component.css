@@ -127,3 +127,24 @@ mat-icon, .mat-menu-item .mat-icon{
 .main header .end button.disabled mat-icon{
     color:#ffc21863;
 }
+
+.moved{
+    animation-name: just-moved;
+    animation-duration: 1s;
+
+}
+
+@keyframes just-moved{
+    from{
+        border:1px solid var(--main-color);
+    }
+
+    to{
+        border:1px solid rgba(0,0,0,0);
+    }
+}
+
+.main > .options{
+    padding-bottom:var(--main-padding);
+    text-align: center;;
+}

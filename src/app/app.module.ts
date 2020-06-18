@@ -22,6 +22,8 @@ import { MatIconModule} from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatStepperModule} from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatListModule} from '@angular/material/list';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { SideMenuComponent } from './side-menu/side-menu.component'
@@ -35,6 +37,9 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { SettingComponent } from './pages/setting/setting.component';
 import { PublishComponent } from './pages/publish/publish.component';
 import { SpotifyLoginComponent } from './pages/spotify-login/spotify-login.component';
+import { ProfileEditComponent } from './pages/profile-edit/profile-edit.component';
+import { ProfileEditSetComponent } from './pages/profile-edit-set/profile-edit-set.component';
+
 
 @NgModule({
   declarations: [
@@ -50,7 +55,9 @@ import { SpotifyLoginComponent } from './pages/spotify-login/spotify-login.compo
     ProfileComponent,
     SettingComponent,
     PublishComponent,
-    SpotifyLoginComponent
+    SpotifyLoginComponent,
+    ProfileEditComponent,
+    ProfileEditSetComponent
   ],
   imports: [
     
@@ -68,6 +75,8 @@ import { SpotifyLoginComponent } from './pages/spotify-login/spotify-login.compo
     MatRadioModule,
     MatSidenavModule,
     MatStepperModule,
+    MatListModule,
+    DragDropModule,
     MatAutocompleteModule,
     MatProgressSpinnerModule,
     SearchModule,
