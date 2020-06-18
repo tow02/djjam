@@ -94,6 +94,11 @@ export class ProfileEditComponent implements OnInit {
     this._move(setIndex, target);
   }
 
+  edit(setIndex:number){
+    console.log(this.sets[setIndex], this.userService.nameToSlug(this.sets[setIndex].name));
+    this.router.navigate(['/profile/edit', this.userService.nameToSlug(this.sets[setIndex].name)]);
+  }
+
   /*_move(setIndex:number, positionIndex:number, target:number){
     const origin = {...this.sets[setIndex].playlists[positionIndex]}
     this.sets[setIndex].playlists[positionIndex ] = this.sets[setIndex].playlists[target]

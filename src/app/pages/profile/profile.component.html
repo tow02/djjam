@@ -14,7 +14,9 @@
     </section>
     <section class="end">
         <div class="container">
-            <button mat-icon-button [matMenuTriggerFor]="optionMenu"><mat-icon>share</mat-icon></button>
+            <button mat-icon-button [matMenuTriggerFor]="optionMenu">
+                <mat-icon>share</mat-icon>
+            </button>
             <mat-menu #optionMenu="matMenu">
                 <button (click)="copy()"  mat-menu-item><mat-icon aria-hidden="false" aria-label="copy">file_copy</mat-icon> Copy Link</button>
                 <!--<button  mat-menu-item><mat-icon aria-hidden="false" aria-label="Example home icon">thumb_up_alt</mat-icon> Facebook News Feed</button>
