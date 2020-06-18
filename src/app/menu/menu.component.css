@@ -8,11 +8,13 @@ nav{
     left:0;
     z-index:1030;
     display: flex;
+    justify-content: space-between;
 }
 
 #start{
     flex-direction: row;
     display: flex;
+    width:calc(200px - var(--main-padding));
 }
 
 @media only screen and (min-width: 800px){
@@ -23,7 +25,9 @@ nav{
 
 #center{
     align-items: center;
+    max-width: 728px;
     flex:1;
+    flex-basis: 1e-9px;
     display: flex;
     
 }
@@ -38,12 +42,13 @@ input{
 }
 #center form{
     flex:1;
-    margin-left:40px;
 }
 
 #end{
     justify-content: flex-end;
     align-items: center;
+    
+    display: flex;
 }
 
 .mat-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button{
