@@ -15,10 +15,12 @@
     <section class="end">
         <div class="container">
             <button mat-icon-button [matMenuTriggerFor]="optionMenu">
-                <mat-icon>share</mat-icon>
+                <mat-icon *ngIf="!isOwner">share</mat-icon>
+                <mat-icon *ngIf="isOwner">more_vert</mat-icon>
             </button>
             <mat-menu #optionMenu="matMenu">
                 <button (click)="copy()"  mat-menu-item><mat-icon aria-hidden="false" aria-label="copy">file_copy</mat-icon> Copy Link</button>
+                <a [routerLink]="['/profile/edit']" mat-menu-item><mat-icon aria-hidden="false" aria-label="copy">create</mat-icon> Edit</a>
                 <!--<button  mat-menu-item><mat-icon aria-hidden="false" aria-label="Example home icon">thumb_up_alt</mat-icon> Facebook News Feed</button>
                 <button  mat-menu-item><mat-icon aria-hidden="false" aria-label="Example home icon">message</mat-icon> Messenger</button>-->
             </mat-menu>   

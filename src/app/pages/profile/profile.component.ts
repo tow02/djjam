@@ -37,14 +37,17 @@ export class ProfileComponent implements OnInit {
   sets:Array<ProfilePlaylistSet> = []
   positions:Array<number> = [];
   isLogin = false;
+  isOwner = false;
   uid:string;
   user:User;
   async ngOnInit() {
     if(!this.uid){
       this.user = await this.userService.get();
       this.uid = await this.userService.getUserId();
+      this.isOwner = true;
     }else{
       this.user = await this.userService.get(this.uid);
+
     }
     
     console.log(this.user)
