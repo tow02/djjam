@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { SearchService } from '../search.service'
+import { SearchService, FilterOptions } from '../search.service'
 import { TrackService } from '../../services/track.service'
 import { ActivatedRoute } from '@angular/router'
 import { ElasticSearch, ElasticTrack } from "../../models/Elastic"
@@ -19,6 +19,7 @@ export class IndexComponent implements  OnInit {
   isFilter = false;
   from = 0;
   query:string;
+  currentFilter:FilterOptions = {};
 
   constructor(private search:SearchService, private route:ActivatedRoute, private authen:AuthenticationService, private trackService:TrackService) { 
     this.route.params.subscribe(p => {
@@ -30,8 +31,10 @@ export class IndexComponent implements  OnInit {
   }
 
   async init(query:string){
+
     this.query = query
-    this.searchResult = await this.search.query(this.query, this.from);
+    //this.searchResult = await this.search.query(this.query, this.from,);
+    this.searchResult = await this.search.search(this.query, this.from, environment.search_size, this.currentFilter);
     this.elasticTracks = this.searchResult.hits.hits.map(hit => hit._source);
     console.log('init!!', this.elasticTracks)
   }
@@ -44,11 +47,19 @@ export class IndexComponent implements  OnInit {
     
     }  
 
+    updateFilter(filter:FilterOptions){
+      this.currentFilter = filter;
+      this.elasticTracks = [];
+      console.log('udpate filter', filter)
+      this.init(this.query);
+    }
 
   async loadMore(){
     this.isSubLoading = true;
     this.from += environment.search_size;
-    this.searchResult = await this.search.query(this.query, this.from);
+    
+    //this.searchResult = await this.search.query(this.query, this.from);
+    this.searchResult = await  this.search.search(this.query, this.from, environment.search_size, this.currentFilter);
     this.elasticTracks = this.elasticTracks.concat( this.searchResult.hits.hits.map(hit => hit._source) );
     this.isSubLoading = false;
     console.log("done loading");

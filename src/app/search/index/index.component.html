@@ -11,39 +11,7 @@
             </button>
         </div>
     </section>
-    <section *ngIf="isFilter" class="filter">
-        <div>
-            <h4>TYPE</h4>
-            <mat-divider></mat-divider>
-            <ul>
-                <li>MODERN</li>
-                <li class="active">CLASSIC</li>
-                <li>BLUES</li>
-                <li>NEWS ORLEANS</li>
-                <li>SOUL</li>
-            </ul>
-        </div>
-        <div>
-            <h4>TEMPO</h4>
-            <mat-divider></mat-divider>
-            <ul>
-                <li>SUPER SLOW</li>
-                <li>SLOW</li>
-                <li class="active">MEDIUM</li>
-                <li>FAST</li>
-                <li>SUPER FAST</li>
-            </ul>
-        </div>
-        <div>
-            <h4>DURATION</h4>
-            <mat-divider></mat-divider>
-            <ul>
-                <li>SHORT (< 3 minutes)</li>
-                <li class="active">MEDIUM (< 4 minutes)</li>
-                <li>LONG (> 4 minutes)</li>
-            </ul>
-        </div>
-    </section>
+   <search-filter (onUpdateFilter)="updateFilter($event)" *ngIf="isFilter"></search-filter>
 
     <mat-divider></mat-divider>
 </div>

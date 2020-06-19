@@ -13,7 +13,7 @@ export interface FilterOptions{
     from?:number,
     to?:number
   },
-  duration:{
+  duration?:{
     from?:number,
     to?:number
   }
@@ -48,7 +48,17 @@ export class SearchService {
 
   async search(query:string,  from:number =0, size:number = 20, options?:FilterOptions){
     let q = query
+    console.log('option from search', options)
     if(options){
+      console.log('have options')
+      const uid =  (await this.authen.auth.currentUser).uid ;
+      q = "";
+      let terms = query.split(' ');
+      terms.filter(item => item != '' ).forEach((term, index) => {  
+          if(index > 0)
+            q += ' AND '
+          q += `(artists:${term} OR name:${term} OR tags:${term} OR (personal_tags:${term}^100 AND personal_tags:${uid} ))`
+      })
       if(options.tempo){
         const from = options.tempo.from?options.tempo.from:0;
         const to = options.tempo.to?options.tempo.to:999;
@@ -60,7 +70,7 @@ export class SearchService {
         q += ` duration:[${from} TO ${to}]`;
       }
       if(options.type){
-        const uid =  (await this.authen.auth.currentUser).uid ;
+        
         Object.keys(options.type).forEach((typeName, index) => {
           if(index > 0)
             q += " AND"
@@ -70,6 +80,7 @@ export class SearchService {
           q += `(tags:${typeName})`
         })
       }
+      console.log('after', q);
     }
     return this.queryTrack(q, from, size);
     
