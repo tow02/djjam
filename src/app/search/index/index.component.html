@@ -5,39 +5,42 @@
             <p>Showing Songs for <span color="primary">{{query}}</span></p>
         </div>
         <div class="second">
-            <button mat-button>
+            <button (click)="isFilter = !isFilter" mat-button [ngClass]="{'primary':isFilter}">
                 <mat-icon>tune</mat-icon>
                 FILTER
             </button>
         </div>
     </section>
-    <section class="filter">
+    <section *ngIf="isFilter" class="filter">
         <div>
-            <h3>TYPE</h3>
+            <h4>TYPE</h4>
+            <mat-divider></mat-divider>
             <ul>
                 <li>MODERN</li>
-                <li>CLASSIC</li>
+                <li class="active">CLASSIC</li>
                 <li>BLUES</li>
                 <li>NEWS ORLEANS</li>
                 <li>SOUL</li>
             </ul>
         </div>
         <div>
-            <h3>TEMPO</h3>
+            <h4>TEMPO</h4>
+            <mat-divider></mat-divider>
             <ul>
                 <li>SUPER SLOW</li>
                 <li>SLOW</li>
-                <li>MEDIUM</li>
+                <li class="active">MEDIUM</li>
                 <li>FAST</li>
                 <li>SUPER FAST</li>
             </ul>
         </div>
         <div>
-            <h3>DURATION</h3>
+            <h4>DURATION</h4>
+            <mat-divider></mat-divider>
             <ul>
-                <li>SHORT (< 2 minutes)</li>
-                <li>MEDIUM ( < 4 minutes)</li>
-                <li>LONG ( > 4 minutes)</li>
+                <li>SHORT (< 3 minutes)</li>
+                <li class="active">MEDIUM (< 4 minutes)</li>
+                <li>LONG (> 4 minutes)</li>
             </ul>
         </div>
     </section>

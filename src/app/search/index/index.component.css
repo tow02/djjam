@@ -26,12 +26,25 @@ h3{
     
 }
 
+.filter h4{
+    color:var(--main-color);
+    letter-spacing: 0.1em;
+}
+
 .filter div{
     flex-shrink: 1;
+    flex-grow: 1;
     flex-basis: 15em;
 }
 
 .filter ul{
     list-style-type: none;   
     padding-inline-start: 0;
+    color:#b4b5b5;
+    font-size:0.8em;
+    letter-spacing: 0.2em;
+}
+
+.filter ul li.active{
+    color:var(--main-color);
 }

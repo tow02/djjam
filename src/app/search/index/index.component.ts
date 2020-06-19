@@ -16,7 +16,7 @@ export class IndexComponent implements  OnInit {
   searchResult:ElasticSearch;
   elasticTracks:Array<ElasticTrack>;
   isSubLoading = false;
-  
+  isFilter = false;
   from = 0;
   query:string;
 

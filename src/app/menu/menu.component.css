@@ -92,3 +92,7 @@ div.warning a{
 mat-icon, .mat-menu-item .mat-icon{
     color:var(--main-color);
 }
+
+.search-btn{
+    background-color: #c1c1c1;
+}
