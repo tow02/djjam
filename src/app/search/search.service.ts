@@ -49,8 +49,8 @@ export class SearchService {
   async search(query:string,  from:number =0, size:number = 20, options?:FilterOptions){
     let q = query
     console.log('option from search', options)
-    if(options){
-      console.log('have options')
+    if(options && Object.keys(options).length > 0) {
+      console.log('have options', options)
       const uid =  (await this.authen.auth.currentUser).uid ;
       q = "";
       let terms = query.split(' ');
@@ -62,26 +62,36 @@ export class SearchService {
       if(options.tempo){
         const from = options.tempo.from?options.tempo.from:0;
         const to = options.tempo.to?options.tempo.to:999;
+        if(terms.length > 0)
+          q += " AND ";
         q += ` bpm:[${from} TO ${to}]`;
       }
       if(options.duration){
         const from = options.duration.from?options.duration.from:0;
         const to = options.duration.to?options.duration.to:600000
+        if(terms.length > 0 || options.tempo)
+          q += " AND ";
         q += ` duration:[${from} TO ${to}]`;
       }
       if(options.type){
-        
+        let t = ""
         Object.keys(options.type).forEach((typeName, index) => {
           if(index > 0)
-            q += " AND"
+            t += " AND"
           if(uid)
-            q += `(tags:${typeName} OR (personal_tags:${typeName}^100 AND personal_tags:${uid} ))`
+            t += `(tags:${typeName} OR (personal_tags:${typeName}^100 AND personal_tags:${uid} ))`
           else
-          q += `(tags:${typeName})`
+          t += `(tags:${typeName})`
         })
+        if(terms.length > 0 || options.tempo || options.duration)
+          q = ` AND ${t}`
+        else
+          q = t;
+        
       }
       console.log('after', q);
-    }
+    }//else
+      //q = transformHumanQueryToElasticQuery(query, (await this.authen.auth.currentUser).uid );
     return this.queryTrack(q, from, size);
     
   }
