@@ -20,3 +20,8 @@ h3{
     justify-content: flex-end;
     display: flex;
 }
+
+button.primary{
+    background-color: var(--main-color);
+    color:var(--main-bg-color);
+}

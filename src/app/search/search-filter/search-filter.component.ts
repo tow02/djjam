@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FilterOptions } from "../search.service"
 
 
@@ -11,6 +11,9 @@ export class SearchFilterComponent implements OnInit {
 
   @Output()
   onUpdateFilter:EventEmitter<FilterOptions> = new EventEmitter<FilterOptions>();
+
+  @Input()
+  inputFilter:FilterOptions;
 
   constructor() { }
 
@@ -90,7 +93,14 @@ export class SearchFilterComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.TYPES)
+    if(this.inputFilter){
+      if(this.inputFilter.tempo)
+        this.TEMPOS.find(item => item.from == this.inputFilter.tempo.from && item.to == this.inputFilter.tempo.to).selected = true
+      if(this.inputFilter.duration)
+        this.DURATIONS.find(item => item.from == this.inputFilter.duration.from && item.to == this.inputFilter.duration.to).selected = true
+      if(this.inputFilter.type)
+        Object.keys(this.inputFilter.type).forEach(typeKey => this.TYPES.find(item => item.value == typeKey).selected = true);
+    }
   }
 
 }

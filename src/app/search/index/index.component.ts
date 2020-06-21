@@ -1,11 +1,13 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Location } from '@angular/common'
 import { SearchService, FilterOptions } from '../search.service'
+import { Router } from '@angular/router'
 import { TrackService } from '../../services/track.service'
 import { ActivatedRoute } from '@angular/router'
 import { ElasticSearch, ElasticTrack } from "../../models/Elastic"
 import { environment } from "../../../environments/environment";
 import { AuthenticationService  } from "../../services/authentication.service"
+import * as queryString from 'query-string'
 
 @Component({
   selector: 'app-index',
@@ -21,23 +23,53 @@ export class IndexComponent implements  OnInit {
   from = 0;
   query:string;
   currentFilter:FilterOptions = {};
+  loadFilter:FilterOptions;
 
-  constructor(private search:SearchService, private route:ActivatedRoute, private authen:AuthenticationService, private trackService:TrackService, private location:Location) { 
+  constructor(private search:SearchService, private route:ActivatedRoute, private authen:AuthenticationService, private trackService:TrackService, private location:Location, private router:Router) { 
     this.route.params.subscribe(p => {
-      
-      console.log('change in query?')
       this.init(p['query']);
     })
     
   }
 
   async init(query:string){
-
-    this.query = query
+    this.paramsToFilter();
+    this.query = query;
     //this.searchResult = await this.search.query(this.query, this.from,);
     this.searchResult = await this.search.search(this.query, this.from, environment.search_size, this.currentFilter);
     this.elasticTracks = this.searchResult.hits.hits.map(hit => hit._source);
     console.log('init!!', this.elasticTracks)
+  }
+
+  paramsToFilter(){
+    let query = this.router.url
+    console.log('is parsing', query);
+    let t = query.split("?");
+    if(!this.loadFilter && t.length > 1){
+      console.log('parse', t[1])
+      let resultParse = queryString.parse(t[1], {arrayFormat: 'bracket'});
+
+      this.loadFilter = {};
+      this.isFilter = true;
+      
+      if(resultParse['type']){
+        this.loadFilter.type = {};
+        (resultParse['type'] as Array<string>).forEach(typeName => this.loadFilter.type[typeName] = typeName);
+      }
+        
+      if(resultParse['duration[from]'])
+        this.loadFilter.duration = {
+          from:Number(resultParse['duration[from]']),
+          to:Number(resultParse['duration[to]'])
+        };
+      if(resultParse['tempo[from]'])
+        this.loadFilter.tempo = {
+          from:Number(resultParse['tempo[from]']),
+          to:Number(resultParse['tempo[to]'])
+        };
+      this.currentFilter = {...this.loadFilter}
+    }
+
   }
 
   ngAfterContentInit(){
@@ -45,7 +77,7 @@ export class IndexComponent implements  OnInit {
   }
 
     async ngOnInit(){
-    
+      
     }  
 
     updateFilter(filter:FilterOptions){

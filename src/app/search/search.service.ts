@@ -53,25 +53,25 @@ export class SearchService {
       console.log('have options', options)
       const uid =  (await this.authen.auth.currentUser).uid ;
       q = "";
+      let params:Array<string> = [];
       let terms = query.split(' ');
+    
       terms.filter(item => item != '' ).forEach((term, index) => {  
           if(index > 0)
             q += ' AND '
           q += `(artists:${term} OR name:${term} OR tags:${term} OR (personal_tags:${term}^100 AND personal_tags:${uid} ))`
       })
+      if(terms.length > 0)
+        params.push(q);
       if(options.tempo){
         const from = options.tempo.from?options.tempo.from:0;
         const to = options.tempo.to?options.tempo.to:999;
-        if(terms.length > 0)
-          q += " AND ";
-        q += ` bpm:[${from} TO ${to}]`;
+        params.push(` bpm:[${from} TO ${to}]`);
       }
       if(options.duration){
         const from = options.duration.from?options.duration.from:0;
         const to = options.duration.to?options.duration.to:600000
-        if(terms.length > 0 || options.tempo)
-          q += " AND ";
-        q += ` duration:[${from} TO ${to}]`;
+        params.push(` duration:[${from} TO ${to}]`);
       }
       if(options.type){
         let t = ""
@@ -81,14 +81,12 @@ export class SearchService {
           if(uid)
             t += `(tags:${typeName} OR (personal_tags:${typeName}^100 AND personal_tags:${uid} ))`
           else
-          t += `(tags:${typeName})`
+            t += `(tags:${typeName})`
+
         })
-        if(terms.length > 0 || options.tempo || options.duration)
-          q = ` AND ${t}`
-        else
-          q = t;
-        
+        params.push(t)
       }
+      q = params.join(" AND ");
       console.log('after', q);
     }//else
       //q = transformHumanQueryToElasticQuery(query, (await this.authen.auth.currentUser).uid );

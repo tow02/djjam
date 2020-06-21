@@ -42,6 +42,8 @@ export class MenuComponent implements OnInit {
         if(resultMatch){
           console.log(resultMatch)
         this.q =  decodeURIComponent(resultMatch[0].split('/')[1]);
+        //for params
+        this.q = this.q.split("?")[0];
         }
       }
         

@@ -11,7 +11,7 @@
             </button>
         </div>
     </section>
-   <search-filter (onUpdateFilter)="updateFilter($event)" *ngIf="isFilter"></search-filter>
+   <search-filter [inputFilter]="loadFilter" (onUpdateFilter)="updateFilter($event)" *ngIf="isFilter"></search-filter>
 
     <mat-divider></mat-divider>
 </div>
