@@ -19,6 +19,9 @@
     </mat-list-item>
     
   </mat-list>
+<div *ngIf="elasticTracks && elasticTracks.length == 0">
+  0 Results
+</div>
 <div *ngIf="!elasticTracks">
   Loading..
 </div>

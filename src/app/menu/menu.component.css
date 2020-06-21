@@ -8,11 +8,13 @@ nav{
     left:0;
     z-index:1030;
     display: flex;
+    justify-content: space-between;
 }
 
 #start{
     flex-direction: row;
     display: flex;
+    width:calc(200px - var(--main-padding));
 }
 
 @media only screen and (min-width: 800px){
@@ -23,7 +25,9 @@ nav{
 
 #center{
     align-items: center;
+    max-width: 728px;
     flex:1;
+    flex-basis: 1e-9px;
     display: flex;
     
 }
@@ -31,19 +35,26 @@ nav{
 input{
     line-height: 30px;;
     background: url('https://djjam.app/assets/imgs/search-icon.png') no-repeat scroll 7px 7px;
-    width: calc(100% - 30px - var(--main-padding));
+    width: calc(100% - 100px - var(--main-padding));
     padding-left: 30px;
     background-color: white;
     border:0px;
 }
 #center form{
     flex:1;
-    margin-left:40px;
+    display:flex;
+}
+
+#center form button{
+    line-height: 32px;
+    border-radius: 0;
 }
 
 #end{
     justify-content: flex-end;
     align-items: center;
+    
+    display: flex;
 }
 
 .mat-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button{
@@ -80,4 +91,8 @@ div.warning a{
 
 mat-icon, .mat-menu-item .mat-icon{
     color:var(--main-color);
+}
+
+.search-btn{
+    background-color: #c1c1c1;
 }

@@ -1,10 +1,13 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { SearchService } from '../search.service'
+import { Location } from '@angular/common'
+import { SearchService, FilterOptions } from '../search.service'
+import { Router } from '@angular/router'
 import { TrackService } from '../../services/track.service'
 import { ActivatedRoute } from '@angular/router'
 import { ElasticSearch, ElasticTrack } from "../../models/Elastic"
 import { environment } from "../../../environments/environment";
 import { AuthenticationService  } from "../../services/authentication.service"
+import * as queryString from 'query-string'
 
 @Component({
   selector: 'app-index',
@@ -16,24 +19,57 @@ export class IndexComponent implements  OnInit {
   searchResult:ElasticSearch;
   elasticTracks:Array<ElasticTrack>;
   isSubLoading = false;
-  
+  isFilter = false;
   from = 0;
   query:string;
+  currentFilter:FilterOptions = {};
+  loadFilter:FilterOptions;
 
-  constructor(private search:SearchService, private route:ActivatedRoute, private authen:AuthenticationService, private trackService:TrackService) { 
+  constructor(private search:SearchService, private route:ActivatedRoute, private authen:AuthenticationService, private trackService:TrackService, private location:Location, private router:Router) { 
     this.route.params.subscribe(p => {
-      
-      console.log('change in query?')
       this.init(p['query']);
     })
     
   }
 
   async init(query:string){
-    this.query = query
-    this.searchResult = await this.search.query(this.query, this.from);
+    this.paramsToFilter();
+    this.query = query;
+    //this.searchResult = await this.search.query(this.query, this.from,);
+    this.searchResult = await this.search.search(this.query, this.from, environment.search_size, this.currentFilter);
     this.elasticTracks = this.searchResult.hits.hits.map(hit => hit._source);
     console.log('init!!', this.elasticTracks)
+  }
+
+  paramsToFilter(){
+    let query = this.router.url
+    console.log('is parsing', query);
+    let t = query.split("?");
+    if(!this.loadFilter && t.length > 1){
+      console.log('parse', t[1])
+      let resultParse = queryString.parse(t[1], {arrayFormat: 'bracket'});
+
+      this.loadFilter = {};
+      this.isFilter = true;
+      
+      if(resultParse['type']){
+        this.loadFilter.type = {};
+        (resultParse['type'] as Array<string>).forEach(typeName => this.loadFilter.type[typeName] = typeName);
+      }
+        
+      if(resultParse['duration[from]'])
+        this.loadFilter.duration = {
+          from:Number(resultParse['duration[from]']),
+          to:Number(resultParse['duration[to]'])
+        };
+      if(resultParse['tempo[from]'])
+        this.loadFilter.tempo = {
+          from:Number(resultParse['tempo[from]']),
+          to:Number(resultParse['tempo[to]'])
+        };
+      this.currentFilter = {...this.loadFilter}
+    }
+
   }
 
   ngAfterContentInit(){
@@ -41,14 +77,33 @@ export class IndexComponent implements  OnInit {
   }
 
     async ngOnInit(){
-    
+      
     }  
 
+    updateFilter(filter:FilterOptions){
+      this.currentFilter = filter;
+      delete this.elasticTracks 
+      console.log('udpate filter', filter)
+      this.init(this.query);
+      let params:Array<string> = [];
+      if(filter.type)
+        params.push(Object.keys(filter.type).map(key => `type[]=${key}`).join('&'))
+      if(filter.duration)
+        params.push(`duration[from]=${filter.duration.from}&duration[to]=${filter.duration.to}`);
+      if(filter.tempo)
+        params.push(`tempo[from]=${filter.tempo.from}&tempo[to]=${filter.tempo.to}`);
+      if(params.length > 0)
+        this.location.replaceState(`/search/${this.query}`, params.join('&'));
+      else
+        this.location.replaceState(`/search/${this.query}`)
+    }
 
   async loadMore(){
     this.isSubLoading = true;
     this.from += environment.search_size;
-    this.searchResult = await this.search.query(this.query, this.from);
+    
+    //this.searchResult = await this.search.query(this.query, this.from);
+    this.searchResult = await  this.search.search(this.query, this.from, environment.search_size, this.currentFilter);
     this.elasticTracks = this.elasticTracks.concat( this.searchResult.hits.hits.map(hit => hit._source) );
     this.isSubLoading = false;
     console.log("done loading");

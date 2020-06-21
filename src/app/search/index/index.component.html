@@ -1,2 +1,18 @@
-<p *ngIf="searchResult">Search result of "{{query}}" found {{searchResult.hits.total}} tracks <a href="#">Load all at once</a></p>
+<!--<p *ngIf="searchResult">Search result of "{{query}}" found {{searchResult.hits.total}} tracks <a href="#">Load all at once</a></p>-->
+<div class="controls">
+    <section class="container">
+        <div class="first" >
+            <p>Showing Songs for <span color="primary">{{query}}</span></p>
+        </div>
+        <div class="second">
+            <button (click)="isFilter = !isFilter" mat-button [ngClass]="{'primary':isFilter}">
+                <mat-icon>tune</mat-icon>
+                FILTER
+            </button>
+        </div>
+    </section>
+   <search-filter [inputFilter]="loadFilter" (onUpdateFilter)="updateFilter($event)" *ngIf="isFilter"></search-filter>
+
+    <mat-divider></mat-divider>
+</div>
 <elastic-tracks [elasticTracks]="elasticTracks"  (onPause)="pause()" (onPlay)="play($event)" (onSelected)="select($event)" (onDeselected)="deSelect()" ></elastic-tracks>
