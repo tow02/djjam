@@ -20,10 +20,10 @@
     </section>
     <h2>Community playlists</h2>
     <section class="playlists">
-        <article (click)="select(item)" *ngFor="let item of communityPlaylists">
-            <img src="{{item.imageUrl}}" />
-            <h4>{{item.name}}</h4>
-            <p>{{item.by.name}} <span class="city">{{item.by.city}}</span></p>
+        <article  *ngFor="let item of communityPlaylists">
+            <img (click)="select(item)" src="{{item.imageUrl}}" />
+            <h4 (click)="select(item)" >{{item.name}}</h4>
+            <p><a [routerLink]="['/users',item.by.id]">{{item.by.name}}</a>&nbsp;<span class="city">{{item.by.city}}</span></p>
         </article>
     </section>
     

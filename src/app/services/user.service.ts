@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, DocumentReference } from '@angular/fire/firestore'
+import { AngularFirestore, DocumentReference, DocumentData } from '@angular/fire/firestore'
 import { SpotifyPlaylist } from "../services/spotify.interface"
 import { AuthenticationService } from "./authentication.service"
 import { Playlist } from "../models/Track"
 import * as firebase from 'firebase'
 
 export interface User{
+  id?:string,
   name?:string,
     picture?:string,
     level:number,
@@ -40,7 +41,7 @@ export class UserService {
   }
 
   async get(userReference?:DocumentReference| string){
-    let snap;
+    let snap:DocumentData;
     if(userReference && typeof(userReference) === "string")
       snap = await this.firestore.collection('user').doc(userReference).get().toPromise();
     else if(userReference){
@@ -52,6 +53,7 @@ export class UserService {
     
     let u =  {
       ...snap.data(),
+      id:snap.id  
     } as User
     
     return u;

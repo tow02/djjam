@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
 
   async ngOnInit() {
     this.communityPlaylists = await this.trackService.getCommunityPlaylists()
+   
   }
 
   logout(){
