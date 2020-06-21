@@ -7,6 +7,7 @@ import { ChartsModule } from 'ng2-charts';
 import { TempoGraphComponent } from './tempo-graph/tempo-graph.component';
 import { TempoLineGraphComponent } from './tempo-line-graph/tempo-line-graph.component';
 import { TagsPieComponent } from './tags-pie/tags-pie.component';
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ArtistsCharacterComponent } from './artists-character/artists-character.component';
 import { TracksControllerComponent } from './tracks-controller/tracks-controller.component';
 
@@ -16,6 +17,7 @@ import { TracksControllerComponent } from './tracks-controller/tracks-controller
   imports: [
     CommonModule,
     MatTableModule,
+    MatProgressSpinnerModule,
     ChartsModule,
     PlaylistRoutingModule
   ]

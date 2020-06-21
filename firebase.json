@@ -19,6 +19,26 @@
           "destination": "/index.html"
         }
       ]
+    },
+    {
+      "site": "djjam-develop",
+      "target": "djjam-develop",
+      "public": "dist/djjam-v2",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source":"/api/users",
+          "function":"user"
+        },
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
     }
   ]
 }

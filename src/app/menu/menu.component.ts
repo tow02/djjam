@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { AuthenticationService } from "../services/authentication.service"
 import { Router, NavigationEnd } from '@angular/router';
 
@@ -15,10 +15,15 @@ export class MenuComponent implements OnInit {
   q:string;
   isLoginIn = false;
   isVerify = false;
-  
+
+  @Input()
+  isOpen = false;
 
   @Output()
   onToggleMenu:EventEmitter<void> = new EventEmitter<void>();
+
+  @Output()
+  onNavigateProfile:EventEmitter<void> = new EventEmitter<void>();
 
   ngOnInit(): void {
     this.authen.auth.authState.subscribe(user => {
@@ -37,10 +42,18 @@ export class MenuComponent implements OnInit {
         if(resultMatch){
           console.log(resultMatch)
         this.q =  decodeURIComponent(resultMatch[0].split('/')[1]);
+        //for params
+        this.q = this.q.split("?")[0];
         }
       }
         
     })
+  }
+
+  navigateProfile(path:Array<any>){
+    this.onNavigateProfile.emit();
+    this.router.navigate(path);
+
   }
 
   toggle(){

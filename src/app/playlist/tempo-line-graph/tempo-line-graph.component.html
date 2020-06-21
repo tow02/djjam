@@ -11,5 +11,5 @@
                 (chartClick)="chartClicked($event)"></canvas>
 </div>
 <div *ngIf="playlistEvent.status !== 'done'">
-    Loading...
+    <mat-spinner></mat-spinner>
 </div>

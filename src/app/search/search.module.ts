@@ -13,10 +13,11 @@ import {MatIconModule} from '@angular/material/icon'
 import { SecsToTimePipe } from "../pipes/secstotime.pipe"
 
 import { TrackService } from '../services/track.service'
-import { AuthenticationService } from "../services/authentication.service"
+import { AuthenticationService } from "../services/authentication.service";
+import { SearchFilterComponent } from './search-filter/search-filter.component'
 
 @NgModule({
-  declarations: [SearchboxComponent, IndexComponent, ElasticTracksComponent, SecsToTimePipe],
+  declarations: [SearchboxComponent, IndexComponent, ElasticTracksComponent, SecsToTimePipe, SearchFilterComponent],
   imports: [
     CommonModule,
     FormsModule,
