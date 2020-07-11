@@ -41,7 +41,7 @@ export class SideMenuComponent implements OnInit {
   }
 
   spotifyConnnect(){
-    this.spotifyService.authen();
+    this.spotifyService.authen(true);
   }
 
   navigate(){
