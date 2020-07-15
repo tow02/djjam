@@ -79,7 +79,7 @@ export class TempoLineGraphComponent implements OnChanges {
   chartHovered(e){
     
     if(e.active && e.active.length >0)
-      this.customToolTips = this.playlistEvent.playlist.tracks.items[e.active[0]._index+1].track.name + ` (${this.spotifyService._processSpotifyTrackToBpm(this.playlistEvent.playlist.tracks.items[e.active[0]._index+1], this.playlistEvent.djjamTracks, this.playlistEvent.audioFeatures)})`
+      this.customToolTips = this.playlistEvent.playlist.tracks.items[e.active[0]._index].track.name + ` (${this.spotifyService._processSpotifyTrackToBpm(this.playlistEvent.playlist.tracks.items[e.active[0]._index], this.playlistEvent.djjamTracks, this.playlistEvent.audioFeatures)})`
       
   }
 
