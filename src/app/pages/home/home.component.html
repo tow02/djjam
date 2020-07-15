@@ -5,7 +5,7 @@
 </div>
 
 <section class="content">
-    <h2>Staff picks</h2>
+    <h2 *ngIf="staffPicks && staffPicks.length > 0">Staff picks</h2>
     <section class="playlists">
         <article *ngFor="let item of staffPicks">
             <img (click)="selectStaffPick(item)" src="{{item.Cover[0].url}}" />
