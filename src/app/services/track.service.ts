@@ -1,7 +1,9 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { AngularFirestore, DocumentReference } from '@angular/fire/firestore'
+import { environment } from "../../environments/environment"
 import { UserService } from "./user.service"
 import { Track } from "../models/Track"
+import { env } from 'process';
 
 export interface TrackEvent{
   track:Track,
@@ -65,7 +67,7 @@ export class TrackService {
 
   //fucking expensive loader
   async getCommunityPlaylists(){
-    let snap = await this.firestore.collection('community_playlist').get().toPromise()
+    let snap = await this.firestore.collection('community_playlist', ref => ref.orderBy('created', 'desc')).get().toPromise()
     return Promise.all( snap.docs.map(doc => doc.data() as {
       by:DocumentReference,
       id:string,
@@ -73,6 +75,19 @@ export class TrackService {
       name:string
     }).map(async (item )=> ({...item, by:(await this.userService.get(item.by))})));
     
+  }
+
+  async getStaffPicks(){
+    return fetch(`${environment.api_url}/staffPicks`).then(res => res.json()).then(res =>  res as Array<{
+      "Name":string,
+      "Playlist ID":string,
+      "Notes":string,
+      "Cover":Array<{
+        url:string
+      }>,
+      "DJ Name":string,
+      "DJ ID":string
+    }>);  
   }
 
 
