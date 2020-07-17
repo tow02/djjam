@@ -9,7 +9,21 @@
 }
 .web-player.active{
     visibility: visible;
-    bottom: 0;
+    bottom: 0px;
+}
+.options{
+    position: fixed;
+    left: 0;
+    right:0;
+    bottom: -100vh;
+    height:20px;
+    z-index: 1030;
+    text-align: right;
+}
+.options.active{
+    bottom: 50px;;
+    visibility: visible;
+    
 }
 
 .aplayer {
