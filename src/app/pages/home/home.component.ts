@@ -14,9 +14,14 @@ export class HomeComponent implements OnInit {
   constructor(private auth:AuthenticationService, private router:Router, private trackService:TrackService) { }
 
   communityPlaylists:Array<any>
-
+  staffPicks:Array<any>;
   async ngOnInit() {
-    this.communityPlaylists = await this.trackService.getCommunityPlaylists()
+    this.trackService.getStaffPicks().then(items => {
+      this.staffPicks = items
+      
+    });
+    this.trackService.getCommunityPlaylists().then(items => this.communityPlaylists = items )
+   
   }
 
   logout(){
@@ -26,6 +31,10 @@ export class HomeComponent implements OnInit {
 
   select(item){
     this.router.navigate(['/playlist', item.id]);
+  }
+
+  selectStaffPick(item){
+    this.router.navigate(['/playlist', item['Playlist ID']]);
   }
 
 

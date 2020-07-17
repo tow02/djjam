@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TrackService, TrackEvent } from "../services/track.service"
+import { SpotifyService } from "../services/spotify.service"
 import APlayer from 'aplayer';
+import { Track } from '../models/Track';
 
 
 @Component({
@@ -13,9 +15,71 @@ export class PlayerComponent implements OnInit {
   ap;
   isActive =false;
   isPlaying = false;
+  isSpotifyPlaying = false;
   currentPlayingId:string;
-  constructor(private trackService:TrackService) { 
+
+  constructor(private trackService:TrackService, private spotifyService:SpotifyService) { 
   
+  }
+
+  playPreviewTrack(e:TrackEvent){
+    if(this.isSpotifyPlaying)
+      this.spotifyService.pauseTrack();
+    this.isActive = true;
+    let track = e.track;
+    
+    if(e.action == 'play' || e.action == 'select')
+      if(this.isPlaying){
+        this.ap.pause();
+        
+      }
+
+    if(e.action == "play"){
+      this.ap =  new APlayer({
+        container: document.getElementById('aplayer'),
+        audio:[{
+          name: track.name,
+          artist: track.artists.map(a => a.name).join(', '),
+          url: track.preview_url,
+          cover: track.album.images[0].url,
+          id:track.id
+      }],
+        loop:'none'
+      })
+      if(this.currentPlayingId != e.track.id){
+        this.ap.skipForward();
+      }
+      console.log('attemp to play');
+        this.ap.play()
+        this.isPlaying = true;
+        this.currentPlayingId = e.track.id;
+    }
+      
+    if(e.action == "pause" ){
+      this.ap.pause();
+      this.isPlaying = false;
+    } 
+    if(e.action == 'deselect')
+        this.isActive = false;
+  }
+
+  playSpotifyTrack(e:TrackEvent){
+    if(this.isPlaying)
+    {
+      this.isActive = false;
+      this.ap.pause();
+      this.isPlaying = false;
+    }
+    if(e.action == "play"){
+      this.isSpotifyPlaying = true;
+      this.spotifyService.playTrack(e.track.id);
+    }
+    else if(e.action == "pause" || e.action == "deselect"){
+      this.isSpotifyPlaying = false;
+      this.spotifyService.pauseTrack();
+
+    }
+      
   }
 
   ngOnInit():void{
@@ -26,53 +90,17 @@ export class PlayerComponent implements OnInit {
     })
     
     this.trackService.onChangeTrack.subscribe((e:TrackEvent ) => {
-      this.isActive = true;
       //found a new track
       console.log('play new track?', e);
-      let track = e.track
-      if(e.action == 'play' || e.action == 'select')
-        if(this.isPlaying){
-          this.ap.pause();
-          
-        }
-        this.ap =  new APlayer({
-          container: document.getElementById('aplayer'),
-          audio:[{
-            name: track.name,
-            artist: track.artists.map(a => a.name).join(', '),
-            url: track.preview_url,
-            cover: track.album.images[0].url,
-            id:track.id
-        }],
-          loop:'none'
-        })
       
-        /*this.ap.list.add([{
-              name: track.name,
-              artist: track.artists.map(a => a.name).join(', '),
-              url: track.preview_url,
-              cover: track.album.images[0].url,
-              id:track.id
-          }])*/
-      if(e.action == "play"){
-        if(this.currentPlayingId != e.track.id){
-          this.ap.skipForward();
-        }
-        this.ap.play()
-        this.isPlaying = true;
-        this.currentPlayingId = e.track.id;
-      }
-        
-      if(e.action == "pause" ){
-        this.ap.pause();
-        this.isPlaying = false;
-      } 
-      if(e.action == 'deselect')
-          this.isActive = false;
-      
-      
+      if(e.track.preview_url)
+        this.playPreviewTrack(e);
+      else
+        this.playSpotifyTrack(e);
     })
     
   }
+
+  
 
 }

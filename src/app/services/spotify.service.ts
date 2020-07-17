@@ -3,6 +3,7 @@ import { TrackService } from "./track.service"
 import { environment } from "../../environments/environment"
 import { SpotifyPlaylist, AudioFeature, SpotifyTrackItem, SpotifyArtist, SpotifyUser } from "./spotify.interface"
 import { Track } from '../models/Track';
+declare const Spotify:any;
 
 const DJJAM_MAIN_TAGS = {
   'live':"Live",
@@ -21,36 +22,72 @@ export class SpotifyService {
 
   client_id = environment.client_id;
   onAuthChange:EventEmitter<{state:"signin" | "signout", option?:any}> = new EventEmitter<{state:"signin" | "signout", option?:any}>();
-
+  player:any;
+  deviceID:string;
 
   //private authorizeCode:string;
   private accessToken: any;
   private tokenType: string;
 
-  constructor(private trackService:TrackService ) { }
+  initPlayer(){
+    const token = this.getTokenLocal();
+    console.log('local_token', token)
+    const player = new Spotify.Player({
+      name: 'Web Playback SDK Quick Start Player',
+      getOAuthToken: cb => { cb(token); }
+    });
+  
+    // Error handling
+    player.addListener('initialization_error', ({ message }) => { console.error(message); });
+    player.addListener('authentication_error', ({ message }) => { console.error(message); });
+    player.addListener('account_error', ({ message }) => { console.error(message); });
+    player.addListener('playback_error', ({ message }) => { console.error(message); });
+  
+    // Playback status updates
+    player.addListener('player_state_changed', state => { console.log(state); });
+  
+    // Ready
+    player.addListener('ready', ({ device_id }) => {
+      console.log('Ready with Device ID', device_id);
+      this.deviceID = device_id;
+    });
+  
+    // Not Ready
+    player.addListener('not_ready', ({ device_id }) => {
+      console.log('Device ID has gone offline', device_id);
+    });
+  
+    // Connect to the player!
+    player.connect();
+    this.player = player;
+  }
+
+  constructor(private trackService:TrackService ) { 
+    window['onSpotifyWebPlaybackSDKReady'] = () => {
+      console.log('test on spotify thing')
+      if(this.isConnect())
+        this.initPlayer();
+    }
+  }
 
   isConnect(){
     if(localStorage[environment.localstorage.spotify_expire_in] && localStorage[environment.localstorage.spotify_access_token] && localStorage[environment.localstorage.spotify_age]){
       
       let now = new Date().getTime()
-      console.log('exist', now, Number(localStorage[environment.localstorage.spotify_age]), now-Number(localStorage[environment.localstorage.spotify_age]))
-      if(now - Number(localStorage[environment.localstorage.spotify_age]) <= Number(localStorage[environment.localstorage.spotify_expire_in])*1000 /2)
+      
+      console.log(now - Number(localStorage[environment.localstorage.spotify_age]) <= Number(localStorage[environment.localstorage.spotify_expire_in])*1000)
+      if(now - Number(localStorage[environment.localstorage.spotify_age]) <= Number(localStorage[environment.localstorage.spotify_expire_in])*1000 )
         return true;
       else
         return false;
     }else
       return false;
-    /*if(this.accessToken && this.tokenType)
-      return true;
-    else if(localStorage[environment.localstorage.spotify_access_token])
-      return true;
-    else
-      return false;*/
+    
   }
 
   authen(isLogin:boolean = false){
     const afterRoute = isLogin?"spotify-login":"spotify-success";
-    window.location.href = `https://accounts.spotify.com/authorize?client_id=${this.client_id}&redirect_uri=${environment.host_url}/${afterRoute}&scope=user-read-email%20playlist-read-private%20playlist-modify-public&response_type=token&state=1`;
+    window.location.href = `https://accounts.spotify.com/authorize?client_id=${this.client_id}&redirect_uri=${environment.host_url}/${afterRoute}&scope=user-read-email%20playlist-read-private%20playlist-modify-public%20streaming&response_type=token&state=1`;
   }
 
   parseUrl(url:string){
@@ -80,6 +117,8 @@ export class SpotifyService {
       state:"signin",
       option:result
     });
+    //init sdk player
+    this.initPlayer();
     setTimeout(() => {
       this.onAuthChange.emit({state:"signout"});
     }, (Number(result.expires_in)*1000));
@@ -147,6 +186,19 @@ export class SpotifyService {
     }while(addNext);
    
     return playlists;
+  }
+
+
+  playTrack(trackId:string){
+    fetch(`https://api.spotify.com/v1/me/player/play?device_id=${this.deviceID}`, {
+      method:"PUT",
+      body:JSON.stringify({uris:[`spotify:track:${trackId}`]}),
+      headers:this.getHeaderOptions()
+    })
+  }
+
+  pauseTrack(){
+    this.player.pause();
   }
 
   getAudioFeatures(ids: Array<string>){
@@ -320,8 +372,9 @@ export class SpotifyService {
     return {
       'Authorization':this.tokenType + ' ' + this.accessToken
     }
-    
   }
+
+
 
 }
 
