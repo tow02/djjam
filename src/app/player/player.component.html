@@ -6,11 +6,28 @@
         <mat-icon>more_vert</mat-icon>
     </button>
 </section>
+<section class="spotify-option" *ngIf="currentSpotifyTrack" [ngClass]="{'active':isSpotifyActive}">
+    <div class="first">
+        <img src="{{currentSpotifyTrack.album.images[0].url}}" />
+    </div>
+    <div class="second">
+        <div class="wrapper">
+            <h3>{{currentSpotifyTrack.name}} <span class="artists"> - {{currentSpotifyTrack.artists[0].name}}</span></h3>
+            {{currentSpotifyTrack.bpm}} BPM
+        </div>
+    </div>
+    <div class="end">
+        <button  [matMenuTriggerFor]="menu" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+    </div>
+</section>
+
+
 <mat-menu #menu="matMenu">
     <button  [matMenuTriggerFor]="playlists" mat-menu-item>Add to playlist</button>
     
   </mat-menu>
-
   <mat-menu #playlists="matMenu">
     <ng-template *ngIf="playlistGroupByCharacters" matMenuContent>
         <button [matMenuTriggerFor]="ad"  mat-menu-item>A - D</button>

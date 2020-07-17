@@ -15,16 +15,20 @@ export class PlayerComponent implements OnInit {
   ap;
   isActive =false;
   isPlaying = false;
+  isSpotifyActive = false;
   isSpotifyPlaying = false;
+  currentSpotifyTrack:Track;
   currentPlayingId:string;
   playlistItems:Array<{name:string, id:string}>
   playlistGroupByCharacters:Array<{name:string, id:string}>
   playlistGroupMap:{[key:string]:Array<{name:string, id:string}>}= {};
+  
   constructor(private trackService:TrackService, private spotifyService:SpotifyService) { 
   
   }
 
   playPreviewTrack(e:TrackEvent){
+    this.isSpotifyActive  = false;
     if(this.isSpotifyPlaying)
       this.spotifyService.pauseTrack();
     this.isActive = true;
@@ -77,6 +81,13 @@ export class PlayerComponent implements OnInit {
       this.ap.pause();
       this.isPlaying = false;
     }
+    if(e.action == "play" || e.action == "select"){
+      this.isSpotifyActive = true;
+      this.currentSpotifyTrack = e.track
+      console.log(this.currentSpotifyTrack)
+    }else{
+      this.isSpotifyActive = false;
+    }
     if(e.action == "play"){
       this.isSpotifyPlaying = true;
       this.spotifyService.playTrack(e.track.id);
@@ -89,7 +100,7 @@ export class PlayerComponent implements OnInit {
       
   }
 
-  initPlalistGroup(){
+  initPlaylistGroup(){
     this.playlistGroupByCharacters = [];
     //a - z
     const groupCharacters = [['a','b','c','d'],['e','f','g','h','i'],['j','k','l','m'],['n','o','p','q'],['r','s','t','u'],['v','w','x','y','z']];
@@ -135,7 +146,7 @@ export class PlayerComponent implements OnInit {
 
     this.spotifyService.getMyWholePlaylists().then(result => {
       this.playlistItems = result.map(item => ({name:item.name, id:item.id}));
-      this.initPlalistGroup();
+      this.initPlaylistGroup();
 
       console.log('add to ', this.playlistItems)
     })
