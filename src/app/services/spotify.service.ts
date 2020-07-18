@@ -188,16 +188,6 @@ export class SpotifyService {
     return playlists;
   }
 
-  addTrackToPlaylistByIds(playlistId:string,ids:Array<string>){
-    
-    const query = ids.map(id => `spotify:track:${id}`).join('&')
-    let url = `https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${query}`
-    return fetch(url, {
-      headers:this.getHeaderOptions(),
-      method:"POST"
-    }).then(res => res.json())
-  }
-
 
   playTrack(trackId:string){
     fetch(`https://api.spotify.com/v1/me/player/play?device_id=${this.deviceID}`, {
