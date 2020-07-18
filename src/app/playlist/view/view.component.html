@@ -7,10 +7,19 @@
     </div>
   </div>
   <div class="end">
-    <button (click)="listen()" class="spotify-button">LISTEN</button>
+    <!--<mat-slide-toggle [(ngModel)]="isPublished" labelPosition="before">PUBLISH</mat-slide-toggle>  -->
+    
+    <button (click)="listen()" class="spotify-button">LISTEN</button>  
+    &nbsp;
+    <button mat-mini-fab aria-label="Example icon button with a vertical three dot icon">
+      <mat-icon>more_horiz</mat-icon>
+  </button>
   </div>
   
 </header>
+<!--<div class="extra-option">
+  <button (click)="listen()" class="spotify-button">LISTEN</button>
+</div>-->
 <section class="main">
 <!--<div>
   Compare <select>

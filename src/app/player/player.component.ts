@@ -106,7 +106,7 @@ export class PlayerComponent implements OnInit {
     const groupCharacters = [['a','b','c','d'],['e','f','g','h','i'],['j','k','l','m'],['n','o','p','q'],['r','s','t','u'],['v','w','x','y','z']];
     groupCharacters.forEach(characters => {
       let result = this.playlistItems.filter(item => characters.filter(char => item.name.toLocaleLowerCase().substr(0,1)==char).length > 0)
-      console.log(characters, result)
+    //  console.log(characters, result)
       if(result.length > 0){
         let id = `${characters[0]}${characters[characters.length-1]}` 
         result.sort((a,b) => {
