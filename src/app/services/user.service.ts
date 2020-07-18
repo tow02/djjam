@@ -3,7 +3,7 @@ import { AngularFirestore, DocumentReference, DocumentData } from '@angular/fire
 import { SpotifyPlaylist } from "../services/spotify.interface"
 import { AuthenticationService } from "./authentication.service"
 import { Playlist } from "../models/Track"
-import * as firebase from 'firebase'
+
 
 export interface User{
   id?:string,
@@ -69,18 +69,6 @@ export class UserService {
       fields.forEach(field => obj[field] = user[field] );
     else
       obj = {...user};
-    console.log(obj);
- 
-    /*if(obj['community']){  
-        let result = await  this.firestore.collection('community') .doc(user.community['name']).get().toPromise()
-        if(!result.exists)
-          await this.firestore.collection('community') .doc(user.community['name']).set({
-            name:user.community['name'],
-            city:user.community['city']
-          })
-      obj['community'] = this.firestore.collection('community') .doc(user.community['name']).ref;
-    }*/
-    console.log('going to update', obj);
     return this.firestore.collection('user').doc(id).update(obj);
   }
 
@@ -100,6 +88,7 @@ export class UserService {
     return str;
   }
 
+
   async addPlaylistsToSet(playlists:Array<SpotifyPlaylist>, setName:string){
 
     const id =  (await this.authen.auth.currentUser).uid;
@@ -107,7 +96,8 @@ export class UserService {
      const newPlaylists = playlists.map(item => ({
       id:item.id,
       name:item.name,
-      imageUrl:item.images[0].url
+      imageUrl:item.images[0].url,
+      isPublished:true
     }) as Playlist);
     console.log('going to save', newPlaylists);
     const obj:any = {playlist_set_map:{}}
@@ -121,4 +111,10 @@ export class UserService {
     return Promise.all(newPlaylists.map(item => this.firestore.collection('user').doc(id).collection('set').doc(item.id).set(item)));
   }
 
+  async getPublishStatus(playlistId:string){
+    
+    const id =  (await this.authen.auth.currentUser).uid
+    console.log('id', id)
+    return this.firestore.collection('user').doc(id).collection('set').doc(playlistId).get().toPromise().then(res =>( res.data() as Playlist));
+  }
 }
