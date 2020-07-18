@@ -2,6 +2,9 @@
     <mat-step [stepControl]="playlistsFormGroup" >
       <form [formGroup]="playlistsFormGroup">
         <ng-template matStepLabel>Select your playlists</ng-template>
+        <div *ngIf="selectedPlaylists.length > 0" style="text-align: right;padding-bottom: 10px">
+          <button mat-button color="primary" matStepperNext>Next</button>
+        </div>
         <section  class="playlists">
             <article *ngFor="let playlist of  playlists;let i =index" (click)="toggle(i)" [ngClass]="{'selected':playlist.selected}">
                 <div class="container">

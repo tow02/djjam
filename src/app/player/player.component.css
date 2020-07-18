@@ -9,7 +9,68 @@
 }
 .web-player.active{
     visibility: visible;
-    bottom: 0;
+    bottom: 0px;
+}
+.options{
+    position: fixed;
+    left: 0;
+    right:0;
+    bottom: -100vh;
+    height:20px;
+    z-index: 1030;
+    text-align: right;
+}
+.options.active{
+    bottom: 50px;;
+    visibility: visible;
+    
+}
+
+.spotify-option{
+    position: fixed;
+    left: 0;
+    right:0;
+    bottom: -100vh;
+    height:71px;
+    z-index: 1030;
+    display: flex;
+    background-color: white;;
+    visibility: hidden;
+}
+.spotify-option.active{
+    visibility: visible;
+    bottom: 0px;
+}
+
+.spotify-option .first{
+    flex-basis: 71px;
+    flex-grow: 0;
+    flex-shrink: 1;
+    width: 71px;;
+}
+
+.spotify-option h3{
+    margin-bottom: 0px;
+}
+.spotify-option .wrapper{
+    padding:0.5em;
+}
+
+.spotify-option .artists{
+    font-size: 0.8em;
+    color:#666;
+}
+
+.spotify-option .second{
+    flex:1;
+}
+
+.spotify-option .end{
+    width: 50px;
+}
+
+.spotify-option img{
+    max-height: 100%;
 }
 
 .aplayer {
