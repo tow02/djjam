@@ -25,6 +25,7 @@ export class MenuComponent implements OnInit {
   @Output()
   onNavigateProfile:EventEmitter<void> = new EventEmitter<void>();
 
+  isSearchMode = false;
   ngOnInit(): void {
     this.authen.auth.authState.subscribe(user => {
       if(user){
@@ -50,6 +51,15 @@ export class MenuComponent implements OnInit {
     })
   }
 
+  switchToSearch(){
+    this.isSearchMode = true;
+    setTimeout(() =>{
+      console.log(document.getElementById('searchStuff'))
+      document.getElementById('searchStuff').focus()
+    }, 100)
+    
+  }
+
   navigateProfile(path:Array<any>){
     this.onNavigateProfile.emit();
     this.router.navigate(path);
@@ -65,6 +75,7 @@ export class MenuComponent implements OnInit {
   }
 
   search(){
+    this.isSearchMode = false;
     if(this.q)
       this.router.navigate(['/search', this.q]);
   }
