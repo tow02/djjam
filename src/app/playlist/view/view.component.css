@@ -116,3 +116,6 @@ header .end{
 }
   
 
+.mat-menu-item .mat-icon{
+    color:var(--main-color);
+}

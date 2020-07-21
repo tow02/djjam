@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>{{data.name}}<span style="font-size:0.5em"> - {{data.artists}}</span></h1>
+<div mat-dialog-content>
+  <img style="height:100px" src="{{data.spotifyItem.track.album.images[0].url}}" />
+  <h3>Album {{data.spotifyItem.track.album.name}}</h3>
+
+  <p *ngIf="!canEditBpm">BPM {{data.bpm}}</p>
+  <form (submit)="update()" *ngIf="canEditBpm" >
+    <mat-form-field class="full-width ">
+      <mat-label>BPM</mat-label>
+      <input name="bpm"   [(ngModel)]="data.bpm" matInput  type="number" value="">
+  </mat-form-field>
+  </form>
+  <h5>Tags</h5>
+  <span class="tag" *ngFor="let item of tags">{{item}}</span>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Back</button>
+  <button mat-button (click)="update()" cdkFocusInitial>Save</button>
+</div>

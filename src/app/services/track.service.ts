@@ -32,6 +32,10 @@ export class TrackService {
      );
   }
 
+  updateBpm(trackId:string, bpm:number){
+    return  this.firestore.collection('track').doc(trackId).update({bpm:bpm});
+  }
+
   async play(trackID:string){        
     this.currentTrack = await this.get(trackID);
     this.onChangeTrack.emit({

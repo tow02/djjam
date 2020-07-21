@@ -4,6 +4,7 @@ import { SpotifyService } from "../../services/spotify.service"
 import { PlaylistEvent } from "../playlist.event.interface"
 import { UserService } from "../../services/user.service"
 
+
 @Component({
   selector: 'app-view',
   templateUrl: './view.component.html',

@@ -8,15 +8,30 @@
   </div>
   <div class="end">
     <!--<mat-slide-toggle [(ngModel)]="isPublished" labelPosition="before">PUBLISH</mat-slide-toggle>  -->
-    
-    <button (click)="listen()" class="spotify-button">LISTEN</button>  
-    &nbsp;
-    <button mat-mini-fab aria-label="Example icon button with a vertical three dot icon">
+    <button mat-icon-button [matMenuTriggerFor]="menu"  aria-label="Example icon button with a vertical three dot icon">
       <mat-icon>more_horiz</mat-icon>
   </button>
+  &nbsp;
+    <button (click)="listen()" class="spotify-button">LISTEN</button>  
+    
+    
   </div>
   
 </header>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>publish</mat-icon>
+    <span>Publish</span>
+  </button>
+  <button mat-menu-item >
+    <mat-icon>lock</mat-icon>
+    <span>Make it private</span>
+  </button>
+  <button  (click)="listen()" mat-menu-item>
+    <mat-icon>play_arrow</mat-icon>
+    <span>Listen in Spotify</span>
+  </button>
+</mat-menu>
 <!--<div class="extra-option">
   <button (click)="listen()" class="spotify-button">LISTEN</button>
 </div>-->

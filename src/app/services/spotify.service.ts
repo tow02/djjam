@@ -327,6 +327,8 @@ export class SpotifyService {
         .forEach(tagName => {
           tags[tagName] = tagName //add custom human tag
         })
+    }else{
+      tags['uncheck']="uncheck"
     }
     return tags;
   }
