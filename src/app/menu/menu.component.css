@@ -34,9 +34,11 @@ nav{
 
 input{
     line-height: 30px;;
-    background: url('https://djjam.app/assets/imgs/search-icon.png') no-repeat scroll 7px 7px;
+    
     width: calc(100% - 100px - var(--main-padding));
-    padding-left: 30px;
+    /*background: url('https://djjam.app/assets/imgs/search-icon.png') no-repeat scroll 7px 7px;
+    padding-left: 30px;*/
+    padding-left:1em;
     background-color: white;
     border:0px;
 }
@@ -95,4 +97,42 @@ mat-icon, .mat-menu-item .mat-icon{
 
 .search-btn{
     background-color: #c1c1c1;
+}
+
+.option.search-btn{
+    display: none;;
+}
+
+@media only screen and (max-width: 400px){
+    /*#start{
+        width: initial;
+    }*/
+
+    #center input,#center button[type="submit"]{
+        display: none;
+    }
+
+    .option.search-btn{
+        display: initial;
+        background-color: var(--main-bg-color);
+        
+    }
+
+    #searchStuff{
+        width: calc(100% - var(--main-padding));
+    }
+
+    .end .search-btn{
+        line-height: 32px;
+        border-radius: 0;
+    }
+
+    nav.search-mode{
+        justify-content:unset;
+    }
+
+    .search-mode .start{
+        width:40px;
+    }
+
 }
