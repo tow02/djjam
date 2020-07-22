@@ -2,6 +2,7 @@ import { Component, OnChanges, Input } from '@angular/core';
 import { PlaylistEvent } from "../playlist.event.interface"
 import { SpotifyService } from "../../services/spotify.service"
 import { MatDialog } from '@angular/material/dialog';
+import { TrackService } from "../../services/track.service"
 import { DialogTrackComponent } from "../dialog-track/dialog-track.component"
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -27,10 +28,10 @@ export class TracksControllerComponent implements OnChanges {
   playlistEvent:PlaylistEvent
 
   trackSource:Array<TrackElement> = [];
-  displayedColumns: string[] = ['name', 'artists', 'bpm','actions'];
+  displayedColumns: string[] = ['play','name', 'artists', 'bpm','actions'];
   dataSource :MatTableDataSource<TrackElement>
 
-  constructor(private spotifyService:SpotifyService, private dialog:MatDialog) { }
+  constructor(private spotifyService:SpotifyService, private dialog:MatDialog, private trackService:TrackService) { }
 
   ngOnChanges(): void {
     if(this.playlistEvent.status === "done"){
@@ -54,6 +55,11 @@ export class TracksControllerComponent implements OnChanges {
       console.log(this.trackSource)
     }
       
+  }
+
+  toggleTrack(track:TrackElement){
+    
+    this.trackService.play(track.spotifyItem.track.id);
   }
 
   openTrack(track:TrackElement){

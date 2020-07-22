@@ -3,10 +3,10 @@ import { AngularFirestore, DocumentReference } from '@angular/fire/firestore'
 import { environment } from "../../environments/environment"
 import { UserService } from "./user.service"
 import { Track } from "../models/Track"
-import { env } from 'process';
 
 export interface TrackEvent{
-  track:Track,
+  track?:Track,
+  trackId?:string,
   action:"play" | "pause" | "select" | "deselect"
 }
 
@@ -38,8 +38,10 @@ export class TrackService {
 
   async play(trackID:string){        
     this.currentTrack = await this.get(trackID);
+
     this.onChangeTrack.emit({
       track:this.currentTrack,
+      trackId:trackID,
       action:"play"
     });
   }
@@ -56,7 +58,8 @@ export class TrackService {
     this.currentTrack = await this.get(trackID);
     this.onChangeTrack.emit({
       track:this.currentTrack,
-      action:"select"
+      action:"select",
+      trackId:trackID
     });
   }
 

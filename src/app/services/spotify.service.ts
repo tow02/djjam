@@ -29,6 +29,7 @@ export class SpotifyService {
   private accessToken: any;
   private tokenType: string;
 
+
   initPlayer(){
     const token = this.getTokenLocal();
     console.log('local_token', token)
@@ -385,6 +386,8 @@ export class SpotifyService {
       'Authorization':this.tokenType + ' ' + this.accessToken
     }
   }
+
+  
 
 
 
