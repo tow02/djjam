@@ -29,6 +29,7 @@ export class SpotifyService {
   private accessToken: any;
   private tokenType: string;
 
+
   initPlayer(){
     const token = this.getTokenLocal();
     console.log('local_token', token)
@@ -207,6 +208,15 @@ export class SpotifyService {
     })
   }
 
+  playPlaylist(playlistId:string){
+    //spotify:playlist:5giXZiRlXVyPqNX27H9kuY
+    fetch(`https://api.spotify.com/v1/me/player/play?device_id=${this.deviceID}`, {
+      method:"PUT",
+      body:JSON.stringify({context_uri:`spotify:playlist:${playlistId}`}),
+      headers:this.getHeaderOptions()
+    })
+  }
+
   pauseTrack(){
     this.player.pause();
   }
@@ -327,6 +337,8 @@ export class SpotifyService {
         .forEach(tagName => {
           tags[tagName] = tagName //add custom human tag
         })
+    }else{
+      tags['uncheck']="uncheck"
     }
     return tags;
   }
@@ -383,6 +395,8 @@ export class SpotifyService {
       'Authorization':this.tokenType + ' ' + this.accessToken
     }
   }
+
+  
 
 
 

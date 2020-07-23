@@ -3,6 +3,7 @@ import { TrackService, TrackEvent } from "../services/track.service"
 import { SpotifyService } from "../services/spotify.service"
 import APlayer from 'aplayer';
 import { Track } from '../models/Track';
+import { SpotifyTrackItem } from '../services/spotify.interface';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class PlayerComponent implements OnInit {
   isPlaying = false;
   isSpotifyActive = false;
   isSpotifyPlaying = false;
-  currentSpotifyTrack:Track;
+  currentSpotifyTrack:Track | any;
   currentPlayingId:string;
   playlistItems:Array<{name:string, id:string}>
   playlistGroupByCharacters:Array<{name:string, id:string}>
@@ -83,14 +84,15 @@ export class PlayerComponent implements OnInit {
     }
     if(e.action == "play" || e.action == "select"){
       this.isSpotifyActive = true;
-      this.currentSpotifyTrack = e.track
+      
+      this.currentSpotifyTrack = e.track?e.track:e.spotifyTrack.track
       console.log(this.currentSpotifyTrack)
     }else{
       this.isSpotifyActive = false;
     }
     if(e.action == "play"){
       this.isSpotifyPlaying = true;
-      this.spotifyService.playTrack(e.track.id);
+      this.spotifyService.playTrack(e.spotifyTrack.track.id);
     }
     else if(e.action == "pause" || e.action == "deselect"){
       this.isSpotifyPlaying = false;
@@ -138,7 +140,7 @@ export class PlayerComponent implements OnInit {
       //found a new track
       console.log('play new track?', e);
       
-      if(e.track.preview_url)
+      if(e.track && e.track.preview_url)
         this.playPreviewTrack(e);
       else
         this.playSpotifyTrack(e);
