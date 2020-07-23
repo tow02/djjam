@@ -3,10 +3,11 @@ import { AngularFirestore, DocumentReference } from '@angular/fire/firestore'
 import { environment } from "../../environments/environment"
 import { UserService } from "./user.service"
 import { Track } from "../models/Track"
+import { SpotifyTrackItem } from "./spotify.interface"
 
 export interface TrackEvent{
   track?:Track,
-  trackId?:string,
+  spotifyTrack?:SpotifyTrackItem,
   action:"play" | "pause" | "select" | "deselect"
 }
 
@@ -16,6 +17,7 @@ export interface TrackEvent{
 export class TrackService {
   currentTrack:Track;
   onChangeTrack:EventEmitter<TrackEvent> = new EventEmitter<TrackEvent>();
+  public playedStatusTrack:{[key:string]:boolean} ={};
 
   constructor(private firestore:AngularFirestore, private userService:UserService) {
   
@@ -36,14 +38,27 @@ export class TrackService {
     return  this.firestore.collection('track').doc(trackId).update({bpm:bpm});
   }
 
-  async play(trackID:string){        
+  async play(trackID:string, spotifyTrack?:SpotifyTrackItem){        
     this.currentTrack = await this.get(trackID);
 
     this.onChangeTrack.emit({
       track:this.currentTrack,
-      trackId:trackID,
+      spotifyTrack:spotifyTrack,
       action:"play"
     });
+  }
+
+  toggle(trackID:string, spotifyTrack?:SpotifyTrackItem){
+    //reset other id to false
+    Object.keys(this.playedStatusTrack).filter(id => id!=trackID).forEach(id => this.playedStatusTrack[id] = false);
+    if(!this.playedStatusTrack[trackID])
+      this.playedStatusTrack[trackID] = true;
+    else
+      this.playedStatusTrack[trackID] = false;
+    if(this.playedStatusTrack[trackID])
+      return this.play(trackID, spotifyTrack)
+    else
+      return this.pause();
   }
 
   pause(){
@@ -53,13 +68,13 @@ export class TrackService {
     })
   }
 
-  async select(trackID:string){
+  async select(trackID:string, spotifyTrack?:SpotifyTrackItem){
       
     this.currentTrack = await this.get(trackID);
     this.onChangeTrack.emit({
       track:this.currentTrack,
       action:"select",
-      trackId:trackID
+      spotifyTrack:spotifyTrack
     });
   }
 

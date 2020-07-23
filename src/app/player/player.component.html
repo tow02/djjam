@@ -13,7 +13,7 @@
     <div class="second">
         <div class="wrapper">
             <h3>{{currentSpotifyTrack.name}} <span class="artists"> - {{currentSpotifyTrack.artists[0].name}}</span></h3>
-            {{currentSpotifyTrack.bpm}} BPM
+            <span *ngIf="currentSpotifyTrack.bpm">{{currentSpotifyTrack.bpm}} BPM</span>
         </div>
     </div>
     <div class="end">

@@ -49,8 +49,12 @@ export class ViewComponent implements OnInit {
   }
 
   listen(){
-    window.location.href =  this.playlistEvent.playlist.external_urls.spotify
+    this.spotifyService.playPlaylist(this.playlistId)
     //console.log(this.playlistEvent.playlist.external_urls.spotify)
+  }
+
+  listenInSpotify(){
+    window.location.href =  this.playlistEvent.playlist.external_urls.spotify
   }
 
 }

@@ -30,6 +30,7 @@ export class TracksControllerComponent implements OnChanges {
   trackSource:Array<TrackElement> = [];
   displayedColumns: string[] = ['play','name', 'artists', 'bpm','actions'];
   dataSource :MatTableDataSource<TrackElement>
+  
 
   constructor(private spotifyService:SpotifyService, private dialog:MatDialog, private trackService:TrackService) { }
 
@@ -59,7 +60,7 @@ export class TracksControllerComponent implements OnChanges {
 
   toggleTrack(track:TrackElement){
     
-    this.trackService.play(track.spotifyItem.track.id);
+    this.trackService.toggle(track.spotifyItem.track.id, track.spotifyItem);
   }
 
   openTrack(track:TrackElement){
