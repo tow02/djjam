@@ -147,12 +147,16 @@ export class PlayerComponent implements OnInit {
     })
 
     this.spotifyService.onAuthChange.subscribe(event => {
+      console.log('auth change', event)
       if(event.signin == "signin"){
+        console.log('try to get id')
         this.spotifyService.getMyWholePlaylists().then(result => {
           this.playlistItems = result.map(item => ({name:item.name, id:item.id}));
           this.initPlaylistGroup();
     
           console.log('add to ', this.playlistItems)
+        }).catch(err => {
+          console.log('sign in error to get playlist', err)
         })
       }
     })
