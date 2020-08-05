@@ -7,11 +7,11 @@
             </a>    
         </li>
         
-        <li  *ngIf="isConnect">
+       <!-- <li  *ngIf="isConnect">
             <a    mat-button>
             <mat-icon>star_rate</mat-icon>
             Favorites
-            </a>    </li>
+            </a>    </li>-->
         <li  *ngIf="isConnect">
             <a (click)="navigate()"  [routerLink]="['/publish']"  mat-button>
             <mat-icon>publish</mat-icon>

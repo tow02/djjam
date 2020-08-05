@@ -44,6 +44,11 @@ export class ViewComponent implements OnInit {
     }
   }
 
+  setPlaylistStatus(status:boolean){
+    this.userService.setPublishStatus(this.playlistId, status)
+    this.isPublished = status;
+  }
+
   async ngOnInit() {
     
   }
