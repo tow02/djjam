@@ -146,6 +146,16 @@ export class PlayerComponent implements OnInit {
         this.playSpotifyTrack(e);
     })
 
+    this.spotifyService.onAuthChange.subscribe(event => {
+      if(event.signin == "signin"){
+        this.spotifyService.getMyWholePlaylists().then(result => {
+          this.playlistItems = result.map(item => ({name:item.name, id:item.id}));
+          this.initPlaylistGroup();
+    
+          console.log('add to ', this.playlistItems)
+        })
+      }
+    })
     this.spotifyService.getMyWholePlaylists().then(result => {
       this.playlistItems = result.map(item => ({name:item.name, id:item.id}));
       this.initPlaylistGroup();
