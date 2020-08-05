@@ -18,12 +18,12 @@
   </div>
   
 </header>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item>
+<mat-menu  #menu="matMenu">
+  <button (click)="setPlaylistStatus(true)" *ngIf="!isPublished" mat-menu-item>
     <mat-icon>publish</mat-icon>
     <span>Publish</span>
   </button>
-  <button mat-menu-item >
+  <button  (click)="setPlaylistStatus(false)" *ngIf="isPublished" mat-menu-item >
     <mat-icon>lock</mat-icon>
     <span>Make it private</span>
   </button>
