@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table'
 import { PlaylistRoutingModule } from './playlist-routing.module';
-<<<<<<< HEAD
 import { UserService } from "../services/user.service"
 import { TrackService } from "../services/track.service"
 import { MatIconModule} from '@angular/material/icon';
@@ -34,11 +33,7 @@ import { DialogTrackComponent } from './dialog-track/dialog-track.component';
     MatProgressSpinnerModule,
     ChartsModule,
     PlaylistRoutingModule
-<<<<<<< HEAD
   ],
   providers:[UserService, TrackService]
-=======
-  ]
->>>>>>> master
 })
 export class PlaylistModule { }
