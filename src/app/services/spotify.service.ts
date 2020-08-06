@@ -29,6 +29,7 @@ export class SpotifyService {
   private accessToken: any;
   private tokenType: string;
 
+
   initPlayer(){
     const token = this.getTokenLocal();
     console.log('local_token', token)
@@ -87,7 +88,7 @@ export class SpotifyService {
 
   authen(isLogin:boolean = false){
     const afterRoute = isLogin?"spotify-login":"spotify-success";
-    window.location.href = `https://accounts.spotify.com/authorize?client_id=${this.client_id}&redirect_uri=${environment.host_url}/${afterRoute}&scope=user-read-email%20playlist-read-private%20playlist-modify-public%20streaming&response_type=token&state=1`;
+    window.location.href = `https://accounts.spotify.com/authorize?client_id=${this.client_id}&redirect_uri=${environment.host_url}/${afterRoute}&scope=user-read-email%20playlist-read-private%20playlist-modify-public%20streaming%20playlist-modify-public%20playlist-modify-private&response_type=token&state=1`;
   }
 
   parseUrl(url:string){
@@ -193,6 +194,15 @@ export class SpotifyService {
     fetch(`https://api.spotify.com/v1/me/player/play?device_id=${this.deviceID}`, {
       method:"PUT",
       body:JSON.stringify({uris:[`spotify:track:${trackId}`]}),
+      headers:this.getHeaderOptions()
+    })
+  }
+
+  playPlaylist(playlistId:string){
+    //spotify:playlist:5giXZiRlXVyPqNX27H9kuY
+    fetch(`https://api.spotify.com/v1/me/player/play?device_id=${this.deviceID}`, {
+      method:"PUT",
+      body:JSON.stringify({context_uri:`spotify:playlist:${playlistId}`}),
       headers:this.getHeaderOptions()
     })
   }
@@ -317,6 +327,8 @@ export class SpotifyService {
         .forEach(tagName => {
           tags[tagName] = tagName //add custom human tag
         })
+    }else{
+      tags['uncheck']="uncheck"
     }
     return tags;
   }
@@ -363,6 +375,13 @@ export class SpotifyService {
     return artistCounts;
   }
 
+  addTrackToPlaylist(trackId:string, playlistId:string){
+    return fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=spotify:track:${trackId}`, {
+      method:"POST",
+      headers:this.getHeaderOptions()
+    })
+  }
+
   getHeaderOptions(){
     if(!this.accessToken)
       this.accessToken = this.getTokenLocal();
@@ -373,6 +392,8 @@ export class SpotifyService {
       'Authorization':this.tokenType + ' ' + this.accessToken
     }
   }
+
+  
 
 
 

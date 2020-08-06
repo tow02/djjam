@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { SpotifyService } from "../../services/spotify.service"
 import { PlaylistEvent } from "../playlist.event.interface"
+import { UserService } from "../../services/user.service"
+
 
 @Component({
   selector: 'app-view',
@@ -11,9 +13,10 @@ import { PlaylistEvent } from "../playlist.event.interface"
 export class ViewComponent implements OnInit {
 
   playlistId:string;
+  isPublished = false;
   playlistEvent:PlaylistEvent = { status:"loading"};
 
-  constructor(private route:ActivatedRoute, private spotifyService:SpotifyService) { 
+  constructor(private route:ActivatedRoute, private spotifyService:SpotifyService, private userService:UserService) { 
     this.route.params.subscribe(p => {
       this.playlistId = p['id']      
       this.render();
@@ -36,13 +39,22 @@ export class ViewComponent implements OnInit {
     }
   }
 
+  setPlaylistStatus(status:boolean){
+    this.userService.setPublishStatus(this.playlistId, status)
+    this.isPublished = status;
+  }
+
   async ngOnInit() {
     
   }
 
   listen(){
-    window.location.href =  this.playlistEvent.playlist.external_urls.spotify
+    this.spotifyService.playPlaylist(this.playlistId)
     //console.log(this.playlistEvent.playlist.external_urls.spotify)
+  }
+
+  listenInSpotify(){
+    window.location.href =  this.playlistEvent.playlist.external_urls.spotify
   }
 
 }

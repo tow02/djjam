@@ -103,7 +103,7 @@ mat-icon, .mat-menu-item .mat-icon{
     display: none;;
 }
 
-@media only screen and (max-width: 400px){
+@media only screen and (max-width: 526px){
     /*#start{
         width: initial;
     }*/
@@ -116,6 +116,10 @@ mat-icon, .mat-menu-item .mat-icon{
         display: initial;
         background-color: var(--main-bg-color);
         
+    }
+
+    nav .middle{
+        flex:1
     }
 
     #searchStuff{

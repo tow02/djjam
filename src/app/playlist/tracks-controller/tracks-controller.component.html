@@ -1,6 +1,14 @@
 
 <table  *ngIf="playlistEvent.status == 'done'"  mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
+  <ng-container matColumnDef="play">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>  </th>
+      <td mat-cell *matCellDef="let element"> 
+        <button (click)="toggleTrack(element)" mat-icon-button  aria-label="Example icon button with a vertical three dot icon">
+          <mat-icon>play_circle_filled</mat-icon>
+      </button>
+      </td>
+  </ng-container>
     <!-- Position Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
@@ -23,6 +31,15 @@
     <ng-container matColumnDef="tags">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Tags </th>
       <td mat-cell *matCellDef="let element"> {{element.tags}} </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let element" class="action-link"> 
+        <button (click)="openTrack(element)" mat-icon-button  aria-label="Example icon button with a vertical three dot icon">
+          <mat-icon>more_horiz</mat-icon>
+      </button>
+       
+      </td>
     </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

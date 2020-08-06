@@ -121,4 +121,16 @@ export class UserService {
     return Promise.all(newPlaylists.map(item => this.firestore.collection('user').doc(id).collection('set').doc(item.id).set(item)));
   }
 
+  async getPublishStatus(playlistId:string){
+    
+    const id =  (await this.authen.auth.currentUser).uid
+    console.log('id', id)
+    return this.firestore.collection('user').doc(id).collection('set').doc(playlistId).get().toPromise().then(res =>( res.data() as Playlist));
+  }
+
+  async setPublishStatus(playlistId:string, status:boolean){
+    const id =  (await this.authen.auth.currentUser).uid
+    console.log('id', id)
+    return this.firestore.collection('user').doc(id).collection('set').doc(playlistId).update({isPublished: status})
+  }
 }
