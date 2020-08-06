@@ -88,7 +88,7 @@ export class SpotifyService {
 
   authen(isLogin:boolean = false){
     const afterRoute = isLogin?"spotify-login":"spotify-success";
-    window.location.href = `https://accounts.spotify.com/authorize?client_id=${this.client_id}&redirect_uri=${environment.host_url}/${afterRoute}&scope=user-read-email%20playlist-read-private%20playlist-modify-public%20streaming&response_type=token&state=1`;
+    window.location.href = `https://accounts.spotify.com/authorize?client_id=${this.client_id}&redirect_uri=${environment.host_url}/${afterRoute}&scope=user-read-email%20playlist-read-private%20playlist-modify-public%20streaming%20playlist-modify-public%20playlist-modify-private&response_type=token&state=1`;
   }
 
   parseUrl(url:string){
@@ -373,6 +373,13 @@ export class SpotifyService {
     })
     
     return artistCounts;
+  }
+
+  addTrackToPlaylist(trackId:string, playlistId:string){
+    return fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=spotify:track:${trackId}`, {
+      method:"POST",
+      headers:this.getHeaderOptions()
+    })
   }
 
   getHeaderOptions(){

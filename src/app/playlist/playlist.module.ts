@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table'
 import { PlaylistRoutingModule } from './playlist-routing.module';
 import { UserService } from "../services/user.service"
@@ -25,6 +26,7 @@ import { DialogTrackComponent } from './dialog-track/dialog-track.component';
   declarations: [ViewComponent, TempoGraphComponent, TempoLineGraphComponent, TagsPieComponent, ArtistsCharacterComponent, TracksControllerComponent, DialogTrackComponent],
   imports: [
     CommonModule,
+    FormsModule,
     MatTableModule,
     MatMenuModule,
     MatInputModule,

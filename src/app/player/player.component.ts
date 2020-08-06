@@ -19,6 +19,7 @@ export class PlayerComponent implements OnInit {
   isSpotifyActive = false ;
   isSpotifyPlaying = false;
   currentSpotifyTrack:Track | any;
+  currentTrackEvent:TrackEvent
   currentPlayingId:string;
   playlistItems:Array<{name:string, id:string}>
   playlistGroupByCharacters:Array<{name:string, id:string}>
@@ -114,7 +115,9 @@ export class PlayerComponent implements OnInit {
         this.playlistGroupByCharacters.push({
           id:id,
           name:`${characters[0].toLocaleUpperCase()} - ${characters[characters.length-1].toLocaleUpperCase()}`,
+
         })
+        
         this.playlistGroupMap[id] = result;
       }
         
@@ -122,7 +125,10 @@ export class PlayerComponent implements OnInit {
     
   }
 
-  
+  addTrackPlaylist(playlistId:string){
+    let trackId:string = this.currentTrackEvent.spotifyTrack?this.currentTrackEvent.spotifyTrack.track.id:this.currentTrackEvent.track.id;
+    this.spotifyService.addTrackToPlaylist(trackId, playlistId);
+  }
 
   ngOnInit():void{
     console.log('initTrackPlayer')
@@ -133,6 +139,7 @@ export class PlayerComponent implements OnInit {
     
     this.trackService.onChangeTrack.subscribe((e:TrackEvent ) => {
       //found a new track
+      this.currentTrackEvent = e;
       console.log('play new track?', e);
       
       if(e.track && e.track.preview_url)
