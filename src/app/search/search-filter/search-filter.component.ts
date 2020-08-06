@@ -27,8 +27,6 @@ export class SearchFilterComponent implements OnInit {
     {name:"BLUES", value:"blues", selected:false},
     {name:"NEW ORLEANS", value:"dixie", selected:false},
     {name:"SOUL", value:"soul", selected:false},
-    {name:"FEEL GOOD", value:"valence", selected:false},
-    {name:"ENERGETIC", value:"energetic", selected:false},
   ]
 
   TEMPOS:Array<{

@@ -20,16 +20,12 @@ export class PlayerComponent implements OnInit {
   isSpotifyPlaying = false;
   currentSpotifyTrack:Track | any;
   currentPlayingId:string;
-  playlistItems:Array<{name:string, id:string}>
-  playlistGroupByCharacters:Array<{name:string, id:string}>
-  playlistGroupMap:{[key:string]:Array<{name:string, id:string}>}= {};
-  
+
   constructor(private trackService:TrackService, private spotifyService:SpotifyService) { 
   
   }
 
   playPreviewTrack(e:TrackEvent){
-    this.isSpotifyActive  = false;
     if(this.isSpotifyPlaying)
       this.spotifyService.pauseTrack();
     this.isActive = true;
@@ -41,7 +37,7 @@ export class PlayerComponent implements OnInit {
         
       }
 
-    if(e.action == "play" || e.action == 'select'){
+    if(e.action == "play"){
       this.ap =  new APlayer({
         container: document.getElementById('aplayer'),
         audio:[{
@@ -53,18 +49,13 @@ export class PlayerComponent implements OnInit {
       }],
         loop:'none'
       })
-      this.currentPlayingId = e.track.id;
-    }
-
-    if(e.action == "play")
-    {
       if(this.currentPlayingId != e.track.id){
         this.ap.skipForward();
       }
       console.log('attemp to play');
         this.ap.play()
         this.isPlaying = true;
-        
+        this.currentPlayingId = e.track.id;
     }
       
     if(e.action == "pause" ){
@@ -102,35 +93,8 @@ export class PlayerComponent implements OnInit {
       
   }
 
-  initPlaylistGroup(){
-    this.playlistGroupByCharacters = [];
-    //a - z
-    const groupCharacters = [['a','b','c','d'],['e','f','g','h','i'],['j','k','l','m'],['n','o','p','q'],['r','s','t','u'],['v','w','x','y','z']];
-    groupCharacters.forEach(characters => {
-      let result = this.playlistItems.filter(item => characters.filter(char => item.name.toLocaleLowerCase().substr(0,1)==char).length > 0)
-    //  console.log(characters, result)
-      if(result.length > 0){
-        let id = `${characters[0]}${characters[characters.length-1]}` 
-        result.sort((a,b) => {
-          if(a.name.toLocaleLowerCase() < b.name.toLocaleLowerCase())
-            return -1;
-          else
-            return 1;
-        })
-        this.playlistGroupByCharacters.push({
-          id:id,
-          name:`${characters[0].toLocaleUpperCase()} - ${characters[characters.length-1].toLocaleUpperCase()}`,
-        })
-        this.playlistGroupMap[id] = result;
-      }
-        
-    })
-    
-  }
-
   ngOnInit():void{
     console.log('initTrackPlayer')
-    
     this.ap =  new APlayer({
       container: document.getElementById('aplayer'),
       loop:'none'
@@ -168,13 +132,6 @@ export class PlayerComponent implements OnInit {
     })
 
     
-  }
-
-  addTrackPlaylist(playlistId:string){
-    
-    this.spotifyService.addTrackToPlaylistByIds(playlistId, [this.currentPlayingId] ).then(result => {
-      console.log('done add', result);
-    })
   }
 
   

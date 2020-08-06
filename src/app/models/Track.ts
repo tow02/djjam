@@ -194,5 +194,4 @@ export interface Playlist{
     name:string,
     id:string,
     imageUrl:string
-    isPublished:boolean
 }

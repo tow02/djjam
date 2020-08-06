@@ -50,13 +50,8 @@ header .end{
     align-items: flex-end;;
 }
 
- .spotify-button{
+header .end button{
     min-width: 8em;;
-}
-
-.extra-option{
-    padding-left:var(--main-padding);
-    padding-bottom: 1em;
 }
 
 .main  h3{
