@@ -1,13 +1,10 @@
 .playlists{
-    /*display:flex;
-    flex-flow: row wrap;*/
-    display: grid;
-    grid-template-columns:  repeat(auto-fill, 110px);;
-
+    display:flex;
+    flex-flow: row wrap;
 }
 
 .playlists article{
-    width: 110px;
+    width: 120px;
     
 }
 

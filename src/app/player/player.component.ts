@@ -16,20 +16,20 @@ export class PlayerComponent implements OnInit {
   ap;
   isActive =false;
   isPlaying = false;
-  isSpotifyActive = false;
+  isSpotifyActive = false ;
   isSpotifyPlaying = false;
   currentSpotifyTrack:Track | any;
+  currentTrackEvent:TrackEvent
   currentPlayingId:string;
   playlistItems:Array<{name:string, id:string}>
   playlistGroupByCharacters:Array<{name:string, id:string}>
   playlistGroupMap:{[key:string]:Array<{name:string, id:string}>}= {};
-  
+
   constructor(private trackService:TrackService, private spotifyService:SpotifyService) { 
   
   }
 
   playPreviewTrack(e:TrackEvent){
-    this.isSpotifyActive  = false;
     if(this.isSpotifyPlaying)
       this.spotifyService.pauseTrack();
     this.isActive = true;
@@ -41,7 +41,7 @@ export class PlayerComponent implements OnInit {
         
       }
 
-    if(e.action == "play" || e.action == 'select'){
+    if(e.action == "play"){
       this.ap =  new APlayer({
         container: document.getElementById('aplayer'),
         audio:[{
@@ -53,18 +53,13 @@ export class PlayerComponent implements OnInit {
       }],
         loop:'none'
       })
-      this.currentPlayingId = e.track.id;
-    }
-
-    if(e.action == "play")
-    {
       if(this.currentPlayingId != e.track.id){
         this.ap.skipForward();
       }
       console.log('attemp to play');
         this.ap.play()
         this.isPlaying = true;
-        
+        this.currentPlayingId = e.track.id;
     }
       
     if(e.action == "pause" ){
@@ -120,7 +115,9 @@ export class PlayerComponent implements OnInit {
         this.playlistGroupByCharacters.push({
           id:id,
           name:`${characters[0].toLocaleUpperCase()} - ${characters[characters.length-1].toLocaleUpperCase()}`,
+
         })
+        
         this.playlistGroupMap[id] = result;
       }
         
@@ -128,9 +125,13 @@ export class PlayerComponent implements OnInit {
     
   }
 
+  addTrackPlaylist(playlistId:string){
+    let trackId:string = this.currentTrackEvent.spotifyTrack?this.currentTrackEvent.spotifyTrack.track.id:this.currentTrackEvent.track.id;
+    this.spotifyService.addTrackToPlaylist(trackId, playlistId);
+  }
+
   ngOnInit():void{
     console.log('initTrackPlayer')
-    
     this.ap =  new APlayer({
       container: document.getElementById('aplayer'),
       loop:'none'
@@ -138,6 +139,7 @@ export class PlayerComponent implements OnInit {
     
     this.trackService.onChangeTrack.subscribe((e:TrackEvent ) => {
       //found a new track
+      this.currentTrackEvent = e;
       console.log('play new track?', e);
       
       if(e.track && e.track.preview_url)
@@ -168,13 +170,6 @@ export class PlayerComponent implements OnInit {
     })
 
     
-  }
-
-  addTrackPlaylist(playlistId:string){
-    
-    this.spotifyService.addTrackToPlaylistByIds(playlistId, [this.currentPlayingId] ).then(result => {
-      console.log('done add', result);
-    })
   }
 
   

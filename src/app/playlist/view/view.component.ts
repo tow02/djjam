@@ -25,8 +25,8 @@ export class ViewComponent implements OnInit {
 
   async render(){
     if(this.spotifyService.isConnect()){
-      
       let playlist = await this.spotifyService.getPlaylist(this.playlistId)
+
       this.playlistEvent.status = "loading";
       if(playlist){
         let item = await this.spotifyService.getPlaylistInformations(playlist)
@@ -34,13 +34,8 @@ export class ViewComponent implements OnInit {
         this.playlistEvent.playlist = playlist
         this.playlistEvent.djjamTracks = item.djjamTracks;
         this.playlistEvent.audioFeatures = item.audioFeatures;
-          
-      }
-      this.userService.getPublishStatus(this.playlistId).then(playlist => {
-        if(playlist)
-          this.isPublished = playlist.isPublished
         
-      })
+      }
     }
   }
 

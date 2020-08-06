@@ -10,6 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule} from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+
 import { ViewComponent } from './view/view.component';
 import { ChartsModule } from 'ng2-charts';
 import { TempoGraphComponent } from './tempo-graph/tempo-graph.component';
@@ -29,10 +30,10 @@ import { DialogTrackComponent } from './dialog-track/dialog-track.component';
     MatTableModule,
     MatMenuModule,
     MatInputModule,
+    MatIconModule,
+    MatButtonModule,
     MatDialogModule,
     MatProgressSpinnerModule,
-    MatButtonModule,
-    MatIconModule,
     ChartsModule,
     PlaylistRoutingModule
   ],

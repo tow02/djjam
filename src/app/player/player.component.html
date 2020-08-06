@@ -39,7 +39,7 @@
     </ng-template>
   </mat-menu>
   <mat-menu #ad="matMenu">
-    <ng-template matMenuContent>
+    <ng-template  matMenuContent>
         <button  (click)="addTrackPlaylist(item.id)" *ngFor="let item of playlistGroupMap['ad']" mat-menu-item>{{item.name}}</button>
     </ng-template>
   </mat-menu>
