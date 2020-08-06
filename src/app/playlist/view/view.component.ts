@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { SpotifyService } from "../../services/spotify.service"
 import { PlaylistEvent } from "../playlist.event.interface"
+import { UserService } from "../../services/user.service"
 
 
 @Component({
@@ -12,9 +13,10 @@ import { PlaylistEvent } from "../playlist.event.interface"
 export class ViewComponent implements OnInit {
 
   playlistId:string;
+  isPublished = false;
   playlistEvent:PlaylistEvent = { status:"loading"};
 
-  constructor(private route:ActivatedRoute, private spotifyService:SpotifyService) { 
+  constructor(private route:ActivatedRoute, private spotifyService:SpotifyService, private userService:UserService) { 
     this.route.params.subscribe(p => {
       this.playlistId = p['id']      
       this.render();
