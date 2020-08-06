@@ -16,7 +16,7 @@ export class PlayerComponent implements OnInit {
   ap;
   isActive =false;
   isPlaying = false;
-  isSpotifyActive = false;
+  isSpotifyActive = false ;
   isSpotifyPlaying = false;
   currentSpotifyTrack:Track | any;
   currentPlayingId:string;
