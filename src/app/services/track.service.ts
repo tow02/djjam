@@ -112,5 +112,24 @@ export class TrackService {
     }>);  
   }
 
+  async convertTagToPersonalTag(nameTag:string){
+    let token = await this.userService.getUserId()
+    return `${token}-${nameTag.toLocaleLowerCase()}`;
+  }
+
+  async updatePersonaltags(trackId:string, tags:Array<string>, isAdd:boolean = true){
+    //personal_tags.
+    let obj:any = {};
+    obj['personal_tags'] = {}
+    for(let i =0; i < tags.length;i++){
+      let tag = tags[i];
+      let personalTag = await this.convertTagToPersonalTag(tag)
+      obj['personal_tags'][personalTag] = isAdd;
+    }
+    return this.firestore.collection('track').doc(trackId).update(obj)
+  }
+
+  
+
 
 }
