@@ -39,5 +39,6 @@ jobs:
     - name: Firebase Deploy
       run: |
         sudo npm install -g firebase-tools
+        firebase use djjam-d7ae7 --token ${{ secrets.FIREBASE_TOKEN }}
         firebase target:apply hosting djjam-d7ae7 djjam-d7ae7 --token ${{ secrets.FIREBASE_TOKEN }}
         firebase deploy --project djjam-d7ae7 --only hosting:djjam-d7ae7 --token ${{ secrets.FIREBASE_TOKEN }}
