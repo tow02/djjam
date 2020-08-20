@@ -42,6 +42,7 @@ export interface Track{
     preview_url: string | null | undefined,
     spotify_uri: string
     tags: any
+    personal_tags:any;
     url: string
     year: string
     id?:string
