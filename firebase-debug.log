@@ -28,3 +28,37 @@
 [debug] [2020-06-12T07:47:20.781Z] [hosting][hash queue][FINAL] {"max":222,"min":11,"avg":46.84615384615385,"active":0,"complete":13,"success":13,"errored":0,"retried":0,"total":13,"elapsed":231}
 [debug] [2020-06-12T07:47:20.781Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/djjam-develop/versions/caa14ce1b3d47cff:populateFiles  
  <request body omitted>
+[debug] [2020-08-20T12:53:49.355Z] ----------------------------------------------------------------------
+[debug] [2020-08-20T12:53:49.357Z] Command:       /Users/sompopkulapalanont/.nvm/versions/node/v10.18.1/bin/node /Users/sompopkulapalanont/.nvm/versions/node/v10.18.1/bin/firebase deploy --project djjam-d7ae7 --only hosting:djjam-v2
+[debug] [2020-08-20T12:53:49.358Z] CLI Version:   8.5.0
+[debug] [2020-08-20T12:53:49.358Z] Platform:      darwin
+[debug] [2020-08-20T12:53:49.358Z] Node Version:  v10.18.1
+[debug] [2020-08-20T12:53:49.364Z] Time:          Thu Aug 20 2020 19:53:49 GMT+0700 (Indochina Time)
+[debug] [2020-08-20T12:53:49.364Z] ----------------------------------------------------------------------
+[debug] [2020-08-20T12:53:49.364Z] 
+[debug] [2020-08-20T12:53:49.381Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-08-20T12:53:49.382Z] > authorizing via signed-in user
+[debug] [2020-08-20T12:53:49.382Z] [iam] checking project djjam-d7ae7 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-08-20T12:53:49.385Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-08-20T12:53:49.385Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-08-20T12:53:49.612Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 20 Aug 2020 12:53:49 GMT","server":"scaffolding on HTTPServer2","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-20T12:53:49.629Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/djjam-d7ae7:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2020-08-20T12:53:50.803Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 20 Aug 2020 12:53:50 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1012","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-20T12:53:50.806Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/djjam-d7ae7  
+ 
+[debug] [2020-08-20T12:53:51.212Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 20 Aug 2020 12:53:51 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'djjam-d7ae7'...
+[info] 
+[info] i  deploying hosting 
+[info] 
+[info] ✔  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/djjam-d7ae7/overview
+[debug] [2020-08-20T12:53:51.383Z] TypeError: Cannot read property 'deploys' of undefined
+    at /Users/sompopkulapalanont/.nvm/versions/node/v10.18.1/lib/node_modules/firebase-tools/lib/deploy/index.js:84:36
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+[error] 
+[error] Error: An unexpected error has occurred.
