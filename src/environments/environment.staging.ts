@@ -2,7 +2,7 @@ export const environment = {
     production: true,
     version:"0.1",
     client_id:"undefined",
-    host_url:"https://djjam.app",
+    host_url:"https://djjam-staging.web.app",
     search_url:"https://djjam.app/queryTrack",
     api_url:"https://us-central1-djjam-d7ae7.cloudfunctions.net",
     default_suffix_search:`exclude "notswing,uncheck"`,
