@@ -52,7 +52,10 @@ export class TracksControllerComponent implements OnChanges {
           //update bpm;
           trackElement.bpm = this.spotifyService._processSpotifyTrackToBpm(item, this.playlistEvent.djjamTracks, this.playlistEvent.audioFeatures);
           trackElement.tags = this.spotifyService._processTagsToArrayTags(this.spotifyService._processSpotifyTrackToTags(item,  this.playlistEvent.djjamTracks, this.playlistEvent.audioFeatures)).join(',');
-          trackElement.personal_tags = this.spotifyService._processTagsToArrayTags(djJamTrack?djJamTrack.personal_tags:[] ).join(',');
+          let obj = {};
+          if(djJamTrack && djJamTrack.personal_tags )
+            obj = djJamTrack.personal_tags
+          trackElement.personal_tags = this.spotifyService._processTagsToArrayTags(obj).join(',');
           return trackElement;
       })
       this.dataSource = new MatTableDataSource(this.trackSource);
