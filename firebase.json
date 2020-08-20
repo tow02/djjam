@@ -1,6 +1,52 @@
 {
   "hosting": [
     {
+      "site": "djjam-d7ae7",
+      "target": "djjam-d7ae7",
+      "public": "dist/djjam-v2",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source":"/api/users",
+          "function":"user"
+        },
+        {
+          "source": "**",
+          "destination": "/index.html"
+        },
+        {
+          "source":"/queryTrack",
+          "function":"queryTrack"
+        }
+        ,{
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "headers": [ 
+        
+        {
+          "source" : "/index.html",
+          "headers" : [ {
+            "key" : "Access-Control-Allow-Origin",
+            "value" : "*"
+          } ]
+        },
+        {
+          "source" : "**",
+          "headers" : [ {
+            "key" : "Access-Control-Allow-Origin",
+            "value" : "*"
+          } ]
+        } 
+  
+      ]
+    },
+    {
       "site": "djjam-staging",
       "target": "djjam-staging",
       "public": "dist/djjam-v2",
