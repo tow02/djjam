@@ -13,6 +13,7 @@ export interface TrackElement{
   artists:string,
   bpm:number,
   tags:string
+  personal_tags:string,
   spotifyItem:SpotifyTrackItem
 }
 
@@ -44,12 +45,14 @@ export class TracksControllerComponent implements OnChanges {
             artists:item.track.artists.map(a => a.name).join(','),
             bpm:0,
             tags:'',
+            personal_tags:'',
             spotifyItem:item
           };
-
+          let djJamTrack = this.playlistEvent.djjamTracks[item.track.id];
           //update bpm;
           trackElement.bpm = this.spotifyService._processSpotifyTrackToBpm(item, this.playlistEvent.djjamTracks, this.playlistEvent.audioFeatures);
           trackElement.tags = this.spotifyService._processTagsToArrayTags(this.spotifyService._processSpotifyTrackToTags(item,  this.playlistEvent.djjamTracks, this.playlistEvent.audioFeatures)).join(',');
+          trackElement.personal_tags = this.spotifyService._processTagsToArrayTags(djJamTrack?djJamTrack.personal_tags:[] ).join(',');
           return trackElement;
       })
       this.dataSource = new MatTableDataSource(this.trackSource);

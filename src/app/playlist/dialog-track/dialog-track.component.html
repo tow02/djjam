@@ -10,8 +10,14 @@
       <input name="bpm"   [(ngModel)]="data.bpm" matInput  type="number" value="">
   </mat-form-field>
   </form>
-  <h5>Tags</h5>
+  <h5>Tags(Public)</h5>
   <span class="tag" *ngFor="let item of tags">{{item}}</span>
+  <!--<h5>Tags(Private)</h5>
+  <span class="tag" *ngFor="let item of personal_tags">{{item}}</span>
+  
+  <form style="display:inline;" (submit)="addNewTag()">
+    <input name="newTag" [(ngModel)]="newTag" type="text" placeholder="New Tag" />
+  </form>-->
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Back</button>
