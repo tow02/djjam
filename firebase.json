@@ -15,10 +15,6 @@
           "function":"user"
         },
         {
-          "source": "**",
-          "destination": "/index.html"
-        },
-        {
           "source":"/queryTrack",
           "function":"queryTrack"
         }
