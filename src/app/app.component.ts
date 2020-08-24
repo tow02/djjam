@@ -1,6 +1,7 @@
 import { Component, HostListener  } from '@angular/core';
 import { AuthenticationService} from "./services/authentication.service"
-
+import {Router, NavigationEnd} from '@angular/router';
+declare let ga: Function;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,7 +15,7 @@ export class AppComponent {
   
   mode:"desktop"|"mobile" = "mobile";
 
-  constructor(private authen:AuthenticationService){
+  constructor(private authen:AuthenticationService, public router: Router){
     if(window.innerWidth < 800){
       this.isOpen = false;
     }else
@@ -31,6 +32,15 @@ export class AppComponent {
           this.isOpen = true;
       }
     })
+    this.router.events.subscribe(event => {
+
+      if (event instanceof NavigationEnd) {
+        ga('set', 'page', event.urlAfterRedirects);
+        ga('send', 'pageview');
+
+      }
+
+    });
     
   }
 
