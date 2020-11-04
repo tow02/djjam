@@ -2,7 +2,6 @@
   "hosting": [
     {
       "site": "djjam-d7ae7",
-      "target": "djjam-d7ae7",
       "public": "dist/djjam-v2",
       "ignore": [
         "firebase.json",
@@ -44,7 +43,6 @@
     },
     {
       "site": "djjam-staging",
-      "target": "djjam-staging",
       "public": "dist/djjam-v2",
       "ignore": [
         "firebase.json",
@@ -64,7 +62,6 @@
     },
     {
       "site": "djjam-develop",
-      "target": "djjam-develop",
       "public": "dist/djjam-v2",
       "ignore": [
         "firebase.json",
