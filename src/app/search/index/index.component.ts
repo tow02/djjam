@@ -81,6 +81,8 @@ export class IndexComponent implements  OnInit {
     }  
 
     updateFilter(filter:FilterOptions){
+      //reset from
+      this.from = 0;
       this.currentFilter = filter;
       delete this.elasticTracks 
       console.log('udpate filter', filter)
