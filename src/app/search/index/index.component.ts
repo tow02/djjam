@@ -27,7 +27,10 @@ export class IndexComponent implements  OnInit {
 
   constructor(private search:SearchService, private route:ActivatedRoute, private authen:AuthenticationService, private trackService:TrackService, private location:Location, private router:Router) { 
     this.route.params.subscribe(p => {
+      this.from = 0;
+      this.elasticTracks = undefined;
       this.init(p['query']);
+      
     })
     
   }
