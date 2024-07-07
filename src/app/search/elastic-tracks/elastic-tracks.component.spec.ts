@@ -8,9 +8,8 @@ describe('ElasticTracksComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ElasticTracksComponent ]
-    })
-    .compileComponents();
+      declarations: [ElasticTracksComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

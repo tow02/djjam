@@ -1,64 +1,82 @@
 <header>
-    <section class="first">
-        <div class="container" *ngIf="user">
-            <img class="clip-circle" src="{{user.picture}}" />
-        </div>
-    </section>
-    <section class="second">
-        <div class="container" *ngIf="user">
-            <h5>DJ</h5>
-            <h1>{{this.user.name}}</h1>
-            <h5>FROM</h5>
-            <span> <a href="">{{this.user.city}}</a></span>
-        </div>
-    </section>
-    <section class="end">
-        <div class="container">
-            <button mat-icon-button [matMenuTriggerFor]="optionMenu"><mat-icon>more_vert</mat-icon></button>
-            <mat-menu #optionMenu="matMenu">
-                <button (click)="copy()"  mat-menu-item><mat-icon aria-hidden="false" aria-label="copy">file_copy</mat-icon> Copy Link</button>
-                <a [routerLink]="['/profile']" mat-menu-item><mat-icon aria-hidden="false" aria-label="copy">visibility</mat-icon>  User view</a>
-                <!--<button  mat-menu-item><mat-icon aria-hidden="false" aria-label="Example home icon">thumb_up_alt</mat-icon> Facebook News Feed</button>
+  <section class="first">
+    <div class="container" *ngIf="user">
+      <img class="clip-circle" src="{{ user.picture }}" />
+    </div>
+  </section>
+  <section class="second">
+    <div class="container" *ngIf="user">
+      <h5>DJ</h5>
+      <h1>{{ this.user.name }}</h1>
+      <h5>FROM</h5>
+      <span>
+        <a href="">{{ this.user.city }}</a></span
+      >
+    </div>
+  </section>
+  <section class="end">
+    <div class="container">
+      <button mat-icon-button [matMenuTriggerFor]="optionMenu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #optionMenu="matMenu">
+        <button (click)="copy()" mat-menu-item>
+          <mat-icon aria-hidden="false" aria-label="copy">file_copy</mat-icon>
+          Copy Link
+        </button>
+        <a [routerLink]="['/profile']" mat-menu-item
+          ><mat-icon aria-hidden="false" aria-label="copy">visibility</mat-icon>
+          User view</a
+        >
+        <!--<button  mat-menu-item><mat-icon aria-hidden="false" aria-label="Example home icon">thumb_up_alt</mat-icon> Facebook News Feed</button>
                 <button  mat-menu-item><mat-icon aria-hidden="false" aria-label="Example home icon">message</mat-icon> Messenger</button>-->
-            </mat-menu>   
-        </div>
-    </section>
+      </mat-menu>
+    </div>
+  </section>
 </header>
 <section #main class="main">
-    <div *ngFor="let item of sets;let i = index" class="set">
-        <header>
-            <div class="first">
-                <h2>{{item.name}}</h2>
-            </div>
-            <div class="end" > 
-                <button (click)="moveDown(i)"  mat-icon-button >
-                    <mat-icon>keyboard_arrow_down</mat-icon>
-                </button>
-                <button  (click)="moveUp(i)"  mat-icon-button >
-                    <mat-icon>keyboard_arrow_up</mat-icon>
-                </button>
-                <button (click)="edit(i)" mat-icon-button >
-                    <mat-icon>create</mat-icon>
-                </button>
-            </div>
-        </header>
-        <mat-divider ></mat-divider>
-        <div class="empty" *ngIf="item.playlists.length == 0">
-            This set is empty please <a [routerLink]="['/publish']">publish</a> some playlists to make this work
-        </div>
-        <div  class="container" >
-            <div class="wrap" id="set-{{i}}"  [ngClass]="{'lesser-than-6':(item.playlists.length < SET_VIEW_LIMIT)}">
-                <!-- Playlists-->
-                <article (click)="edit(i)" [ngClass]="{'moved': isMoveAnimation[j]}" *ngFor="let playlist of item.playlists;let j = index" class="playlist">
-                    <img src="{{playlist.imageUrl}}">
-                    <h4>{{playlist.name}}</h4>
-                    
-                </article>
-            </div>
-        </div>
+  <div *ngFor="let item of sets; let i = index" class="set">
+    <header>
+      <div class="first">
+        <h2>{{ item.name }}</h2>
+      </div>
+      <div class="end">
+        <button (click)="moveDown(i)" mat-icon-button>
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+        <button (click)="moveUp(i)" mat-icon-button>
+          <mat-icon>keyboard_arrow_up</mat-icon>
+        </button>
+        <button (click)="edit(i)" mat-icon-button>
+          <mat-icon>create</mat-icon>
+        </button>
+      </div>
+    </header>
+    <mat-divider></mat-divider>
+    <div class="empty" *ngIf="item.playlists.length == 0">
+      This set is empty please <a [routerLink]="['/publish']">publish</a> some
+      playlists to make this work
     </div>
-    <div class="options">
-        <a [routerLink]="['/setting']" mat-button color="primary">ADD A NEW SET</a>
+    <div class="container">
+      <div
+        class="wrap"
+        id="set-{{ i }}"
+        [ngClass]="{ 'lesser-than-6': item.playlists.length < SET_VIEW_LIMIT }"
+      >
+        <!-- Playlists-->
+        <article
+          (click)="edit(i)"
+          [ngClass]="{ moved: isMoveAnimation[j] }"
+          *ngFor="let playlist of item.playlists; let j = index"
+          class="playlist"
+        >
+          <img src="{{ playlist.imageUrl }}" />
+          <h4>{{ playlist.name }}</h4>
+        </article>
+      </div>
     </div>
-
+  </div>
+  <div class="options">
+    <a [routerLink]="['/setting']" mat-button color="primary">ADD A NEW SET</a>
+  </div>
 </section>

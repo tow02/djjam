@@ -8,9 +8,8 @@ describe('TempoGraphComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TempoGraphComponent ]
-    })
-    .compileComponents();
+      declarations: [TempoGraphComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

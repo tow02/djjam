@@ -1,14 +1,21 @@
 <div class="artists" *ngIf="artists && playlistEvent.status === 'done'">
-    <article *ngFor="let item of artists">
-        <img *ngIf="item.images && item.images[item.images.length-1] " src="{{item.images[item.images.length-1].url}}" />
-        <div class="cover" *ngIf="!(item.images && item.images[item.images.length-1] )">
-            {{item.name}}    
-        </div>
-        
-        <span class="tooltiptext">{{item.name}}({{artistInfomation[item.id]?.count}})</span>
-    </article>
-    
+  <article *ngFor="let item of artists">
+    <img
+      *ngIf="item.images && item.images[item.images.length - 1]"
+      src="{{ item.images[item.images.length - 1].url }}"
+    />
+    <div
+      class="cover"
+      *ngIf="!(item.images && item.images[item.images.length - 1])"
+    >
+      {{ item.name }}
+    </div>
+
+    <span class="tooltiptext"
+      >{{ item.name }}({{ artistInfomation[item.id]?.count }})</span
+    >
+  </article>
 </div>
-<div  *ngIf="!(artists && playlistEvent.status === 'done')">
-    <mat-spinner></mat-spinner>
+<div *ngIf="!(artists && playlistEvent.status === 'done')">
+  <mat-spinner></mat-spinner>
 </div>

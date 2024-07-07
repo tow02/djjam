@@ -1,20 +1,23 @@
-section.main-content{
-    min-height: calc(100vh - var(--menu-height) - var(--main-padding) - var(--main-padding));
-    padding-top:calc(var(--menu-height) + var(--main-padding)  + var(--main-padding));
-    background-color: var(--main-content-bg-color);
-    color:white;
+section.main-content {
+  min-height: calc(
+    100vh - var(--menu-height) - var(--main-padding) - var(--main-padding)
+  );
+  padding-top: calc(
+    var(--menu-height) + var(--main-padding) + var(--main-padding)
+  );
+  background-color: var(--main-content-bg-color);
+  color: white;
 }
 
-.mat-drawer.mat-drawer-side{
-    background-color: var(--secondary-bg-color);
-    color:white;
+.mat-drawer.mat-drawer-side {
+  background-color: var(--secondary-bg-color);
+  color: white;
 }
 
 mat-sidenav {
-    width: 200px;
-  }
-
-mat-sidenav::-webkit-scrollbar {
-    background-color: black;;
+  width: 200px;
 }
 
+mat-sidenav::-webkit-scrollbar {
+  background-color: black;
+}

@@ -1,122 +1,140 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'aplayer/dist/APlayer.min.css';
-:root{
-    --main-color:#ffc218;
-    --main-bg-color:#343a40;
-    --main-content-bg-color:#212529;
-    --secondary-bg-color:#1b1c1d;
-    --secondary-text-color:#a6b1b7;
-    --spotify-color:#1ed760;
-    --main-padding:1em;
-    --menu-height:2.5em;
+@import "aplayer/dist/APlayer.min.css";
+:root {
+  --main-color: #ffc218;
+  --main-bg-color: #343a40;
+  --main-content-bg-color: #212529;
+  --secondary-bg-color: #1b1c1d;
+  --secondary-text-color: #a6b1b7;
+  --spotify-color: #1ed760;
+  --main-padding: 1em;
+  --menu-height: 2.5em;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-
-a{
-    color:white;
+html,
+body {
+  height: 100%;
 }
-
-input.form-control{
-    padding:.375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius:10em;
-    display: block;
-    width: calc(98% - var(--main-padding));
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-
-.mat-drawer-inner-container{
-    overflow-y: scroll;
-    padding-right: 17px; /* Increase/decrease this value for cross-browser compatibility */
-    box-sizing: content-box; 
+a {
+  color: white;
 }
 
-.spotify-button{
-    background-color: var(--spotify-color);;
-    cursor: pointer;;
-    font-weight: bold;
-    padding:1em;
-    border-radius: 2em;
-    border:0;
-    text-decoration: none;
-    color:white;
+input.form-control {
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 10em;
+  display: block;
+  width: calc(98% - var(--main-padding));
 }
 
-.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary{
-    color:black;
+.mat-drawer-inner-container {
+  overflow-y: scroll;
+  padding-right: 17px; /* Increase/decrease this value for cross-browser compatibility */
+  box-sizing: content-box;
 }
 
-.mat-divider{
-    border-top-color:#a6b1b714
+.spotify-button {
+  background-color: var(--spotify-color);
+  cursor: pointer;
+  font-weight: bold;
+  padding: 1em;
+  border-radius: 2em;
+  border: 0;
+  text-decoration: none;
+  color: white;
 }
 
-.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary{
-    background-color: var(--main-color);
-    
+.mat-button.mat-primary,
+.mat-icon-button.mat-primary,
+.mat-stroked-button.mat-primary {
+  color: black;
 }
 
-
-.mat-step-header .mat-step-icon{
-    background-color: rgb(53, 58, 64);
-    color: var(--main-color);
+.mat-divider {
+  border-top-color: #a6b1b714;
 }
 
-.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit{
-    background-color: var(--main-color);
-    color:black;
+.mat-button.mat-primary,
+.mat-icon-button.mat-primary,
+.mat-stroked-button.mat-primary {
+  background-color: var(--main-color);
 }
 
-
-
-.mat-step-header .mat-step-label.mat-step-label-active{
-    color:rgba(255, 255, 255, 0.87);
+.mat-step-header .mat-step-icon {
+  background-color: rgb(53, 58, 64);
+  color: var(--main-color);
 }
 
-.mat-horizontal-stepper-header::before, .mat-horizontal-stepper-header::after, .mat-stepper-horizontal-line{
-    border-top-color: #a6b1b714;
+.mat-step-header .mat-step-icon-selected,
+.mat-step-header .mat-step-icon-state-done,
+.mat-step-header .mat-step-icon-state-edit {
+  background-color: var(--main-color);
+  color: black;
 }
 
-.mat-step-header .mat-step-label, .mat-step-header .mat-step-optional{
-    color:var(--secondary-text-color);
+.mat-step-header .mat-step-label.mat-step-label-active {
+  color: rgba(255, 255, 255, 0.87);
 }
 
-.mat-radio-outer-circle,.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
-    border-color: var(--main-color);
+.mat-horizontal-stepper-header::before,
+.mat-horizontal-stepper-header::after,
+.mat-stepper-horizontal-line {
+  border-top-color: #a6b1b714;
 }
 
-.mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple{
-    background-color: var(--main-color);
+.mat-step-header .mat-step-label,
+.mat-step-header .mat-step-optional {
+  color: var(--secondary-text-color);
 }
 
-span[color="primary"], .mat-form-field.mat-focused .mat-form-field-label, a[color="primary"]{
-    color:var(--main-color)
+.mat-radio-outer-circle,
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: var(--main-color);
 }
 
-
-.mat-input-element,.mat-form-field.mat-focused .mat-input-element{
-    caret-color:var(--secondary-bg-color);
+.mat-radio-button.mat-accent .mat-radio-inner-circle,
+.mat-radio-button.mat-accent
+  .mat-radio-ripple
+  .mat-ripple-element:not(.mat-radio-persistent-ripple),
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
+.mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+  background-color: var(--main-color);
 }
 
-.mat-form-field.mat-focused .mat-form-field-ripple  {
-    background-color: var(--main-color);
+span[color="primary"],
+.mat-form-field.mat-focused .mat-form-field-label,
+a[color="primary"] {
+  color: var(--main-color);
 }
 
-button.mat-button[color="spotify"]{
-    background-color: var(--spotify-color);
-    color:white;
+.mat-input-element,
+.mat-form-field.mat-focused .mat-input-element {
+  caret-color: var(--secondary-bg-color);
 }
 
-.mat-progress-spinner circle, .mat-spinner circle{
-    stroke:var(--main-color);
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: var(--main-color);
 }
 
-.mat-menu-panel{
-    background-color: #353a40;
+button.mat-button[color="spotify"] {
+  background-color: var(--spotify-color);
+  color: white;
 }
 
-.mat-menu-item{
-    color:var(--main-color)
+.mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: var(--main-color);
+}
+
+.mat-menu-panel {
+  background-color: #353a40;
+}
+
+.mat-menu-item {
+  color: var(--main-color);
 }

@@ -1,70 +1,123 @@
-<section  class="web-player" [ngClass]="{'active':isActive}">
-    <div id="aplayer"></div>
+<section class="web-player" [ngClass]="{ active: isActive }">
+  <div id="aplayer"></div>
 </section>
-<section class="options" [ngClass]="{'active':isActive}">
-    <button  [matMenuTriggerFor]="menu" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
-        <mat-icon>more_vert</mat-icon>
+<section class="options" [ngClass]="{ active: isActive }">
+  <button
+    [matMenuTriggerFor]="menu"
+    mat-icon-button
+    aria-label="Example icon button with a vertical three dot icon"
+  >
+    <mat-icon>more_vert</mat-icon>
+  </button>
+</section>
+<section
+  class="spotify-option"
+  *ngIf="currentSpotifyTrack"
+  [ngClass]="{ active: isSpotifyActive }"
+>
+  <div class="first">
+    <img src="{{ currentSpotifyTrack.album.images[0].url }}" />
+  </div>
+  <div class="second">
+    <div class="wrapper">
+      <h3>
+        {{ currentSpotifyTrack.name }}
+        <span class="artists">
+          - {{ currentSpotifyTrack.artists[0].name }}</span
+        >
+      </h3>
+      <span *ngIf="currentSpotifyTrack.bpm"
+        >{{ currentSpotifyTrack.bpm }} BPM</span
+      >
+    </div>
+  </div>
+  <div class="end">
+    <button
+      [matMenuTriggerFor]="menu"
+      mat-icon-button
+      aria-label="Example icon button with a vertical three dot icon"
+    >
+      <mat-icon>more_vert</mat-icon>
     </button>
+  </div>
 </section>
-<section class="spotify-option" *ngIf="currentSpotifyTrack" [ngClass]="{'active':isSpotifyActive}">
-    <div class="first">
-        <img src="{{currentSpotifyTrack.album.images[0].url}}" />
-    </div>
-    <div class="second">
-        <div class="wrapper">
-            <h3>{{currentSpotifyTrack.name}} <span class="artists"> - {{currentSpotifyTrack.artists[0].name}}</span></h3>
-            <span *ngIf="currentSpotifyTrack.bpm">{{currentSpotifyTrack.bpm}} BPM</span>
-        </div>
-    </div>
-    <div class="end">
-        <button  [matMenuTriggerFor]="menu" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
-            <mat-icon>more_vert</mat-icon>
-        </button>
-    </div>
-</section>
-
 
 <mat-menu #menu="matMenu">
-    <button  [matMenuTriggerFor]="playlists" mat-menu-item>Add to playlist</button>
-    
-  </mat-menu>
-  <mat-menu #playlists="matMenu">
-    <ng-template *ngIf="playlistGroupByCharacters" matMenuContent>
-        <button [matMenuTriggerFor]="ad"  mat-menu-item>A - D</button>
-        <button [matMenuTriggerFor]="ei"  mat-menu-item>E - I</button>
-        <button [matMenuTriggerFor]="jm"  mat-menu-item>J - M</button>
-        <button [matMenuTriggerFor]="nq"  mat-menu-item>N - Q</button>
-        <button [matMenuTriggerFor]="ru"  mat-menu-item>R - U</button>
-        <button [matMenuTriggerFor]="vz"  mat-menu-item>V - Z</button>
-    </ng-template>
-  </mat-menu>
-  <mat-menu #ad="matMenu">
-    <ng-template  matMenuContent>
-        <button  (click)="addTrackPlaylist(item.id)" *ngFor="let item of playlistGroupMap['ad']" mat-menu-item>{{item.name}}</button>
-    </ng-template>
-  </mat-menu>
-  <mat-menu #ei="matMenu">
-    <ng-template matMenuContent>
-        <button  (click)="addTrackPlaylist(item.id)" *ngFor="let item of playlistGroupMap['ei']" mat-menu-item>{{item.name}}</button>
-    </ng-template>
-  </mat-menu>
-  <mat-menu #jm="matMenu">
-    <ng-template matMenuContent>
-        <button  (click)="addTrackPlaylist(item.id)" *ngFor="let item of playlistGroupMap['jm']" mat-menu-item>{{item.name}}</button>
-    </ng-template>
-  </mat-menu>
-  <mat-menu #nq="matMenu">
-    <ng-template matMenuContent>
-        <button  (click)="addTrackPlaylist(item.id)" *ngFor="let item of playlistGroupMap['nq']" mat-menu-item>{{item.name}}</button>
-    </ng-template>
-  </mat-menu>
-  <mat-menu #ru="matMenu">
-    <ng-template matMenuContent>
-        <button  (click)="addTrackPlaylist(item.id)" *ngFor="let item of playlistGroupMap['ru']" mat-menu-item>{{item.name}}</button>
-    </ng-template>
-  </mat-menu>
-  <mat-menu #vz="matMenu">
-    <ng-template matMenuContent>
-        <button (click)="addTrackPlaylist(item.id)" *ngFor="let item of playlistGroupMap['vz']" mat-menu-item>{{item.name}}</button>
-    </ng-template>
-  </mat-menu>
+  <button [matMenuTriggerFor]="playlists" mat-menu-item>Add to playlist</button>
+</mat-menu>
+<mat-menu #playlists="matMenu">
+  <ng-template *ngIf="playlistGroupByCharacters" matMenuContent>
+    <button [matMenuTriggerFor]="ad" mat-menu-item>A - D</button>
+    <button [matMenuTriggerFor]="ei" mat-menu-item>E - I</button>
+    <button [matMenuTriggerFor]="jm" mat-menu-item>J - M</button>
+    <button [matMenuTriggerFor]="nq" mat-menu-item>N - Q</button>
+    <button [matMenuTriggerFor]="ru" mat-menu-item>R - U</button>
+    <button [matMenuTriggerFor]="vz" mat-menu-item>V - Z</button>
+  </ng-template>
+</mat-menu>
+<mat-menu #ad="matMenu">
+  <ng-template matMenuContent>
+    <button
+      (click)="addTrackPlaylist(item.id)"
+      *ngFor="let item of playlistGroupMap['ad']"
+      mat-menu-item
+    >
+      {{ item.name }}
+    </button>
+  </ng-template>
+</mat-menu>
+<mat-menu #ei="matMenu">
+  <ng-template matMenuContent>
+    <button
+      (click)="addTrackPlaylist(item.id)"
+      *ngFor="let item of playlistGroupMap['ei']"
+      mat-menu-item
+    >
+      {{ item.name }}
+    </button>
+  </ng-template>
+</mat-menu>
+<mat-menu #jm="matMenu">
+  <ng-template matMenuContent>
+    <button
+      (click)="addTrackPlaylist(item.id)"
+      *ngFor="let item of playlistGroupMap['jm']"
+      mat-menu-item
+    >
+      {{ item.name }}
+    </button>
+  </ng-template>
+</mat-menu>
+<mat-menu #nq="matMenu">
+  <ng-template matMenuContent>
+    <button
+      (click)="addTrackPlaylist(item.id)"
+      *ngFor="let item of playlistGroupMap['nq']"
+      mat-menu-item
+    >
+      {{ item.name }}
+    </button>
+  </ng-template>
+</mat-menu>
+<mat-menu #ru="matMenu">
+  <ng-template matMenuContent>
+    <button
+      (click)="addTrackPlaylist(item.id)"
+      *ngFor="let item of playlistGroupMap['ru']"
+      mat-menu-item
+    >
+      {{ item.name }}
+    </button>
+  </ng-template>
+</mat-menu>
+<mat-menu #vz="matMenu">
+  <ng-template matMenuContent>
+    <button
+      (click)="addTrackPlaylist(item.id)"
+      *ngFor="let item of playlistGroupMap['vz']"
+      mat-menu-item
+    >
+      {{ item.name }}
+    </button>
+  </ng-template>
+</mat-menu>

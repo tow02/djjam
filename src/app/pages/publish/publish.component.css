@@ -1,49 +1,47 @@
-.playlists{
-    display:flex;
-    flex-flow: row wrap;
+.playlists {
+  display: flex;
+  flex-flow: row wrap;
 }
 
-.playlists article{
-    width: 120px;
-    
+.playlists article {
+  width: 120px;
 }
 
-.playlists article .container{
-    padding:5px;
-    text-align: center;
+.playlists article .container {
+  padding: 5px;
+  text-align: center;
 }
 
-.image img{
-    width: 100px;
-    height: 100px;
-    object-fit:cover;
+.image img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
 }
 
-article h4{ 
-    width:100px;
+article h4 {
+  width: 100px;
 }
 
-.playlists.selected{
-    border:1px solid var(--main-color);
+.playlists.selected {
+  border: 1px solid var(--main-color);
 }
 
-.playlists article.selected{
-    background-color: var(--main-color);
-    color:black;
+.playlists article.selected {
+  background-color: var(--main-color);
+  color: black;
 }
 
-.mat-stepper-horizontal, .mat-stepper-vertical{
-    background-color: var(--main-content-bg-color);
+.mat-stepper-horizontal,
+.mat-stepper-vertical {
+  background-color: var(--main-content-bg-color);
 }
 
-
-mat-radio-group{
-    display: flex;
-    width: 100%;
-    flex-direction: column;
+mat-radio-group {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
 }
 
-mat-radio-button{
-    padding-bottom: 1em;
-    
+mat-radio-button {
+  padding-bottom: 1em;
 }

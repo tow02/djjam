@@ -1,7 +1,6 @@
-.container{
-    display:flex;
-    justify-content: center;
-    align-content: center;
-    padding-top:27vh;
-    
+.container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding-top: 27vh;
 }

@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ViewComponent } from "./view/view.component"
+import { ViewComponent } from './view/view.component';
 
-const routes: Routes = [
-  { path:"playlist/:id", component:ViewComponent }
-];
+const routes: Routes = [{ path: 'playlist/:id', component: ViewComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class PlaylistRoutingModule { }
+export class PlaylistRoutingModule {}

@@ -1,27 +1,27 @@
-.controls{
-    padding-left:var(--main-padding);
-    padding-top:var(--main-padding);
-    padding-right:var(--main-padding);
+.controls {
+  padding-left: var(--main-padding);
+  padding-top: var(--main-padding);
+  padding-right: var(--main-padding);
 }
 
-h3{
-    margin-bottom: 0px;;
+h3 {
+  margin-bottom: 0px;
 }
 
-.controls .container{
-    display: flex;
+.controls .container {
+  display: flex;
 }
 
-.controls .container div{
-    flex:1
+.controls .container div {
+  flex: 1;
 }
 
-.controls .container .second{
-    justify-content: flex-end;
-    display: flex;
+.controls .container .second {
+  justify-content: flex-end;
+  display: flex;
 }
 
-button.primary{
-    background-color: var(--main-color);
-    color:var(--main-bg-color);
+button.primary {
+  background-color: var(--main-color);
+  color: var(--main-bg-color);
 }

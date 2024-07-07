@@ -1,33 +1,39 @@
-<header  *ngIf="playlistEvent && playlistEvent.playlist">
+<header *ngIf="playlistEvent && playlistEvent.playlist">
   <div class="start">
     <h5>PLAYLIST</h5>
     <div>
-      <h2>{{playlistEvent.playlist.name}}</h2>
-      <p>&nbsp; by <a href="{{playlistEvent.playlist.owner.href}}">{{playlistEvent.playlist.owner.display_name}}</a></p>
+      <h2>{{ playlistEvent.playlist.name }}</h2>
+      <p>
+        &nbsp; by
+        <a href="{{ playlistEvent.playlist.owner.href }}">{{
+          playlistEvent.playlist.owner.display_name
+        }}</a>
+      </p>
     </div>
   </div>
   <div class="end">
     <!--<mat-slide-toggle [(ngModel)]="isPublished" labelPosition="before">PUBLISH</mat-slide-toggle>  -->
-    <button mat-icon-button [matMenuTriggerFor]="menu"  aria-label="Example icon button with a vertical three dot icon">
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      aria-label="Example icon button with a vertical three dot icon"
+    >
       <mat-icon>more_horiz</mat-icon>
-  </button>
-  &nbsp;
-    <button (click)="listen()" class="spotify-button">LISTEN</button>  
-    
-    
+    </button>
+    &nbsp;
+    <button (click)="listen()" class="spotify-button">LISTEN</button>
   </div>
-  
 </header>
-<mat-menu  #menu="matMenu">
+<mat-menu #menu="matMenu">
   <button (click)="setPlaylistStatus(true)" *ngIf="!isPublished" mat-menu-item>
     <mat-icon>publish</mat-icon>
     <span>Publish</span>
   </button>
-  <button  (click)="setPlaylistStatus(false)" *ngIf="isPublished" mat-menu-item >
+  <button (click)="setPlaylistStatus(false)" *ngIf="isPublished" mat-menu-item>
     <mat-icon>lock</mat-icon>
     <span>Make it private</span>
   </button>
-  <button  (click)="listenInSpotify()" mat-menu-item>
+  <button (click)="listenInSpotify()" mat-menu-item>
     <mat-icon>play_arrow</mat-icon>
     <span>Listen in Spotify</span>
   </button>
@@ -36,7 +42,7 @@
   <button (click)="listen()" class="spotify-button">LISTEN</button>
 </div>-->
 <section class="main">
-<!--<div>
+  <!--<div>
   Compare <select>
     <option>Guideline for Newbie</option>
   </select>
@@ -44,10 +50,9 @@
 
   <h3>TEMPO</h3>
   <section class="tempo">
-      <tempo-graph [(playlistEvent)]="playlistEvent"></tempo-graph>
-      <tempo-line-graph [playlistEvent]="playlistEvent"></tempo-line-graph>
-    </section>
-  
+    <tempo-graph [(playlistEvent)]="playlistEvent"></tempo-graph>
+    <tempo-line-graph [playlistEvent]="playlistEvent"></tempo-line-graph>
+  </section>
 
   <div class="second-section">
     <section class="first">
@@ -61,21 +66,18 @@
       <div class="container">
         <tags-pie [playlistEvent]="playlistEvent"></tags-pie>
       </div>
-      
+
       <h3>ARTISTS</h3>
       <div class="container">
         <artists-character [playlistEvent]="playlistEvent"></artists-character>
       </div>
     </section>
-    
   </div>
-  
-  
-<!--  <h3>Characteristics</h3>
+
+  <!--  <h3>Characteristics</h3>
   <section class="character">
     
     <artists-character [playlistEvent]="playlistEvent"></artists-character>
   </section>
 
--->
-</section>
+--></section>

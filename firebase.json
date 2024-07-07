@@ -3,56 +3,50 @@
     {
       "site": "djjam-d7ae7",
       "public": "dist/djjam-v2",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
-          "source":"/api/users",
-          "function":"user"
+          "source": "/api/users",
+          "function": "user"
         },
         {
-          "source":"/queryTrack",
-          "function":"queryTrack"
-        }
-        ,{
+          "source": "/queryTrack",
+          "function": "queryTrack"
+        },
+        {
           "source": "**",
           "destination": "/index.html"
         }
       ],
-      "headers": [ 
-        
+      "headers": [
         {
-          "source" : "/index.html",
-          "headers" : [ {
-            "key" : "Access-Control-Allow-Origin",
-            "value" : "*"
-          } ]
+          "source": "/index.html",
+          "headers": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            }
+          ]
         },
         {
-          "source" : "**",
-          "headers" : [ {
-            "key" : "Access-Control-Allow-Origin",
-            "value" : "*"
-          } ]
-        } 
-  
+          "source": "**",
+          "headers": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            }
+          ]
+        }
       ]
     },
     {
       "site": "djjam-staging",
       "public": "dist/djjam-v2",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
-          "source":"/api/users",
-          "function":"user"
+          "source": "/api/users",
+          "function": "user"
         },
         {
           "source": "**",
@@ -63,15 +57,11 @@
     {
       "site": "djjam-develop",
       "public": "dist/djjam-v2",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
-          "source":"/api/users",
-          "function":"user"
+          "source": "/api/users",
+          "function": "user"
         },
         {
           "source": "**",

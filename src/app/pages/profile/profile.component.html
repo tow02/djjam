@@ -1,59 +1,80 @@
 <header>
-    <section class="first">
-        <div class="container" *ngIf="user">
-            <img class="clip-circle" src="{{user.picture}}" />
-        </div>
-    </section>
-    <section class="second">
-        <div class="container" *ngIf="user">
-            <h5>DJ</h5>
-            <h1>{{this.user.name}}</h1>
-            <h5>FROM</h5>
-            <span> <a href="">{{this.user.city}}</a></span>
-        </div>
-    </section>
-    <section class="end">
-        <div class="container">
-            <button mat-icon-button [matMenuTriggerFor]="optionMenu">
-                <mat-icon *ngIf="!isOwner">share</mat-icon>
-                <mat-icon *ngIf="isOwner">more_vert</mat-icon>
-            </button>
-            <mat-menu #optionMenu="matMenu">
-                <button (click)="copy()"  mat-menu-item><mat-icon aria-hidden="false" aria-label="copy">file_copy</mat-icon> Copy Link</button>
-                <a [routerLink]="['/profile/edit']" mat-menu-item><mat-icon aria-hidden="false" aria-label="copy">create</mat-icon> Edit</a>
-                <!--<button  mat-menu-item><mat-icon aria-hidden="false" aria-label="Example home icon">thumb_up_alt</mat-icon> Facebook News Feed</button>
+  <section class="first">
+    <div class="container" *ngIf="user">
+      <img class="clip-circle" src="{{ user.picture }}" />
+    </div>
+  </section>
+  <section class="second">
+    <div class="container" *ngIf="user">
+      <h5>DJ</h5>
+      <h1>{{ this.user.name }}</h1>
+      <h5>FROM</h5>
+      <span>
+        <a href="">{{ this.user.city }}</a></span
+      >
+    </div>
+  </section>
+  <section class="end">
+    <div class="container">
+      <button mat-icon-button [matMenuTriggerFor]="optionMenu">
+        <mat-icon *ngIf="!isOwner">share</mat-icon>
+        <mat-icon *ngIf="isOwner">more_vert</mat-icon>
+      </button>
+      <mat-menu #optionMenu="matMenu">
+        <button (click)="copy()" mat-menu-item>
+          <mat-icon aria-hidden="false" aria-label="copy">file_copy</mat-icon>
+          Copy Link
+        </button>
+        <a [routerLink]="['/profile/edit']" mat-menu-item
+          ><mat-icon aria-hidden="false" aria-label="copy">create</mat-icon>
+          Edit</a
+        >
+        <!--<button  mat-menu-item><mat-icon aria-hidden="false" aria-label="Example home icon">thumb_up_alt</mat-icon> Facebook News Feed</button>
                 <button  mat-menu-item><mat-icon aria-hidden="false" aria-label="Example home icon">message</mat-icon> Messenger</button>-->
-            </mat-menu>   
-        </div>
-    </section>
+      </mat-menu>
+    </div>
+  </section>
 </header>
 <section #main class="main">
-    <div *ngFor="let item of sets;let i = index" class="set">
-        <header>
-            <div class="first">
-                <h2>{{item.name}}</h2>
-            </div>
-            <div class="end" *ngIf="!(item.playlists.length < SET_VIEW_LIMIT)">
-                <button [ngClass]="{'disabled':positions[i]>=0}" (click)="back(i)" mat-icon-button >
-                    <mat-icon>keyboard_arrow_left</mat-icon>
-                </button>
-                <button [ngClass]="{'disabled':!canGoNext(i)}" (click)="next(i)" mat-icon-button >
-                    <mat-icon>keyboard_arrow_right</mat-icon>
-                </button>
-                
-            </div>
-        </header>
-        <mat-divider ></mat-divider>
-        <div class="container" >
-            <div class="wrap" id="set-{{i}}"  [ngClass]="{'lesser-than-6':(item.playlists.length < SET_VIEW_LIMIT)}">
-                <!-- Playlists-->
-                <article (click)="select(playlist)" *ngFor="let playlist of item.playlists" class="playlist">
-                    <img src="{{playlist.imageUrl}}">
-                    <h4>{{playlist.name}}</h4>
-                </article>
-            </div>
-        </div>
+  <div *ngFor="let item of sets; let i = index" class="set">
+    <header>
+      <div class="first">
+        <h2>{{ item.name }}</h2>
+      </div>
+      <div class="end" *ngIf="!(item.playlists.length < SET_VIEW_LIMIT)">
+        <button
+          [ngClass]="{ disabled: positions[i] >= 0 }"
+          (click)="back(i)"
+          mat-icon-button
+        >
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        <button
+          [ngClass]="{ disabled: !canGoNext(i) }"
+          (click)="next(i)"
+          mat-icon-button
+        >
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </div>
+    </header>
+    <mat-divider></mat-divider>
+    <div class="container">
+      <div
+        class="wrap"
+        id="set-{{ i }}"
+        [ngClass]="{ 'lesser-than-6': item.playlists.length < SET_VIEW_LIMIT }"
+      >
+        <!-- Playlists-->
+        <article
+          (click)="select(playlist)"
+          *ngFor="let playlist of item.playlists"
+          class="playlist"
+        >
+          <img src="{{ playlist.imageUrl }}" />
+          <h4>{{ playlist.name }}</h4>
+        </article>
+      </div>
     </div>
-
-
+  </div>
 </section>

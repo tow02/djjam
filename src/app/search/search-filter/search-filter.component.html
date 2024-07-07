@@ -1,26 +1,43 @@
-<section  class="filter">
-    <div>
-        <h4>TYPE</h4>
-        <mat-divider></mat-divider>
-        <ul>
-            <li (click)="select('TYPES',i)" [ngClass]="{'active': item.selected}" *ngFor="let item of TYPES;let i = index">{{item.name}}</li>
-        </ul>
-        
-    </div>
-    <div>
-        <h4>TEMPO</h4>
-        <mat-divider></mat-divider>
-        <ul>
-            <li (click)="select('TEMPOS',i)" [ngClass]="{'active': item.selected}" *ngFor="let item of TEMPOS;let i = index">{{item.name}}</li>
-        </ul>
-    </div>
-    <div>
-        <h4>DURATION</h4>
-        <mat-divider></mat-divider>
-        <ul>
-            <ul>
-                <li (click)="select('DURATIONS',i)" [ngClass]="{'active': item.selected}" *ngFor="let item of DURATIONS;let i = index">{{item.name}}</li>
-            </ul>
-        </ul>
-    </div>
+<section class="filter">
+  <div>
+    <h4>TYPE</h4>
+    <mat-divider></mat-divider>
+    <ul>
+      <li
+        (click)="select('TYPES', i)"
+        [ngClass]="{ active: item.selected }"
+        *ngFor="let item of TYPES; let i = index"
+      >
+        {{ item.name }}
+      </li>
+    </ul>
+  </div>
+  <div>
+    <h4>TEMPO</h4>
+    <mat-divider></mat-divider>
+    <ul>
+      <li
+        (click)="select('TEMPOS', i)"
+        [ngClass]="{ active: item.selected }"
+        *ngFor="let item of TEMPOS; let i = index"
+      >
+        {{ item.name }}
+      </li>
+    </ul>
+  </div>
+  <div>
+    <h4>DURATION</h4>
+    <mat-divider></mat-divider>
+    <ul>
+      <ul>
+        <li
+          (click)="select('DURATIONS', i)"
+          [ngClass]="{ active: item.selected }"
+          *ngFor="let item of DURATIONS; let i = index"
+        >
+          {{ item.name }}
+        </li>
+      </ul>
+    </ul>
+  </div>
 </section>

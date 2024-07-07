@@ -1,129 +1,130 @@
-header{
-    display:flex;
+header {
+  display: flex;
 }
 
-header .first{
-    flex:0 0 auto;
+header .first {
+  flex: 0 0 auto;
 }
 
-header .first img{
-    max-width: 100%;
-    max-height:100px ;
+header .first img {
+  max-width: 100%;
+  max-height: 100px;
 }
 
 header .first .clip-circle {
-    clip-path: circle(50px at center);
-  }
-
-header > .first > .container, header > .second > .container, header > .first > .container, header > .end > .container{
-    padding-top:var(--main-padding)
+  clip-path: circle(50px at center);
 }
 
-header > .first > .container{
-    min-width:150px;
-    text-align: center;
+header > .first > .container,
+header > .second > .container,
+header > .first > .container,
+header > .end > .container {
+  padding-top: var(--main-padding);
 }
 
-header .second{
-    flex:3 1 auto;
+header > .first > .container {
+  min-width: 150px;
+  text-align: center;
 }
 
-header .second h4,header .second h5{
-    color:var(--secondary-text-color);
-    letter-spacing: 0.1em;
-    margin-bottom: 0.1em;
+header .second {
+  flex: 3 1 auto;
 }
 
-header .second h1{
-    color:var(--main-color);
-    font-size:2.5em;
-    letter-spacing: 0.1em;
-    ;
+header .second h4,
+header .second h5 {
+  color: var(--secondary-text-color);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.1em;
 }
 
-header .second span{
-    letter-spacing: 0.1em;;
-    text-transform: uppercase;
+header .second h1 {
+  color: var(--main-color);
+  font-size: 2.5em;
+  letter-spacing: 0.1em;
 }
 
-header > .end > .container{
-    padding-right:var(--main-padding);
+header .second span {
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
-.main{
-    padding-top:var(--main-padding);
+header > .end > .container {
+  padding-right: var(--main-padding);
 }
 
-.set{
-    padding-left:var(--main-padding);
-    padding-right:var(--main-padding);
+.main {
+  padding-top: var(--main-padding);
 }
 
-.set h2{
-    
-    margin-bottom: 4px;
+.set {
+  padding-left: var(--main-padding);
+  padding-right: var(--main-padding);
 }
 
-.set .container{
-    padding-top:1rem;
-    overflow-x: auto;
+.set h2 {
+  margin-bottom: 4px;
 }
 
-.set .container .wrap{
-    display:flex;
-    flex-flow: row ;
-    justify-content: flex-start;
-    
-    align-items: stretch;
-    transition: transform 1s ease-in-out;
+.set .container {
+  padding-top: 1rem;
+  overflow-x: auto;
 }
 
-.set .container .wrap.lesser-than-6{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr) );
+.set .container .wrap {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-start;
+
+  align-items: stretch;
+  transition: transform 1s ease-in-out;
 }
 
-.set .container::-webkit-scrollbar {  
-      visibility: hidden;
+.set .container .wrap.lesser-than-6 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 }
 
-.set .playlist{
-    flex:1 0 auto;
-    width: 180px;
-    height: 240px;
-    overflow: hidden;
-    align-self: center;
-    margin-right:1em;
-    cursor: pointer;
+.set .container::-webkit-scrollbar {
+  visibility: hidden;
 }
 
-.set .playlist img{
-    width:180px;
-    height:180px;
+.set .playlist {
+  flex: 1 0 auto;
+  width: 180px;
+  height: 240px;
+  overflow: hidden;
+  align-self: center;
+  margin-right: 1em;
+  cursor: pointer;
 }
 
-.set .playlist h4{
-    font-weight: 600;
-    width: 180px;
+.set .playlist img {
+  width: 180px;
+  height: 180px;
 }
 
-
-
-mat-icon, .mat-menu-item .mat-icon{
-    color:var(--main-color);
+.set .playlist h4 {
+  font-weight: 600;
+  width: 180px;
 }
 
-.main header .end{
-    flex: 1 1 auto;
-    justify-content: flex-end;
-    align-content: center;;
-    display: flex;
+mat-icon,
+.mat-menu-item .mat-icon {
+  color: var(--main-color);
 }
 
-.main header .end button{
-    align-self: flex-end;
+.main header .end {
+  flex: 1 1 auto;
+  justify-content: flex-end;
+  align-content: center;
+  display: flex;
 }
 
-.main header .end button.disabled mat-icon{
-    color:#ffc21863;
+.main header .end button {
+  align-self: flex-end;
+}
+
+.main header .end button.disabled mat-icon {
+  color: #ffc21863;
 }

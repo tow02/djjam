@@ -1,13 +1,17 @@
-<div *ngIf="playlistEvent.status=='done'" style="display: block;background-color: white;;">
-    <canvas baseChart 
+<div
+  *ngIf="playlistEvent.status == 'done'"
+  style="display: block; background-color: white"
+>
+  <canvas
+    baseChart
     [datasets]="barChartData"
-    
     [labels]="barChartLabels"
     [plugins]="barChartPlugins"
     [legend]="barChartLegend"
-    [chartType]="barChartType">
-    </canvas>
+    [chartType]="barChartType"
+  >
+  </canvas>
 </div>
-<div *ngIf="playlistEvent.status!=='done'">
-    <mat-spinner></mat-spinner>
+<div *ngIf="playlistEvent.status !== 'done'">
+  <mat-spinner></mat-spinner>
 </div>

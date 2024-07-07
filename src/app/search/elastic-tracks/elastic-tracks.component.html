@@ -1,27 +1,24 @@
 <mat-list *ngIf="elasticTracks">
-    <mat-list-item  *ngFor="let item of elasticTracks;index as i" [ngClass]="{'active':i === currentSelectedIndex}">
-      
-      <h3 (click)="select(item, i)" matLine>{{item.name}}</h3>
-      <p (click)="select(item, i)" matLine>
-        <span>{{item.artists.join(", ")}}</span>
-        <span class="demo-2"> -- {{item.duration/1000 | secsToTime}} </span>
-      </p>
-      <p matLine>
-        <span *ngFor="let link of item.tags">
-          <a href="/search/{{link}}">{{link}}</a>&nbsp;
-        </span>
-        
-      </p>
-      <button (click)="play(item, i)" mat-icon-button >
-        <mat-icon *ngIf="i !== currentPlayIndex">play_arrow</mat-icon>
-        <mat-icon *ngIf="i === currentPlayIndex">pause_arrow</mat-icon>
-     </button>
-    </mat-list-item>
-    
-  </mat-list>
-<div *ngIf="elasticTracks && elasticTracks.length == 0">
-  0 Results
-</div>
-<div *ngIf="!elasticTracks">
-  Loading..
-</div>
+  <mat-list-item
+    *ngFor="let item of elasticTracks; index as i"
+    [ngClass]="{ active: i === currentSelectedIndex }"
+  >
+    <h3 (click)="select(item, i)" matLine>{{ item.name }}</h3>
+    <p (click)="select(item, i)" matLine>
+      <span>{{ item.artists.join(", ") }}</span>
+      <span class="demo-2"> -- {{ item.duration / 1000 | secsToTime }} </span>
+    </p>
+    <p matLine>
+      <span *ngFor="let link of item.tags">
+        <a href="/search/{{ link }}">{{ link }}</a
+        >&nbsp;
+      </span>
+    </p>
+    <button (click)="play(item, i)" mat-icon-button>
+      <mat-icon *ngIf="i !== currentPlayIndex">play_arrow</mat-icon>
+      <mat-icon *ngIf="i === currentPlayIndex">pause_arrow</mat-icon>
+    </button>
+  </mat-list-item>
+</mat-list>
+<div *ngIf="elasticTracks && elasticTracks.length == 0">0 Results</div>
+<div *ngIf="!elasticTracks">Loading..</div>

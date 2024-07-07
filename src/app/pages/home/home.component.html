@@ -1,30 +1,30 @@
-
-
 <div class="hero" *ngIf="false">
-    <img src="https://scontent.fbkk22-6.fna.fbcdn.net/v/t1.0-9/90786861_102368714754172_3998502376620163072_o.jpg?_nc_cat=102&_nc_sid=dd9801&_nc_eui2=AeGRaJr5LpTFqPbFqIQheyoX8ZUT5kF8KObxlRPmQXwo5u3yJXRbGAPRtJiC-acypLs&_nc_ohc=mVxCyUNjZTAAX8_v0-f&_nc_ht=scontent.fbkk22-6.fna&oh=c7aa5d7010f41ad46ab948ec3cfc2e56&oe=5EF5EAF2">
+  <img
+    src="https://scontent.fbkk22-6.fna.fbcdn.net/v/t1.0-9/90786861_102368714754172_3998502376620163072_o.jpg?_nc_cat=102&_nc_sid=dd9801&_nc_eui2=AeGRaJr5LpTFqPbFqIQheyoX8ZUT5kF8KObxlRPmQXwo5u3yJXRbGAPRtJiC-acypLs&_nc_ohc=mVxCyUNjZTAAX8_v0-f&_nc_ht=scontent.fbkk22-6.fna&oh=c7aa5d7010f41ad46ab948ec3cfc2e56&oe=5EF5EAF2"
+  />
 </div>
 
 <section class="content">
-    <h2 *ngIf="staffPicks && staffPicks.length > 0">Staff picks</h2>
-    <section class="playlists">
-        <article *ngFor="let item of staffPicks">
-            <img (click)="selectStaffPick(item)" src="{{item.Cover[0].url}}" />
-            <!--<h4>{{item.Name}}</h4>-->
-            <p (click)="selectStaffPick(item)">{{item.Notes}}</p>
-            <p (click)="selectStaffPick(item)">{{item['DJ Name']}} <span class="city">Bangkok</span></p>
-            
-        </article>
-        
-    </section>
-    <h2>Community playlists</h2>
-    <section class="playlists">
-        <article  *ngFor="let item of communityPlaylists">
-            <img (click)="select(item)" src="{{item.imageUrl}}" />
-            <h4 (click)="select(item)" >{{item.name}}</h4>
-            <p><a [routerLink]="['/users',item.by.id]">{{item.by.name}}</a>&nbsp;<span class="city">{{item.by.city}}</span></p>
-        </article>
-    </section>
-    
-    
+  <h2 *ngIf="staffPicks && staffPicks.length > 0">Staff picks</h2>
+  <section class="playlists">
+    <article *ngFor="let item of staffPicks">
+      <img (click)="selectStaffPick(item)" src="{{ item.Cover[0].url }}" />
+      <!--<h4>{{item.Name}}</h4>-->
+      <p (click)="selectStaffPick(item)">{{ item.Notes }}</p>
+      <p (click)="selectStaffPick(item)">
+        {{ item["DJ Name"] }} <span class="city">Bangkok</span>
+      </p>
+    </article>
+  </section>
+  <h2>Community playlists</h2>
+  <section class="playlists">
+    <article *ngFor="let item of communityPlaylists">
+      <img (click)="select(item)" src="{{ item.imageUrl }}" />
+      <h4 (click)="select(item)">{{ item.name }}</h4>
+      <p>
+        <a [routerLink]="['/users', item.by.id]">{{ item.by.name }}</a
+        >&nbsp;<span class="city">{{ item.by.city }}</span>
+      </p>
+    </article>
+  </section>
 </section>
-

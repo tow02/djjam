@@ -8,9 +8,8 @@ describe('SpotifyLoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SpotifyLoginComponent ]
-    })
-    .compileComponents();
+      declarations: [SpotifyLoginComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

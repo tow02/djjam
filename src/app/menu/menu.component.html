@@ -1,53 +1,77 @@
 <nav *ngIf="!isSearchMode">
-    
-    <div id="start">
-        <button *ngIf="isLoginIn"  (click)="toggle()" mat-icon-button >
-            <mat-icon *ngIf="!isOpen">menu</mat-icon>
-            <mat-icon *ngIf="isOpen">menu_open</mat-icon>
-          </button>
-        <a [routerLink]="['/']"> <img src="assets/logo.png" /></a>
-    </div>
-    <div id="center">
-        <form *ngIf="isLoginIn"  (submit)="search()">
-            <input [(ngModel)]="q"  name="q" type="text" placeholder="Search for swing music" />
-            <button type="submit"  mat-button class="search-btn">
-                <mat-icon style="color:var(--main-bg-color);">search</mat-icon>
-            </button>
-        </form>
-        <button (click)="switchToSearch()"  mat-button class="option search-btn">
-            <mat-icon >search</mat-icon>
-        </button>
-    </div>
-    <div id="end" *ngIf="isLoginIn" >
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-            <mat-icon>person</mat-icon>
-        </button>
-            <mat-menu #menu="matMenu">
-                <button  (click)="navigateProfile(['/profile'])"  mat-menu-item>
-                    <mat-icon aria-hidden="false" aria-label="Example home icon">account_circle</mat-icon> Profile
-                </button>
-                <button  (click)="navigateProfile(['/setting'])"   mat-menu-item> <mat-icon aria-hidden="false" aria-label="Example home icon">settings</mat-icon>  Setting</button>
-                <button (click)="logout()" mat-menu-item>  <mat-icon aria-hidden="false" aria-label="Example home icon">login</mat-icon>  Logout</button>
-            </mat-menu>            
-    </div>
+  <div id="start">
+    <button *ngIf="isLoginIn" (click)="toggle()" mat-icon-button>
+      <mat-icon *ngIf="!isOpen">menu</mat-icon>
+      <mat-icon *ngIf="isOpen">menu_open</mat-icon>
+    </button>
+    <a [routerLink]="['/']"> <img src="assets/logo.png" /></a>
+  </div>
+  <div id="center">
+    <form *ngIf="isLoginIn" (submit)="search()">
+      <input
+        [(ngModel)]="q"
+        name="q"
+        type="text"
+        placeholder="Search for swing music"
+      />
+      <button type="submit" mat-button class="search-btn">
+        <mat-icon style="color: var(--main-bg-color)">search</mat-icon>
+      </button>
+    </form>
+    <button (click)="switchToSearch()" mat-button class="option search-btn">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+  <div id="end" *ngIf="isLoginIn">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>person</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button (click)="navigateProfile(['/profile'])" mat-menu-item>
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+          >account_circle</mat-icon
+        >
+        Profile
+      </button>
+      <button (click)="navigateProfile(['/setting'])" mat-menu-item>
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+          >settings</mat-icon
+        >
+        Setting
+      </button>
+      <button (click)="logout()" mat-menu-item>
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+          >login</mat-icon
+        >
+        Logout
+      </button>
+    </mat-menu>
+  </div>
 </nav>
 <nav class="search-mode" *ngIf="isSearchMode">
-    <div class="start">
-        <button *ngIf="isLoginIn"  (click)="isSearchMode = false" mat-icon-button >
-            <mat-icon >arrow_back_ios</mat-icon>
-          </button>
-    </div>
-    <div class="middle">
-        <form *ngIf="isLoginIn"  (submit)="search()">
-            <input id="searchStuff" [(ngModel)]="q"  name="q" type="text" placeholder="Search for swing music" />
-        </form>
-    </div>
-    <div class="end">
-        <button (click)="search()" type="submit"  mat-button class="search-btn">
-            <mat-icon style="color:var(--main-bg-color);">search</mat-icon>
-        </button>
-    </div>
+  <div class="start">
+    <button *ngIf="isLoginIn" (click)="isSearchMode = false" mat-icon-button>
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+  </div>
+  <div class="middle">
+    <form *ngIf="isLoginIn" (submit)="search()">
+      <input
+        id="searchStuff"
+        [(ngModel)]="q"
+        name="q"
+        type="text"
+        placeholder="Search for swing music"
+      />
+    </form>
+  </div>
+  <div class="end">
+    <button (click)="search()" type="submit" mat-button class="search-btn">
+      <mat-icon style="color: var(--main-bg-color)">search</mat-icon>
+    </button>
+  </div>
 </nav>
-<div class="warning" *ngIf="isLoginIn && !isVerify" >
-Your email hasn't verified, Please check your email for complete the verification steps &nbsp; <a color="primary" (click)="isVerify = true">(X)</a>
+<div class="warning" *ngIf="isLoginIn && !isVerify">
+  Your email hasn't verified, Please check your email for complete the
+  verification steps &nbsp; <a color="primary" (click)="isVerify = true">(X)</a>
 </div>

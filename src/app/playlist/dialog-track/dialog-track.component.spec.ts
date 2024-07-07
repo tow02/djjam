@@ -8,9 +8,8 @@ describe('DialogTrackComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DialogTrackComponent ]
-    })
-    .compileComponents();
+      declarations: [DialogTrackComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

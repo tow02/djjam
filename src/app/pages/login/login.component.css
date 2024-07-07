@@ -1,95 +1,95 @@
-.login-area{
-/*    border:1px solid rgba(0,0,0, 0.75);
+.login-area {
+  /*    border:1px solid rgba(0,0,0, 0.75);
     box-shadow: 5px 5px 0px 0px rgba(0,0,0,0.75);;*/
-    min-width: 15em;
-    max-width: 50vw;
-    margin-top:10em;
-    margin-left: auto;;
-    margin-right:auto;
-    background-color: white;;
-    padding:2rem;
-    color:black;
+  min-width: 15em;
+  max-width: 50vw;
+  margin-top: 10em;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  padding: 2rem;
+  color: black;
 }
 
-.login-area.isLogginIn{
-    opacity: 1;
-    
-    transition: opacity 1s ease-in-out;;
-    opacity: 0;
+.login-area.isLogginIn {
+  opacity: 1;
+
+  transition: opacity 1s ease-in-out;
+  opacity: 0;
 }
 
-.full-width{
-    width: 100%;
+.full-width {
+  width: 100%;
 }
 
-.options{
-    display: flex;;
-    flex-flow: column;
+.options {
+  display: flex;
+  flex-flow: column;
 }
 
-.or{
-    display: flex;
-    padding-top:1em;
+.or {
+  display: flex;
+  padding-top: 1em;
 }
 
-.or > .first, .or .end{
-    flex:1 1 auto;
-    
+.or > .first,
+.or .end {
+  flex: 1 1 auto;
 }
 
-.or > .middle{
-    flex:0 1 auto;
-    padding-left:1em;
-    padding-right:1em;
-    color:var(--main-bg-color);
-    letter-spacing: 0.1em;
-    font-size:1.2em;
+.or > .middle {
+  flex: 0 1 auto;
+  padding-left: 1em;
+  padding-right: 1em;
+  color: var(--main-bg-color);
+  letter-spacing: 0.1em;
+  font-size: 1.2em;
 }
 
-button{
-    letter-spacing: 0.2em;
-    align-self:center;
-    min-width:10em;
+button {
+  letter-spacing: 0.2em;
+  align-self: center;
+  min-width: 10em;
 }
 
-button.mat-button[color="spotify"]{
-    width:100%
+button.mat-button[color="spotify"] {
+  width: 100%;
 }
 
-button:nth-child(2){
-    margin-top:1em;
+button:nth-child(2) {
+  margin-top: 1em;
 }
 
-.options > div{
-    padding-top:1em;
-    align-self:center
+.options > div {
+  padding-top: 1em;
+  align-self: center;
 }
-a{
-    color:var(--main-bg-color);
-    font-size:0.8em;
-    cursor: pointer;
+a {
+  color: var(--main-bg-color);
+  font-size: 0.8em;
+  cursor: pointer;
 }
 
 @media all and (max-width: 30em) {
-    .login-area{
-        width:calc(100% - 2rem);
-        max-width:calc(100% - 2rem);
-        height:89.5vh;
-        margin:0;
-        padding:1rem;
-    }
-    form{
-        width:calc(100% - 2rem);
-    }
+  .login-area {
+    width: calc(100% - 2rem);
+    max-width: calc(100% - 2rem);
+    height: 89.5vh;
+    margin: 0;
+    padding: 1rem;
+  }
+  form {
+    width: calc(100% - 2rem);
+  }
 }
 
-p.error{
-    font-size: 0.8em;
-    color:red;
-    text-align: center;;
+p.error {
+  font-size: 0.8em;
+  color: red;
+  text-align: center;
 }
 
-p.message{
-    font-size: 0.8em;
-    text-align: center;;
+p.message {
+  font-size: 0.8em;
+  text-align: center;
 }

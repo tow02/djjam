@@ -1,6 +1,12 @@
 <section class="searchbox">
-    <form (submit)="search()">
-        <input #searchq id="query" name="query" type="text" class="form-control"  [(ngModel)]="query" />
-    </form>
+  <form (submit)="search()">
+    <input
+      #searchq
+      id="query"
+      name="query"
+      type="text"
+      class="form-control"
+      [(ngModel)]="query"
+    />
+  </form>
 </section>
-

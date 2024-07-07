@@ -1,54 +1,52 @@
-.artists{
-    display:grid;
-    grid-template-columns:  repeat(auto-fill, minmax(64px, 1fr) );
+.artists {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
 }
 
-.artists > article{
-    position: relative;
-    display: inline-block;
-    height: 64px;;
-    flex-basis: auto;
-    flex: 0 0 auto;
-    margin-bottom: 8px;
+.artists > article {
+  position: relative;
+  display: inline-block;
+  height: 64px;
+  flex-basis: auto;
+  flex: 0 0 auto;
+  margin-bottom: 8px;
 }
 
-.artists > article img{
-    width:64px;
-    height:64px;
-    object-fit:cover;
+.artists > article img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
 }
 
-
-.artists > article .cover{
-    width:56px;
-    height:56px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding:4px;
-    background-color: black;;
-    color:white;
+.artists > article .cover {
+  width: 56px;
+  height: 56px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 4px;
+  background-color: black;
+  color: white;
 }
 
 .artists > article .tooltiptext {
-    visibility: hidden;
-    width: 0px;
-    background-color: rgba(0,0,0,0.5);
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-   
-    /* Position the tooltip text - see examples below! */
-    position: absolute;
-    left:0;
-    right:0;
-    bottom:0;
-    z-index: 1;
-  }
-  
-  /* Show the tooltip text when you mouse over the tooltip container */
-  .artists > article:hover .tooltiptext {
-    visibility: visible;
-    width:120px;
-  }
-  
+  visibility: hidden;
+  width: 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.artists > article:hover .tooltiptext {
+  visibility: visible;
+  width: 120px;
+}

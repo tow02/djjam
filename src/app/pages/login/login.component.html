@@ -1,48 +1,68 @@
-<section class="login-area" *ngIf="!isForgetPassword" [ngClass]="{'isLogginIn':isLogginIn}">
-    <button (click)="spotifyLogin()" mat-button color="spotify">LOGIN WITH SPOTIFY</button>
-    <div class="or">
-        <div class="first"></div>
-        <div class="middle">OR</div>
-        <div class="end"></div>
+<section
+  class="login-area"
+  *ngIf="!isForgetPassword"
+  [ngClass]="{ isLogginIn: isLogginIn }"
+>
+  <button (click)="spotifyLogin()" mat-button color="spotify">
+    LOGIN WITH SPOTIFY
+  </button>
+  <div class="or">
+    <div class="first"></div>
+    <div class="middle">OR</div>
+    <div class="end"></div>
+  </div>
+  <form (submit)="login()">
+    <mat-form-field class="full-width">
+      <mat-label>Email</mat-label>
+      <input
+        [(ngModel)]="email"
+        name="emal"
+        matInput
+        placeholder="Ex. me@sompop.dev"
+        value=""
+      />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Password</mat-label>
+      <input
+        [(ngModel)]="password"
+        name="password"
+        matInput
+        type="password"
+        placeholder=""
+      />
+    </mat-form-field>
+    <div class="options">
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+      <button mat-button color="primary">LOGIN</button>
+      <div>
+        <a (click)="isForgetPassword = true">Forgot password</a>
+      </div>
+      <div>
+        <a [routerLink]="['/signup']">Sign up</a>
+      </div>
     </div>
-    <form  (submit)="login()">
-        <mat-form-field class="full-width">
-            <mat-label>Email</mat-label>
-            <input [(ngModel)]="email" name="emal" matInput placeholder="Ex. me@sompop.dev" value="">
-        </mat-form-field>
-        
-        <mat-form-field class="full-width">
-            <mat-label>Password</mat-label>
-            <input [(ngModel)]="password" name="password" matInput type="password" placeholder="">
-        </mat-form-field>
-        <div class="options">
-            <p  class="error" *ngIf="errorMessage">{{errorMessage}}</p>
-            <button mat-button color="primary">LOGIN</button>
-            <div>
-                <a (click)="isForgetPassword = true">Forgot password</a>
-            </div>
-            <div>
-                <a [routerLink]="['/signup']">Sign up</a>
-            </div>
-        </div>
-        
-        
-    </form>
-
-
+  </form>
 </section>
 <section class="login-area" *ngIf="isForgetPassword">
-    <form  (submit)="forgotPassword()">
-        <mat-form-field class="full-width">
-            <mat-label>Email</mat-label>
-            <input [(ngModel)]="email" name="emal" matInput placeholder="Ex. me@sompop.dev" value="">
-        </mat-form-field>
-        <div class="options">
-            <button mat-button color="primary">Reset password</button>
-            <p  class="message" *ngIf="statusMessage">{{statusMessage}}</p>
-            <div>
-                <a (click)="isForgetPassword = false">Back</a>
-            </div>
-        </div>
-    </form>
+  <form (submit)="forgotPassword()">
+    <mat-form-field class="full-width">
+      <mat-label>Email</mat-label>
+      <input
+        [(ngModel)]="email"
+        name="emal"
+        matInput
+        placeholder="Ex. me@sompop.dev"
+        value=""
+      />
+    </mat-form-field>
+    <div class="options">
+      <button mat-button color="primary">Reset password</button>
+      <p class="message" *ngIf="statusMessage">{{ statusMessage }}</p>
+      <div>
+        <a (click)="isForgetPassword = false">Back</a>
+      </div>
+    </div>
+  </form>
 </section>

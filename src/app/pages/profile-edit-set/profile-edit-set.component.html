@@ -1,32 +1,40 @@
 <section class="area">
-    <div class="first">
-        <div class="breadcrumb">
-            <a [routerLink]="['/profile']">Profile </a> > <a [routerLink]="['/profile/edit']">Edit</a> 
-        </div>
-        <h2> {{setActualName}}</h2>
-
+  <div class="first">
+    <div class="breadcrumb">
+      <a [routerLink]="['/profile']">Profile </a> >
+      <a [routerLink]="['/profile/edit']">Edit</a>
     </div>
+    <h2>{{ setActualName }}</h2>
+  </div>
 
-    <div class="second">
-        <mat-list cdkDropList role="list"  (cdkDropListDropped)="drop($event)">
-            <mat-list-item role="listitem" *ngFor="let item of playlists;let i = index" cdkDrag>
-                
-                <mat-icon matListIcon>drag_handle</mat-icon>
-                <h3 matLine>{{item.name}}</h3>
-                <mat-menu #appMenu="matMenu">
-                    <button (click)="moveup(i)" mat-menu-item>Move up</button>
-                    <button (click)="movedown(i)" mat-menu-item>Move down</button>
-                    <button (click)="remove(i)" mat-menu-item>Remove</button>
-                </mat-menu>
-                <button [matMenuTriggerFor]="appMenu" class="options" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
-                  <mat-icon>more_vert</mat-icon>
-                </button>
-            </mat-list-item>
-          </mat-list>
-          <div class="options">
-              <a [routerLink]="['/publish']" mat-button color="primary">ADD A NEW PLAYLIST</a>
-          </div>
+  <div class="second">
+    <mat-list cdkDropList role="list" (cdkDropListDropped)="drop($event)">
+      <mat-list-item
+        role="listitem"
+        *ngFor="let item of playlists; let i = index"
+        cdkDrag
+      >
+        <mat-icon matListIcon>drag_handle</mat-icon>
+        <h3 matLine>{{ item.name }}</h3>
+        <mat-menu #appMenu="matMenu">
+          <button (click)="moveup(i)" mat-menu-item>Move up</button>
+          <button (click)="movedown(i)" mat-menu-item>Move down</button>
+          <button (click)="remove(i)" mat-menu-item>Remove</button>
+        </mat-menu>
+        <button
+          [matMenuTriggerFor]="appMenu"
+          class="options"
+          mat-icon-button
+          aria-label="Example icon button with a vertical three dot icon"
+        >
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+    <div class="options">
+      <a [routerLink]="['/publish']" mat-button color="primary"
+        >ADD A NEW PLAYLIST</a
+      >
     </div>
-
+  </div>
 </section>
-

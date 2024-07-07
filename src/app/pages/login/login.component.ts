@@ -1,50 +1,50 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../../../environments/environment'
-import { AuthenticationService } from "../../services/authentication.service"
-import { SpotifyService } from "../../services/spotify.service"
-import { Router } from "@angular/router"
+import { environment } from '../../../environments/environment';
+import { AuthenticationService } from '../../services/authentication.service';
+import { SpotifyService } from '../../services/spotify.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  constructor(
+    private authen: AuthenticationService,
+    private router: Router,
+    private spotifyService: SpotifyService,
+  ) {}
 
-  constructor(private authen:AuthenticationService, private router:Router, private spotifyService:SpotifyService) { }
-
-  email:string
-  password:string
+  email: string;
+  password: string;
   isLogginIn = false;
-  errorMessage:string = "";
+  errorMessage: string = '';
   isForgetPassword = false;
-  statusMessage = "";
+  statusMessage = '';
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  async login(){
+  async login() {
     console.log(this.email, this.password);
     this.isLogginIn = true;
-    await this.authen.login(this.email, this.password).catch(e => {
-      console.log('error',e)
-      if(environment.errorMessages[e.code])
+    await this.authen.login(this.email, this.password).catch((e) => {
+      console.log('error', e);
+      if (environment.errorMessages[e.code])
         this.errorMessage = environment.errorMessages[e.code];
-      else
-        this.errorMessage =  e.message;
-    })
+      else this.errorMessage = e.message;
+    });
     this.isLogginIn = false;
-    this.router.navigate([''])
+    this.router.navigate(['']);
   }
 
-  async forgotPassword(){
+  async forgotPassword() {
     this.statusMessage = environment.statusMessaages.sending_reset_password;
-    await this.authen.auth.sendPasswordResetEmail(this.email)
+    await this.authen.auth.sendPasswordResetEmail(this.email);
     this.statusMessage = environment.statusMessaages.done_sent;
   }
 
-  spotifyLogin(){
-    this.spotifyService.authen(true)    ;
+  spotifyLogin() {
+    this.spotifyService.authen(true);
   }
-
 }

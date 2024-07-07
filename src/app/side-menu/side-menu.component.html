@@ -1,42 +1,46 @@
 <section class="container">
-    <ul>
-        <li>
-            <a  (click)="navigate()"  [routerLink]="['/']"  mat-button>
-                <mat-icon>home</mat-icon>
-                Home
-            </a>    
-        </li>
-        
-       <!-- <li  *ngIf="isConnect">
+  <ul>
+    <li>
+      <a (click)="navigate()" [routerLink]="['/']" mat-button>
+        <mat-icon>home</mat-icon>
+        Home
+      </a>
+    </li>
+
+    <!-- <li  *ngIf="isConnect">
             <a    mat-button>
             <mat-icon>star_rate</mat-icon>
             Favorites
             </a>    </li>-->
-        <li  *ngIf="isConnect">
-            <a (click)="navigate()"  [routerLink]="['/publish']"  mat-button>
-            <mat-icon>publish</mat-icon>
-            Publish
-            </a>    </li>
-    </ul>
+    <li *ngIf="isConnect">
+      <a (click)="navigate()" [routerLink]="['/publish']" mat-button>
+        <mat-icon>publish</mat-icon>
+        Publish
+      </a>
+    </li>
+  </ul>
 
-<h4 class="spotify"  *ngIf="isConnect">Playlists</h4>
-<form class="spotify" *ngIf="!isConnect">
-    <button (click)="spotifyConnnect()" class="spotify-button">Connect to Spotify</button>
-</form>
-<ul class="spotify" *ngIf="isConnect">
-    <li *ngFor="let item of playlists"><a (click)="navigate()"  [routerLink]="['/playlist', item.id]" mat-button><mat-icon>queue_music</mat-icon> {{item.name}}</a></li>
-    
-    
-</ul>
-<div class="buttom" [ngClass]="{'connect':isConnect}">
+  <h4 class="spotify" *ngIf="isConnect">Playlists</h4>
+  <form class="spotify" *ngIf="!isConnect">
+    <button (click)="spotifyConnnect()" class="spotify-button">
+      Connect to Spotify
+    </button>
+  </form>
+  <ul class="spotify" *ngIf="isConnect">
+    <li *ngFor="let item of playlists">
+      <a (click)="navigate()" [routerLink]="['/playlist', item.id]" mat-button
+        ><mat-icon>queue_music</mat-icon> {{ item.name }}</a
+      >
+    </li>
+  </ul>
+  <div class="buttom" [ngClass]="{ connect: isConnect }">
     <a>About</a>
     <a>Copyright</a>
     <a>Contact us</a>
     <div>
-        <small>&copy; Copyright 2020 <a href="https://sompop.dev">Sompop.dev</a> </small>
+      <small
+        >&copy; Copyright 2020 <a href="https://sompop.dev">Sompop.dev</a>
+      </small>
     </div>
-    
-</div>
-
-
+  </div>
 </section>

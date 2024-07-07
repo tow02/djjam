@@ -1,63 +1,61 @@
-.container{
-    
-    padding-top:calc(var(--menu-height) + var(--main-padding)  + var(--main-padding));
-    display: flex;
-    flex-direction: column;
-    
-    
+.container {
+  padding-top: calc(
+    var(--menu-height) + var(--main-padding) + var(--main-padding)
+  );
+  display: flex;
+  flex-direction: column;
 }
 
-ul{
-    list-style: none;
-    padding:0;
+ul {
+  list-style: none;
+  padding: 0;
 }
 
-
-ul li > a{
-    width: 100%;
-    text-align: left;
-    text-decoration: none;
-    text-overflow: ellipsis;
-    overflow: hidden;
+ul li > a {
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
-h4{
-    padding-left:calc(var(--main-padding) + 5px);
+h4 {
+  padding-left: calc(var(--main-padding) + 5px);
 }
-form.spotify{
-    text-align: center;
-}
-
-ul.spotify{
-    padding-left: 0;
-    padding-top:0;
-    margin-top:0;
+form.spotify {
+  text-align: center;
 }
 
-ul.spotify a, h4.spotify{
-    color:#ddd;
+ul.spotify {
+  padding-left: 0;
+  padding-top: 0;
+  margin-top: 0;
 }
 
-h4.spotify{
-    margin-bottom: 0;
+ul.spotify a,
+h4.spotify {
+  color: #ddd;
 }
 
-.buttom{
-    position: fixed;
-    bottom:0px;
-    padding-left:var(--main-padding);
+h4.spotify {
+  margin-bottom: 0;
 }
 
-.buttom.connect{
-    position: initial;
+.buttom {
+  position: fixed;
+  bottom: 0px;
+  padding-left: var(--main-padding);
 }
 
-.buttom a{
-    margin-right:0.5em;
-    font-size:0.8em;
+.buttom.connect {
+  position: initial;
 }
 
-small a{
-    font-size:1em;
+.buttom a {
+  margin-right: 0.5em;
+  font-size: 0.8em;
 }
 
+small a {
+  font-size: 1em;
+}
